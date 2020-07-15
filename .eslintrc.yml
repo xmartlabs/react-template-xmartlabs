@@ -20,9 +20,12 @@ rules:
   # Sometimes it's more convenient to have named exports even
   # though only one thing has to be exported.
   import/prefer-default-export: 'off'
+  # Destructuring sometimes makes code harder to read.
+  react/destructuring-assignment: 'off'
 
   # NOTE: THIS IS ONLY NEEDED ON THIS PROJECT. That way we avoid installing all
   # dependencies in this project, which isn't needed. They should be installed
   # on the target project generated with Create React App.
   # AVOID THIS RULE IN ANY PROJECT OTHER THAN HERE
   import/no-unresolved: 'off'
+  import/no-extraneous-dependencies: 'off'
