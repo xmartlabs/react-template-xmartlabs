@@ -5,7 +5,7 @@ class ParamsHelper {
     const decodedParams = queryParams;
     if (decodedParams.length) {
       decodedParams.slice(1).split('&').forEach((param) => {
-        const splitParam = param.split('=').map((URIComponent) => window.decodeURIComponent(URIComponent));
+        const splitParam = param.split('=').map(window.decodeURIComponent);
         /* eslint-disable-next-line prefer-destructuring */
         params[splitParam[0]] = splitParam[1];
       });

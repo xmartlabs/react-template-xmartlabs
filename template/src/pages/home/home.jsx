@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { withLayout } from 'src/hocs/with-layout';
+import { withLayout, LAYOUT_TYPES } from '../../hocs/with-layout';
 import styles from './home.module.scss';
 
 const Home = () => (
@@ -11,6 +11,6 @@ const Home = () => (
   </div>
 );
 
-const WrappedHome = withLayout(Home);
+const WrappedHome = withLayout(LAYOUT_TYPES.HOME, Home);
 
 export { WrappedHome as Home };
