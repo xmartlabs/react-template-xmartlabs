@@ -69,3 +69,39 @@ This will route your page to `/home` once clicked. Let's assume the route also r
 ```
 
 This link will link to `/home/foo?bar=baz&bar2=baz2`. It's worth noting that the `Redirect` component also has the same prop interface, and the `goToProps` helper accepts three parameters with the same names, so you should feel at home when using all three of them.
+
+## Component Layouts
+
+Most of the times multiple pages of your app will share similar features. For example, 90% of your pages might have a navbar and a footer. It's really not practical to go around placing a navbar on ALL of your pages manually. Component layouts come to the rescue!
+
+You'll find a Higher Order Component named `withLayout` on the `hocs` directory. This component is quite simple, it simply wraps the component in a `Layout` component, expecting also a parameter named `layoutType`.
+
+The `Layout` component will be your best friend. It's only a matter of defining what layout types you want to have and then implement them inside this component. You might have a layout that only includes a navbar, or one that only has a footer, or both. Even one that doesn't have anything except the wrapped component.
+
+You can apply the HOC like so:
+
+```js
+withLayout(LAYOUT_TYPES.MY_LAYOUT_TYPE, Component);
+```
+
+This could turn your `Component` from this:
+
+```jsx
+<div>
+  <h1>My component</h1>
+</div>
+```
+
+To this:
+
+```jsx
+<div>
+  <Navbar>
+  <div>
+    <h1>My component</h1>
+  </div>
+  <Footer>
+</div>
+```
+
+It's just an example though. Be mindful of components you'll probably need across multiple pages and a layout will probably help you include them seamlessly! Remember though that not everything can be solved with a layout.
