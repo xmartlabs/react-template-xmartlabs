@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was generated using [Create React App](https://github.com/facebook/create-react-app) with [Xmartlabs' template](https://github.com/xmartlabs/cra-template-xmartlabs).
 
-## Available Scripts
+## Post Install
 
-In the project directory, you can run:
+After creating a project with this template you need to take some extra steps to finish the setup.
 
-### `npm start`
+* Remember to rename the `eslintrc.yml` file to `.eslintrc.yml` (add the initial dot).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Project structure
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The `src` directory has the following structure:
 
-### `npm test`
+* `assets`: This directory contains all global assets. This includes images and stylesheets used in multiple components.
+* `common`: React components used across multiple pages of the SPA.
+* `config`: Global app configuration files go here (e.g. a constants file).
+* `helpers`: Javascript files that provide helper functions to the app. These are not React components.
+* `hocs`: Higher Order Components are stored here.
+* `models`: Models (abstractions of data) go here.
+* `networking`: Includes all code related to networking.
+  * `controllers`: All controllers of the app go here.
+  * `serializers`: All serializers of the app go here.
+* `pages`: React components that are entrypoints for a page of the SPA.
+* `routes`: All configuration related to routing of the pages goes here.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Routing
 
-### `npm run build`
+This project uses [React Router](https://github.com/ReactTraining/react-router) to generate routing between the pages. We've created an abstraction over React Router to make it safer to operate with paths and have some other useful helpers. This section explains how this abstraction works and how to add a new route.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Routing structure
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Our main objective is to have routes declared centrally and reused across the app. This avoids common issues like typos when writing paths. Configuration of the routes is stored on `src/routes/routes.js`. We store information of the routes, such as the name of the route and path. More information can be added to the `routes` object, considering it is later passed as props to the `Route` component of React Router. You'll notice that there's no React component linked to the route.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The mapping between routes and React components is done in `src/route-components.js`. We do this in a separate component since it makes it easier to support [URL Splitting](https://blog.xmartlabs.com/2019/05/17/url-splitting/) later on. This isn't configured by default, so you'll have to do some more work to enable URL Splitting.
 
-### `npm run eject`
+Some helpers have been defined, such as `AppLink` and `AppRedirect`. These are wrappers of the typical `Link` and `Redirect` of React Router. The advantage of these helpers is that they provide a different props API. Instead of having a `to` prop where you just pass the exact path and query string, they accept three different props:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* `routeName`: The name of the target route. Obtained from the routes file as detailed above.
+* `pathParams`: A map of path params. Examples below.
+* `queryParams`: A map of query params. Examples below.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It is highly encouraged that you use these helpers instead of the native ones of React Router. If you need more functionality, implement it on the helpers directly. Another useful helper is `goToPage`, which is a function that receives the same parameters. The difference is that you can use this function to imperatively trigger a route change.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Creating a Route
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
+* Add a name for the new route on `src/routes/routes.js`. Then, on the same file, add an entry to the routes object specifying the path of the route.
+* Add an entry to the object on `src/route-components.js` that links the name you defined previously to the component you created on the pages directory.
 
-## Learn More
+And that's it. If you defined the path correctly you should be able to access the component on that route. There are already examples on all of these files, so you should be able to follow them.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**NOTE:** please define routes in order of specificity (more specific routes should come before) to avoid a less specific route matching before. You can also add the `exact: true` configuration option to the route on `src/routes/routes.js` to avoid matching less specific routes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Using the helpers
 
-### Code Splitting
+Let's imagine we have a route to the homepage `/home` and we have named it `home` on our routes object. In order to link to it from another page we must render an `AppLink` component like so:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```jsx
+<AppLink routeName={routeNaming.HOME} />
+```
 
-### Analyzing the Bundle Size
+This will route your page to `/home` once clicked. Let's assume the route also receives a path parameter `id` (`/home/:id`) and also we want to pass some query parameters. Path parameters and query parameters are specified by Javascript objects, like this:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```jsx
+<AppLink
+  routeName={routeNaming.HOME}
+  pathParams={{ id: 'foo' }}
+  queryParams={{ bar: 'baz', bar2: 'baz2' }}
+>
+```
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This link will link to `/home/foo?bar=baz&bar2=baz2`. It's worth noting that the `Redirect` component also has the same prop interface, and the `goToProps` helper accepts three parameters with the same names, so you should feel at home when using all three of them.
