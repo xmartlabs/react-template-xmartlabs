@@ -1,0 +1,22 @@
+# Airbnb Config: https://www.npmjs.com/package/eslint-config-airbnb
+extends: 'airbnb'
+parser: 'babel-eslint'
+env:
+  browser: true
+  jest: true
+rules:
+  # This rule has been deprecated, see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
+  jsx-a11y/label-has-for: 'off'
+  # When using methods with underscores inside a class, you need to enable this rule
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true
+  # Sometimes object prop types are warranted.
+  react/forbid-prop-types: 'off'
+  # We prefer not enforcing this. It's not generally a good idea to
+  # name files containing JSX with a non-official extension.
+  react/jsx-filename-extension: 'off'
+  linebreak-style: 0
+  # Sometimes it's more convenient to have named exports even
+  # though only one thing has to be exported.
+  import/prefer-default-export: 'off'

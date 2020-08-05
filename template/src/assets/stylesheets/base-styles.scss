@@ -1,0 +1,29 @@
+@import 'variables';
+
+/*
+  This file contains defaults for elements of the DOM.
+  If you need to change the default appearance of a DOM element add
+  that code here.
+*/
+
+* {
+  box-sizing: border-box;
+  font-family: $primary-font;
+}
+
+body {
+  margin: 0;
+}
+
+// We're probably never going to use the default background
+// or border of the buttons, so we remove it here to avoid duplicating
+// code all over.
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:focus, &:active {
+    outline: none;
+  }
+}
