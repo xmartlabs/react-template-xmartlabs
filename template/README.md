@@ -105,3 +105,73 @@ To this:
 ```
 
 It's just an example though. Be mindful of components you'll probably need across multiple pages and a layout will probably help you include them seamlessly! Remember though that not everything can be solved with a layout.
+
+## Networking
+
+This is a very compact section that explains networking. For a more in-depth explanation refer to [this blogpost on the subject](https://blog.xmartlabs.com/2020/07/09/frontend-architecture-and-best-practices/).
+
+"Networking" in this context means communication between the frontend and any kind of backend or service we need to consume. And it can be hard sometimes. APIs can sometimes change unexpectedly or be badly organized in terms of the data they provide. It's the job of the developer to protect its frontend against the backend menace.
+
+That's why this project implements a particular networking pattern that involves three distinct elements:
+
+* Controllers: handle the specific networking calls needed to fetch data or modify the state of the system on the backend.
+* Serializers: receive fresh data from the controller and transform it to remove unnecessary data, rename fields and prepare it to be fed into a model.
+* Models: abstractions of data that represent concepts of our frontend app. Typically instantiated with deserialized data from a serializer.
+
+### Controllers
+
+All networking calls must be made in controllers. They are in charge of knowing where to go to fetch data, what kind of HTTP method to use, etc. You'll probably make a request at some point that returns data. Controllers are also in charge of deserializing the data via a serializer and instantiating models accordingly. Here's an example:
+
+```js
+// src/networking/controllers/example-controller.js
+import { Example } from 'src/models/example';
+import { ExampleSerializer } from '../serializers/example-serializer';
+import { ApiService } from '../api-service';
+import { API_ROUTES } from '../api-routes';
+
+class ExampleController {
+  static async getExamples() {
+    const response = await ApiService.get(API_ROUTES.EXAMPLE);
+    const deSerializedExample = ExampleSerializer.deSerialize(response.data);
+    return new Example(deSerializedExample);
+  }
+}
+
+export { ExampleController };
+```
+
+### Serializers
+
+Serializers act as a sort of firewall of data by deserializing data served by the API. Any kind of structured data that is returned by the API should be deserialized.
+
+The advantage of this is that you can redefine the fields of the data and remove unused ones.
+
+```js
+// src/networking/serializers/example-serializer.js
+class ExampleSerializer {
+  static deSerialize(data) {
+    return {
+      foo: data.foo,
+      bar: data.bar,
+    };
+  }
+}
+
+export { ExampleSerializer };
+```
+
+### Models
+
+Models represent concepts of your app. Typically you'll use them together with controllers and serializers, where deserialized data will be fed to a model to instance it.
+
+```js
+// src/models/example.js
+class Example {
+  constructor(params) {
+    this.foo = params.foo;
+    this.bar = params.bar;
+  }
+}
+
+export { Example };
+```
