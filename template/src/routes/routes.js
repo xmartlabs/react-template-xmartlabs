@@ -34,7 +34,8 @@ const determineRouteParams = (route) => {
 const routes = [
   {
     name: routeNaming.HOME,
-    path: '*',
+    path: '/',
+    exact: true,
   },
   {
     name: routeNaming.NOT_FOUND,
