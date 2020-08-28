@@ -5,6 +5,13 @@ This project was generated using [Create React App](https://github.com/facebook/
 After creating a project with this template you need to take some extra steps to finish the setup.
 
 * Remember to rename the `eslintrc.yml` file to `.eslintrc.yml` (add the initial dot).
+* Add the `clearMocks: true` option to the Jest configuration on the package.json file.
+
+## Running Tests
+
+```shell
+npm test
+```
 
 ## Project structure
 
