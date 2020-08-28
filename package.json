@@ -4,7 +4,7 @@
   "description": "Xmartlabs' Create React App template",
   "main": "template.json",
   "scripts": {
-    "test": "jest . --config jest.config.json",
+    "test": "node scripts/test.js --config jest.config.json",
     "lint": "eslint template/ --ext .js --ext .jsx"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "babel-jest": "^24.9.0",
     "babel-preset-react-app": "^9.1.2",
     "camelcase": "^5.3.1",
+    "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.2.0",

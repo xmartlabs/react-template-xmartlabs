@@ -1,19 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 const IPropTypes = {
-  children: PropTypes.element.isRequired,
-  location: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node,
+  ]).isRequired,
+  location: PropTypes.shape({
+    href: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 /*
   This component is useful to trigger a scroll to the top of
   the page each time the router triggers a route change.
 */
-class UnwrappedScrollToTop extends React.Component {
+class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
+    if (this.props.location.href !== prevProps.location.href) {
       window.scrollTo(0, 0);
     }
   }
@@ -23,8 +27,6 @@ class UnwrappedScrollToTop extends React.Component {
   }
 }
 
-UnwrappedScrollToTop.propTypes = IPropTypes;
-
-const ScrollToTop = withRouter(UnwrappedScrollToTop);
+ScrollToTop.propTypes = IPropTypes;
 
 export { ScrollToTop };

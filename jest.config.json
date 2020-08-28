@@ -6,6 +6,7 @@
     "src/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.d.ts"
   ],
+  "clearMocks": true,
   "setupFiles": [
     "react-app-polyfill/jsdom"
   ],
