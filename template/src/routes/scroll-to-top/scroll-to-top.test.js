@@ -5,7 +5,11 @@ import { ScrollToTop } from './scroll-to-top';
 import { mockScrollTo } from '../../tests/support/window-mock';
 
 describe('ScrollToTop', () => {
-  const location = { href: '/path' };
+  const location = {
+    pathname: '/path',
+    hash: '#hash',
+    search: '?param1=value1',
+  };
   const setupTest = (children = 'Children') => shallow(
     <ScrollToTop location={location}>
       {children}
@@ -38,7 +42,9 @@ describe('ScrollToTop', () => {
 
       subject.setProps({
         location: {
-          href: '/another/path',
+          pathname: '/another/path',
+          hash: '#hash',
+          search: '?param1=value1',
         },
       });
 

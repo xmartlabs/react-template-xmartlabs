@@ -15,7 +15,7 @@ const METHODS = {
 class ApiServiceClass {
   constructor() {
     this.axios = axios.create({
-      baseUrl: constants.apiBaseURL,
+      baseURL: constants.apiBaseURL,
     });
     this._addedHeaders = {};
   }

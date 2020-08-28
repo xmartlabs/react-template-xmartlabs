@@ -7,7 +7,9 @@ const IPropTypes = {
     PropTypes.node,
   ]).isRequired,
   location: PropTypes.shape({
-    href: PropTypes.string.isRequired,
+    hash: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
   }).isRequired,
 };
 
@@ -16,8 +18,14 @@ const IPropTypes = {
   the page each time the router triggers a route change.
 */
 class ScrollToTop extends React.Component {
+  static urlFromLocation(location) {
+    return `${location.pathname}${location.search}${location.hash}`;
+  }
+
   componentDidUpdate(prevProps) {
-    if (this.props.location.href !== prevProps.location.href) {
+    const currentUrl = ScrollToTop.urlFromLocation(this.props.location);
+    const previousUrl = ScrollToTop.urlFromLocation(prevProps.location);
+    if (currentUrl !== previousUrl) {
       window.scrollTo(0, 0);
     }
   }

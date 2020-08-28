@@ -5,7 +5,19 @@ This project was generated using [Create React App](https://github.com/facebook/
 After creating a project with this template you need to take some extra steps to finish the setup.
 
 * Remember to rename the `eslintrc.yml` file to `.eslintrc.yml` (add the initial dot).
-* Add the `clearMocks: true` option to the Jest configuration on the package.json file.
+* Add the `clearMocks: true` option to the Jest configuration on the package.json file (read below).
+
+### Jest Configuration
+
+To have tests run correctly you need to override the default options of Jest. To do this you simply need to add a `jest` key on your package JSON with the following content:
+
+```json
+{
+  "jest": {
+    "clearMocks": true
+  }
+}
+```
 
 ## Running Tests
 
