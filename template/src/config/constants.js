@@ -5,7 +5,7 @@ const fetchVariable = (varName, defaultValue) => {
   return process.env[varName] || defaultValue;
 };
 
-const nodeEnv = fetchVariable(process.env.NODE_ENV);
+const nodeEnv = fetchVariable('NODE_ENV');
 const environment = {
   isDevelopment: nodeEnv === 'development',
   isProduction: nodeEnv === 'production',

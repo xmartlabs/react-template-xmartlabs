@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { constants } from 'src/config/constants';
-import { ApiError } from 'src/models/api-error';
+import { constants } from '../config/constants';
+import { ApiError } from '../models/api-error';
 import { ApiErrorSerializer } from './serializers/api-error-serializer';
 
 const METHODS = {
@@ -15,7 +15,7 @@ const METHODS = {
 class ApiServiceClass {
   constructor() {
     this.axios = axios.create({
-      baseUrl: constants.apiBaseURL,
+      baseURL: constants.apiBaseURL,
     });
     this._addedHeaders = {};
   }
