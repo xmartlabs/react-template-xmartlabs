@@ -19,12 +19,18 @@
 ) {
 
   $item-width: 100%;
+  $final-container-width: 100%;
+  /*
+    Needed for the lowest breakpoint which doesn't have a lower threshold, so the
+    container has to span the full width.
+  */
   @if ($container-width != null) {
-    $item-width: ($container-width - $margin * ($quantity - 1)) / $quantity ;
+    $final-container-width: $container-width;
+    $item-width: ($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity ;
   }
 
   .#{$container-class} {
-    width: $container-width;
+    width: calc(#{$final-container-width} - #{$padding} * 2);
   }
 
   .#{$item-container-class} > * {

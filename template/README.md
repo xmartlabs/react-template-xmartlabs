@@ -194,3 +194,77 @@ class Example {
 
 export { Example };
 ```
+
+## Component Styling
+
+React apps can be styled in multiple ways. This project supports and is built to use [CSS Modules](https://github.com/css-modules/css-modules) on Sass to style React components. This section explains how to style components and what to take into account.
+
+### Local Styles
+
+Components will probably need CSS that is local to them. If you need to do this simply create a Sass file with the same base name as the component, and under the same directory. For example:
+
+```jsx
+// src/components/button/button.jsx
+import React from 'react';
+
+import styles from './button.module.scss';
+
+const Button = () => (
+  <button className={styles.container}>
+    This is a
+    <span className={styles.highlight}>
+      button!
+    </span>
+  </button>
+);
+
+export { Button };
+```
+
+```scss
+/* src/components/button/button.module.scss */
+.container {
+  width: 100px;
+}
+
+.highlight {
+  font-weight: bold;
+}
+```
+
+Our PostCSS plugin will mangle the names of the classes inside any module (make sure you name modules with the `.module.scss` extension or this won't work) to reduce the probability of collisions between classes across multiple components. In this case, for instance, the name of the `container` class will be changed to something like `button__container__23h2k`.
+
+### Global Styles
+
+Typically when using Sass you'll probably have global stylesheets that can be imported and reused across other Sass files. Global styles in this project are stored on `src/assets/stylesheets` directory. There you'll find:
+
+* `base-styles.scss`: file that sets the default styles for elements. Helps normalize styles across the whole page. Try to keep these as limited as possible, avoid over-styling elements.
+* `breakpoints.scss`: breakpoint-related file. Exports container classes and some other magic. (More on this on following sections)
+* `colors.scss`: compilation of all color variables used in the project.
+* `fonts.scss`: font-face configurations of all fonts used on the project. Not needed unless you're using locally-stored fonts.
+* `global-styles.module.scss`: global module that exports conflicting classes (more on this below).
+* `mixins.scss`: file that includes all mixins used on the project.
+* `text-styles.scss`: includes all text-style classes used on the project. Typically used along with design systems (more on this below).
+* `variables.scss`: generic variables like sizes, paddings, z-indexes and such.
+
+### Breakpoints
+
+It's quite usual for web apps to be designed around containers. These are containers (for lack of another word) that take on different sizes depending on the size of the screen. What size they take and at what breakpoints they change sizes depends on the design of the page. Luckily this project allows for quick configuration of breakpoints and containers.
+
+On the `variables.scss` file you'll find the `breakpoints` variable that looks something like this:
+
+```scss
+$breakpoints: (
+  xl: 1400px,
+  lg: 1200px,
+  md: 992px,
+  sm: 768px,
+  xs: 576px,
+);
+```
+
+Each breakpoint is identified by a threshold.
+
+### Text Styles
+
+### Caveats
