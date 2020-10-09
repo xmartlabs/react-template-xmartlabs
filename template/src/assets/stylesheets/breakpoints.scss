@@ -1,0 +1,34 @@
+@import 'variables';
+@import 'mixins';
+
+$genericContainerPadding: 10px;
+$genericItemMargin: 40px;
+
+.genericContainer {
+  box-sizing: content-box;
+  margin: 0 auto;
+}
+/*
+  It is assumed this container will be used directly inside
+  a genericContainer
+*/
+.genericItemContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.genericItemContainer > * {
+  margin-right: $genericItemMargin;
+  margin-bottom: $genericItemMargin;
+}
+
+
+@include setUpContainerSizes(
+  "genericContainer",
+  "genericItemContainer",
+  $genericContainerPadding,
+  $genericItemMargin,
+  $items-per-row,
+  $breakpoints
+);

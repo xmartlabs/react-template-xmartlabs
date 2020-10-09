@@ -1,0 +1,197 @@
+/*
+  Sets the target $class width to one that can hold the most $item-widths possible.
+  It also sets margin-right to zero for the last child in a row.
+  EXAMPLE OUTPUT:
+  .sampleContainer {
+    width: 300px;
+  }
+  .sampleContainerItem > *:nth-child(2n) {
+    margin-right: 0;
+  }
+*/
+@mixin modifyContainer(
+  $container-class,
+  $container-width,
+  $item-container-class,
+  $padding,
+  $margin,
+  $quantity
+) {
+
+  $item-width: 100%;
+  $final-container-width: 100%;
+  /*
+    Needed for the lowest breakpoint which doesn't have a lower threshold, so the
+    container has to span the full width.
+  */
+  @if ($container-width != null) {
+    $final-container-width: $container-width;
+    $item-width: ($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity ;
+  }
+
+  .#{$container-class} {
+    width: calc(#{$final-container-width} - #{$padding} * 2);
+  }
+
+  .#{$item-container-class} > * {
+    width: $item-width;
+
+    &:nth-child(#{$quantity}n) {
+      margin-right: 0;
+    }
+  }
+}
+
+/*
+  Builds a query for use with a @media tag so we can define a style only between
+  certain screen sizes. If either $max or $min is null, that value is ignored.
+  EXAMPLE OUTPUT:
+  "(max-width: 1500px) and (min-width: 750px)"
+*/
+@function buildSafeMaxMinMediaQuery($max, $min) {
+  $query: null;
+
+  @if ($max) {
+    $query: "(max-width: #{$max})";
+  }
+  @if ($min) {
+    @if ($query) {
+      $query: "#{$query} and (min-width: #{$min})";
+    } @else {
+      $query: "(min-width: #{$min})";
+    }
+  }
+  @return $query;
+}
+
+/*
+  Modifies container and childs classes for a certain screen size between bp-max and bp-min.
+  If either of those two values are null, they won't be included in the @media query.
+
+  The target size of the container will be set to the minimum value that is not null
+  EXAMPLE OUTPUT:
+  @media (min-size: 1500px) {
+    Styles defined with modifyContainer will go here
+  }
+*/
+@mixin modifyContainerWithMinMax(
+  $container-class,
+  $item-container-class,
+  $padding,
+  $margin,
+  $quantity-per-line,
+  $bp-min,
+  $bp-max
+) {
+  $query: buildSafeMaxMinMediaQuery($bp-max, $bp-min);
+
+  @media #{$query} {
+    @include modifyContainer(
+      $container-class,
+      $bp-min,
+      $item-container-class,
+      $padding,
+      $margin,
+      $quantity-per-line
+    );
+  }
+}
+
+
+/*
+  Gets the ith element from a map. The order is defined by how the elements where inserted into the map.
+  If an ith position would end up outside the keys list, return null instead.
+  EXAMPLE OUTPUT:
+  1500px
+*/
+@function getSafeMapValueFromPos($map, $i) {
+  $list: map-keys($map);
+
+  @if ($i < 1 or $i > length($list)) {
+    @return null;
+  }
+  @return map-get($map, nth($list, $i));
+}
+
+
+/*
+  Substracts from $value only if it is not null. If null, return same value.
+  EXAMPLE OUTPUT:
+  1500px - 1
+*/
+@function safeSubtraction($value, $subtract) {
+  @if ($value) {
+    @return $value - $subtract;
+  }
+  @return $value;
+}
+
+/*
+  Sets up the corresponding sizes of containers and child containers for each
+  of the breakpoints' sizes supplied. It does not use any (max-size) query for
+  the first value on the map, and does not use any (min-size) query for the last.
+  It also sets up some styles regardless of the screen size.
+  EXAMPLE OUTPUT:
+  .sampleContainer {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .sampleContainerItem > * {
+    width: 200px;
+  }
+  @media (min-size: 1500px) {
+    .sampleContainer {
+      width: 1400px;
+    }
+    .sampleContainerItem > *:nth-child(7n) {
+      margin-right: 0;
+    }
+  }
+  @media (max-size: 1499px) and (min-size: 480px) {
+    .sampleContainer {
+      width: 400px;
+    }
+    .sampleContainerItem > *:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+  @media (max-size: 479) {
+    .sampleContainer {
+      width: 400px;
+    }
+    .sampleContainerItem > *:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+*/
+@mixin setUpContainerSizes(
+  $container-class,
+  $item-container-class,
+  $padding,
+  $item-margin,
+  $quantity-per-bp,
+  $breakpoints
+) {
+  .#{$container-class} {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+
+  $prev-bp-value: null;
+
+  @for $i from 1 through length($breakpoints) + 1 {
+    $current-bp-value: getSafeMapValueFromPos($breakpoints, $i);
+
+    @include modifyContainerWithMinMax(
+      $container-class,
+      $item-container-class,
+      $padding,
+      $item-margin,
+      getSafeMapValueFromPos($quantity-per-bp, $i),
+      $current-bp-value,
+      safeSubtraction($prev-bp-value, 1)
+    );
+
+    $prev-bp-value: $current-bp-value;
+  }
+}
