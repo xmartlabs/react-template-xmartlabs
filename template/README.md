@@ -249,7 +249,7 @@ Typically when using Sass you'll probably have global stylesheets that can be im
 
 ### Breakpoints
 
-It's quite usual for web apps to be designed around containers. These are containers (for lack of another word) that take on different sizes depending on the size of the screen. What size they take and at what breakpoints they change sizes depends on the design of the page. Luckily this project allows for quick configuration of breakpoints and containers.
+It's quite usual for web apps to be designed around containers. These are containers (for lack of a better word) that take on different sizes depending on the size of the screen. What size they take and at what breakpoints they change sizes depends on the design of the page. Luckily this project allows for quick configuration of breakpoints and containers.
 
 On the `variables.scss` file you'll find the `breakpoints` variable that looks something like this:
 
@@ -263,8 +263,71 @@ $breakpoints: (
 );
 ```
 
-Each breakpoint is identified by a threshold.
+Each breakpoint is identified by its biggest threshold. For example, the small breakpoint (`sm`) is for screens with width between 577px and 768px. You can modify, add and remove breakpoints as long as the order is preserved (biggest first).
+
+Sometimes you might need to display items in rows. We've got support for that! The `genericItemContainer` class will automatically display its direct children in rows. You can quickly configure how many items you want to see on each row per threshold by modifying the `items-per-row` variable, which looks something like this:
+
+```scss
+$items-per-row: (
+  xl: 5,
+  lg: 4,
+  md: 3,
+  sm: 2,
+  xs: 2,
+  xxs: 1,
+);
+```
+
+On the `xl` breakpoint the container will render rows of five items, but on the `sm` breakpoint rows allow at most two items. Note that in order for this to work like it does, the items are sized pixel-perfect(ly). One caveat of this is that the generic item container **must** be used directly inside a `genericContainer`, otherwise measurements will fail and everything will look really bad.
 
 ### Text Styles
 
+Design systems will sometimes define text styles centrally and reference them across the whole design of the product. This is ideal for developers since it allows us to easily replicate the design system on the codebase and reference styles centrally.
+
+The `text-styles.scss` file is meant to be used to document the text styles of the design system. Using mixins to generate the classes with less code is a good idea.
+
 ### Caveats
+
+Sass is great, CSS Modules is great. Together, they have the potential of becoming a powerhouse in frontend styling. Sadly their integration has some caveats.
+
+#### Importing a Sass file from a module
+
+It's important to know that the Sass transpiler runs before the modules are interpreted. Let's assume you have a module file named `my-module.module.scss`. Inside that file we import a different Sass file wich defines a `generic` class.
+
+```scss
+/* my-module.module.scss */
+@import 'path/to/a/file.scss';
+
+.container {
+  @extend .generic;
+  font-size: 15px;
+}
+```
+
+```scss
+/* path/to/a/file.scss */
+
+.generic {
+  width: 100%;
+  height: 100%;
+}
+```
+
+Due to how modules work, each time we import that generic file a new set of classes will be generated, effectively duplicating its code each time we import it from a module. This is completely undesireable since it generates useless amounts of CSS. There's no simple solution to this, other than applying a simple rule: **never** import a Sass file that is transpiled to non-empty CSS from a module. You are allowed to import files that don't generate CSS by themselves. A file that defines some mixins is allowed, since it doesn't transpile to actual CSS.
+
+Want to have some generic classes to use on components? Import the file from the component itself and not from the Sass module:
+
+```jsx
+import React from 'react';
+
+import myLocalModule from './my-component.module.scss';
+import myGlobalModule from '../../assets/stylesheets/global-module.module.scss';
+
+const MyComponent = () => (
+  <div className={[myLocalModule.container, myGlobalModule.generic].join(' ')}>
+    { /* More code here */ }
+  </div>
+)
+```
+
+This will ensure that only a central version of the global CSS code is used. This project includes a file named `global-styles.module.scss` that should be used to export all global CSS.
