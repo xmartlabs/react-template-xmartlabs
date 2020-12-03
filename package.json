@@ -49,5 +49,8 @@
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2"
+  },
+  "peerDependencies": {
+    "create-react-app": "4.0.0"
   }
 }
