@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { logger } from '../../helpers/logger';
-import { UnexpectedError } from '../../pages/unexpected-error';
+import { logger } from 'helpers/logger';
+import { UnexpectedError } from 'pages/unexpected-error';
 
 const IPropTypes = {
   children: PropTypes.oneOfType([

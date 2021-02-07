@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { ScrollToTop } from './scroll-to-top';
-import { mockScrollTo } from '../../tests/support/window-mock';
+import { mockScrollTo } from 'tests/support/window-mock';
 
 describe('ScrollToTop', () => {
   const location = {
