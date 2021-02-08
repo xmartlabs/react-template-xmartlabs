@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { constants } from '../config/constants';
+import { constants } from 'config/constants';
 
 /*
   These adapters must implement these methods:

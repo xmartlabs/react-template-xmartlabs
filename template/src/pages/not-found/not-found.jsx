@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppLink, routeNaming } from '../../routes';
+import { AppLink, routeNaming } from 'routes';
 
 // TODO: implement this page
 const NotFound = () => (

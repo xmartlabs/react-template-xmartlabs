@@ -1,7 +1,7 @@
-import { Example } from 'src/models/example';
-import { ExampleSerializer } from '../serializers/example-serializer';
-import { ApiService } from '../api-service';
-import { API_ROUTES } from '../api-routes';
+import { Example } from 'models/example';
+import { ExampleSerializer } from 'networking/serializers/example-serializer';
+import { ApiService } from 'networking/api-service';
+import { API_ROUTES } from 'networking/api-routes';
 
 /*
   NOTE: this file serves only as an example and is not used.

@@ -20,3 +20,8 @@ rules:
   # Sometimes it's more convenient to have named exports even
   # though only one thing has to be exported.
   import/prefer-default-export: 'off'
+# Allows for absolute imports
+settings:
+  import/resolver:
+    node:
+      paths: ["src"]

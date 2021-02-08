@@ -1,6 +1,6 @@
-import { routeNaming } from './routes/routes';
-import { Home } from './pages/home';
-import { NotFound } from './pages/not-found';
+import { routeNaming } from 'routes/routes';
+import { Home } from 'pages/home';
+import { NotFound } from 'pages/not-found';
 
 const routeConfig = [
   {

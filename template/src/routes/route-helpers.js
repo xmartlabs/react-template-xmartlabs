@@ -1,5 +1,5 @@
+import { ParamsHelper } from 'helpers/params-helper';
 import { history, routes } from './routes';
-import { ParamsHelper } from '../helpers/params-helper';
 
 /*
   Given a name, finds the route in the configuration that has that name.

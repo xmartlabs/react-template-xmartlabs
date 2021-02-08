@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { constants } from '../config/constants';
-import { ApiError } from '../models/api-error';
-import { ApiErrorSerializer } from './serializers/api-error-serializer';
+import { constants } from 'config/constants';
+import { ApiError } from 'models/api-error';
+import { ApiErrorSerializer } from 'networking/serializers/api-error-serializer';
 
 const METHODS = {
   delete: 'delete',
