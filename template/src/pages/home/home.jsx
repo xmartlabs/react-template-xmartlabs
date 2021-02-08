@@ -1,7 +1,7 @@
 import React from 'react';
 
-import styles from './home.module.scss';
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
+import styles from './home.module.scss';
 
 const Home = () => (
   <div className={globalStyles.genericContainer}>

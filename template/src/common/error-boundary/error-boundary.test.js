@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import { ErrorBoundary } from './error-boundary';
 import { UnexpectedError } from 'pages/unexpected-error';
+import { ErrorBoundary } from './error-boundary';
 
 describe('ErrorBoundary', () => {
   describe('when rendered without errors', () => {

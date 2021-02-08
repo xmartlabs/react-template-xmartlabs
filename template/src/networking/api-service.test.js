@@ -1,5 +1,5 @@
-import { ApiService } from './api-service';
 import { ApiError } from 'models/api-error';
+import { ApiService } from './api-service';
 
 const mockGet = jest.fn();
 const mockPost = jest.fn();
