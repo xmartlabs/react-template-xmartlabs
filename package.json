@@ -5,7 +5,7 @@
   "main": "template.json",
   "scripts": {
     "test": "node scripts/test.js --config jest.config.json",
-    "lint": "eslint template/ --ext .js --ext .jsx"
+    "lint": "eslint template/ --ext .js --ext .jsx --config .eslintrc.yml"
   },
   "repository": {
     "type": "git",
