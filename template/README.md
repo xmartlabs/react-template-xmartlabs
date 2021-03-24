@@ -4,7 +4,9 @@ This project was generated using [Create React App](https://github.com/facebook/
 
 After creating a project with this template you need to take some extra steps to finish the setup.
 
-* Remember to rename the `eslintrc.yml` file to `.eslintrc.yml` (add the initial dot).
+* Copy the `.env.development.local.example` file and rename it to `.env.development.local`.
+* Copy the `.env.test.local.example` file and rename it to `.env.test.local`.
+* Define the variables in the environment file correctly.
 * Add the `clearMocks: true` option to the Jest configuration on the package.json file (read below).
 
 ### Jest Configuration
