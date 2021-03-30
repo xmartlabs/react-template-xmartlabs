@@ -4,6 +4,8 @@ parser: 'babel-eslint'
 env:
   browser: true
   jest: true
+plugins:
+  - testing-library
 rules:
   # This rule has been deprecated, see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
   jsx-a11y/label-has-for: 'off'
