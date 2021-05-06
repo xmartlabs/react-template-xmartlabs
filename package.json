@@ -28,7 +28,6 @@
     "babel-jest": "^24.9.0",
     "babel-preset-react-app": "^9.1.2",
     "camelcase": "^5.3.1",
-    "dependency-version-badge": "^1.9.1",
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
