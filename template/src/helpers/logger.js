@@ -12,7 +12,7 @@ import { constants } from 'config/constants';
 
   NOTE: In order to provide consistent logging, these methods should be
     used with caution. Try to use the correct logging function for your case.
-*/
+*/asdfaadfasdfasdfasdfa
 
 // TODO: implement this adapter
 class ProductionAdapter {
