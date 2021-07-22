@@ -15,3 +15,5 @@ const classNames = (classes) => {
 
   return ret.join(' ');
 };
+
+export { classNames };
