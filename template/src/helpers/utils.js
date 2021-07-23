@@ -13,8 +13,8 @@
 function classnames(...args) {
   if (args.length === 1) {
     const [firstEntry] = args;
-    if (typeof firstEntry === 'object') {
-      /* firstEntry's keys whose value is truethy */
+    if (firstEntry && typeof firstEntry === 'object') {
+      /* firstEntry's keys whose value is truthy */
       const activeClasses = Object.entries(firstEntry).filter(([_key, value]) => value).map(([key,]) => key);
       return activeClasses.join(' ');
     } else {
