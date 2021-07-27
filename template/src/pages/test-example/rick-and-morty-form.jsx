@@ -27,7 +27,7 @@ Input.propTypes = {
   name: string.isRequired,
   label: string.isRequired,
   id: string.isRequired,
-  error: object,
+  error: string,
   required: bool,
 };
 

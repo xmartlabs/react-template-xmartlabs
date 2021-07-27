@@ -1,11 +1,14 @@
 import { rest } from 'msw';
 import { API_ROUTES } from '../networking/api-routes';
 import { MockedCharacters } from './characters/characters';
-import { constants } from '../config/constants';
+
+/* This should be using constants.apiBaseURL but for some reason is not picking the test
+ env file */
+const url = 'http://localhost/';
 
 /* We mock here our request values, */
 export const handlers = [
-  rest.get(constants.apiBaseURL + API_ROUTES.CHARACTERS, (req, res, ctx) => {
+  rest.get(url + API_ROUTES.CHARACTERS, (req, res, ctx) => {
     /* Later we will define set this variable in our test */
     const errorCode = localStorage.getItem('errorCode');
 
@@ -33,7 +36,7 @@ export const handlers = [
     }));
   }),
 
-  rest.post(constants.apiBaseURL + API_ROUTES.CHARACTERS, (req, res, ctx) => {
+  rest.post(url + API_ROUTES.CHARACTERS, (req, res, ctx) => {
     const errorCode = localStorage.getItem('errorCode');
     if (errorCode === '500') {
       return res(
