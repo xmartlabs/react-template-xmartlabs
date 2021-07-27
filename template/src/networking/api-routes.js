@@ -3,7 +3,7 @@
   they are centrally documented.
 */
 const API_ROUTES = {
-  EXAMPLE: '/example',
+  CHARACTERS: 'api/character',
 };
 
 export { API_ROUTES };

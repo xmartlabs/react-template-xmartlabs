@@ -5,22 +5,24 @@ const history = createBrowserHistory();
 const routeNaming = {
   HOME: 'home',
   NOT_FOUND: 'notFound',
+  RICK_AND_MORTY: 'rickAndMorty',
+  RICK_AND_MORTY_FORM: 'rickAndMortyForm',
 };
 
 const PATH_PARAM_REGEX = /:[^/]+/gi;
 /**
-  Analyzes the path defined for `route` and
-  returns a copy of the route with a new attribute
-  `pathParams` which is a list of strings that correspond to the path params.
+ Analyzes the path defined for `route` and
+ returns a copy of the route with a new attribute
+ `pathParams` which is a list of strings that correspond to the path params.
 
-  @param {object} route - Object that represents a route.
+ @param {object} route - Object that represents a route.
 
-  @return {object} updated route with the new attribute.
+ @return {object} updated route with the new attribute.
 
-  @example
+ @example
 
-    determineRouteParams({ name: 'product', path: '/product/:id', component: ProductPage })
-*/
+ determineRouteParams({ name: 'product', path: '/product/:id', component: ProductPage })
+ */
 const determineRouteParams = (route) => {
   const newRoute = { ...route };
   const { path } = newRoute;
@@ -35,6 +37,16 @@ const routes = [
   {
     name: routeNaming.HOME,
     path: '/',
+    exact: true,
+  },
+  {
+    name: routeNaming.RICK_AND_MORTY,
+    path: '/rick-and-morty',
+    exact: true,
+  },
+  {
+    name: routeNaming.RICK_AND_MORTY_FORM,
+    path: '/rick-and-morty-form',
     exact: true,
   },
   {

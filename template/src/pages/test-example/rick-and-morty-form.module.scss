@@ -1,0 +1,85 @@
+.title {
+  font-size: 46px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 40px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid;
+  width: 100%;
+  margin-top: 6px;
+
+  &.invalid {
+    border: 1px solid crimson;
+  }
+}
+
+label {
+  color: #444444;
+  font-size: 16px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+button {
+  background-color: white; /* Green */
+  border: 2px solid #008CBA;
+  border-radius: 8px;
+  color: #444444;
+  padding: 20px;
+  margin-top: 24px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 50%;
+
+  &:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.errorMsg {
+  font-size: 12px;
+  color: crimson;
+  margin-top: 12px;
+}
+
+.messageBox {
+  padding: 24px;
+  margin-top: 30px;
+  border-radius: 8px;
+  text-align: center;
+
+  &.success {
+    border: 2px solid green;
+    color: forestgreen;
+  }
+
+  &.error {
+    border: 2px solid crimson;
+    color: crimson;
+  }
+
+}
