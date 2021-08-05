@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
 import { mockScrollTo } from 'tests/support/window-mock';
 import { ScrollToTop } from './scroll-to-top';
@@ -10,23 +10,21 @@ describe('ScrollToTop', () => {
     hash: '#hash',
     search: '?param1=value1',
   };
-  const setupTest = (children = 'Children') => shallow(
+  const setupTest = (children = 'Children') => render(
     <ScrollToTop location={location}>
       {children}
     </ScrollToTop>,
   );
   describe('when rendering', () => {
     it('renders correctly', () => {
-      const subject = setupTest();
-
-      expect(subject.exists()).toBe(true);
+      expect(setupTest).not.toThrow();
     });
 
     it('renders its children correctly', () => {
       const children = 'Other Children';
-      const subject = setupTest(children);
+      setupTest(children);
 
-      expect(subject.text()).toBe(children);
+      expect(() => screen.getByText(children)).not.toThrow();
     });
 
     it('does not call window.scrollTo', () => {
@@ -38,15 +36,14 @@ describe('ScrollToTop', () => {
 
   describe('when updating', () => {
     it('calls window.scrollTo', () => {
-      const subject = setupTest();
+      const { rerender } = setupTest();
 
-      subject.setProps({
-        location: {
-          pathname: '/another/path',
-          hash: '#hash',
-          search: '?param1=value1',
-        },
-      });
+      const newLocation = {
+        pathname: '/another/path',
+        hash: '#hash',
+        search: '?param1=value1',
+      };
+      rerender(<ScrollToTop location={newLocation}>Children</ScrollToTop>);
 
       expect(mockScrollTo).toHaveBeenCalledTimes(1);
     });

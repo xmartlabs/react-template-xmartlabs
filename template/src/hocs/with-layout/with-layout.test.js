@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
 import { withLayout } from './with-layout';
-import { LAYOUT_TYPES, Layout } from './layout';
+import { LAYOUT_TYPES } from './layout';
 
 describe('withLayout', () => {
   describe('when used correctly', () => {
@@ -18,20 +18,8 @@ describe('withLayout', () => {
 
       Object.values(LAYOUT_TYPES).forEach((layoutType) => {
         const WrappedComponent = withLayout(layoutType, Component);
-        const subject = shallow(<WrappedComponent />);
 
-        expect(subject.exists()).toBe(true);
-      });
-    });
-
-    it('should render the Layout component for all layout types', () => {
-      const Component = () => <div>Content</div>;
-
-      Object.values(LAYOUT_TYPES).forEach((layoutType) => {
-        const WrappedComponent = withLayout(layoutType, Component);
-        const subject = shallow(<WrappedComponent />);
-
-        expect(subject.find(Layout)).toHaveLength(1);
+        expect(() => render(<WrappedComponent />)).not.toThrow();
       });
     });
 
@@ -40,9 +28,9 @@ describe('withLayout', () => {
 
       Object.values(LAYOUT_TYPES).forEach((layoutType) => {
         const WrappedComponent = withLayout(layoutType, Component);
-        const subject = shallow(<WrappedComponent />);
+        render(<WrappedComponent />);
 
-        expect(subject.find(Component)).toHaveLength(1);
+        expect(screen.getByText('Content')).toHaveTextContent('Content');
       });
     });
   });

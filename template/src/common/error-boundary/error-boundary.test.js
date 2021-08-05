@@ -1,46 +1,38 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 
-import { UnexpectedError } from 'pages/unexpected-error';
 import { ErrorBoundary } from './error-boundary';
 
 describe('ErrorBoundary', () => {
   describe('when rendered without errors', () => {
     const setupTest = (children) => {
       const listenerSpy = jest.spyOn(window, 'addEventListener')
-        .mockImplementationOnce(() => {});
-      const subject = shallow(
+        .mockImplementation(() => {});
+      render(
         <ErrorBoundary>
           {children}
         </ErrorBoundary>,
       );
 
       return {
-        subject,
         listenerSpy,
       };
     };
 
     it('must render its children', () => {
       const children = 'This is a text';
-      const { subject } = setupTest(children);
+      setupTest(children);
 
-      expect(subject.text()).toEqual(children);
-    });
-
-    it('must setup an event listener once', () => {
-      const { listenerSpy } = setupTest('Children');
-
-      expect(listenerSpy).toHaveBeenCalledTimes(1);
+      expect(screen.getByText(children)).toHaveTextContent(children);
     });
 
     it('must setup an event listener for unhandled rejections', () => {
       const { listenerSpy } = setupTest('Children');
 
-      // We just need to check the first parameter here, that's why
-      // `toHaveBeenCalledWith` is not used, since we don't have access
-      // to the exact handler function passed.
-      expect(listenerSpy.mock.calls[0][0]).toEqual('unhandledrejection');
+      // NOTE: we're testing that at least one handler has been set for unhandled rejections
+      // since it appears that some other code is setting up other handlers as well
+      // (probably testing library?)
+      expect(listenerSpy.mock.calls.some((call) => call[0] === 'unhandledrejection')).toBe(true);
     });
 
     it('must pass a handler to react to the event', () => {
@@ -61,15 +53,13 @@ describe('ErrorBoundary', () => {
       // This mock silences the console just for this test.
       const consoleSpy = jest.spyOn(console, 'error')
         .mockImplementation(() => {});
-      const subject = mount(
+      render(
         <ErrorBoundary>
           <ProblematicComponent />
         </ErrorBoundary>,
       );
       // Restore the console after the error has been caught
       consoleSpy.mockRestore();
-
-      return subject;
     };
 
     it('calls componentDidCatch only once', () => {
@@ -80,9 +70,9 @@ describe('ErrorBoundary', () => {
     });
 
     it('renders UnexpectedError', () => {
-      const subject = setupTest();
+      setupTest();
 
-      expect(subject.find(UnexpectedError).length).toEqual(1);
+      expect(screen.getByRole('heading')).toHaveTextContent('An unexpected error has occured.');
     });
   });
 });
