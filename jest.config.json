@@ -6,7 +6,6 @@
     "src/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.d.ts"
   ],
-  "clearMocks": true,
   "setupFiles": [
     "react-app-polyfill/jsdom"
   ],
@@ -17,17 +16,20 @@
     "<rootDir>/template/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
     "<rootDir>/template/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
   ],
-  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "testEnvironment": "jsdom",
+  "testRunner": "<rootDir>/node_modules/jest-circus/runner.js",
   "transform": {
-    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
     "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
   },
   "transformIgnorePatterns": [
-    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
     "^.+\\.module\\.(css|sass|scss)$"
   ],
-  "modulePaths": [],
+  "modulePaths": [
+    "<rootDir>/template/src"
+  ],
   "moduleNameMapper": {
     "^react-native$": "react-native-web",
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
@@ -44,12 +46,10 @@
     "jsx",
     "node"
   ],
-  "moduleDirectories": [
-    "node_modules",
-    "src"
-  ],
   "watchPlugins": [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"
-  ]
+  ],
+  "resetMocks": true,
+  "clearMocks": true
 }

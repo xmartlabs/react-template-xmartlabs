@@ -16,6 +16,7 @@ const originalConsoleError = console.error;
 console.error = (...messages) => {
   if (/(Failed prop type)/.test(...messages)) {
     throw new Error(messages[0]);
+  } else {
+    originalConsoleError(...messages);
   }
-  originalConsoleError(...messages);
 };
