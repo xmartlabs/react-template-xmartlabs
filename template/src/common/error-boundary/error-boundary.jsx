@@ -10,7 +10,6 @@ const IPropTypes = {
     PropTypes.element,
   ]).isRequired,
 };
-
 /*
   NOTE: remember that error boundaries do not catch
   all kinds of errors: https://reactjs.org/docs/error-boundaries.html#introducing-error-boundaries

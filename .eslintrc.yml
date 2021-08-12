@@ -6,3 +6,7 @@ rules:
   # AVOID THESE RULES IN ANY PROJECT OTHER THAN HERE
   import/no-unresolved: 'off'
   import/no-extraneous-dependencies: 'off'
+settings:
+  import/resolver:
+    node:
+      paths: ["template/src"]

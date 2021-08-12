@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { Layout, LAYOUT_TYPES } from './layout';
 
@@ -23,7 +23,7 @@ describe('LAYOUT_TYPES', () => {
 describe('Layout', () => {
   describe('with a correct layout type', () => {
     it('should render correctly', () => {
-      const subject = shallow(
+      const renderMethod = () => render(
         <Layout
           layoutType={Object.values(LAYOUT_TYPES)[0]}
         >
@@ -33,14 +33,14 @@ describe('Layout', () => {
         </Layout>,
       );
 
-      expect(subject.exists()).toBe(true);
+      expect(renderMethod).not.toThrow();
     });
   });
 
   describe('with no layout type', () => {
     it('should throw an error', () => {
       expect(() => {
-        shallow(
+        render(
           <Layout>
             <div>
               Content
@@ -54,7 +54,7 @@ describe('Layout', () => {
   describe('with an invalid layout type', () => {
     it('should throw an error', () => {
       expect(() => {
-        shallow(
+        render(
           <Layout layoutType="invalidLayout">
             <div>
               Content
