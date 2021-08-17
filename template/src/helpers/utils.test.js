@@ -1,4 +1,5 @@
 import { classnames } from './utils';
+
 describe('classnames', () => {
   describe('when input is a group of strings', () => {
     it('returns the strings joined by spaces', () => {
@@ -12,7 +13,7 @@ describe('classnames', () => {
   });
   describe('when input is a mix of previous cases', () => {
     it('returns the correct strings depending on the case', () => {
-      expect(classnames({ 'class1': false, 'class2': true }, 'class3', { 'class4': true })).toEqual('class2 class3 class4');
+      expect(classnames({ class1: false, class2: true }, 'class3', { class4: true })).toEqual('class2 class3 class4');
     });
   });
 });
