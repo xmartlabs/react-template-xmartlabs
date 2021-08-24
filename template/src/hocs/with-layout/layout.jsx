@@ -13,19 +13,15 @@ const IPropTypes = {
   layoutType: PropTypes.oneOf(Object.values(LAYOUT_TYPES)).isRequired,
 };
 
-const layoutIsValid = (layoutType) => Object.values(LAYOUT_TYPES).includes(layoutType);
-
-const Layout = (props) => {
-  if (!layoutIsValid(props.layoutType)) {
-    throw new Error(`Invalid value for \`layoutType\`, was "${props.layoutType}"`);
+const Layout = ({ layoutType, children }) => {
+  if (layoutType === LAYOUT_TYPES.HOME) {
+    return (
+      <>
+        {children}
+      </>
+    );
   }
-  return (
-    <div>
-      {
-        props.children
-      }
-    </div>
-  );
+  return null;
 };
 
 Layout.propTypes = IPropTypes;

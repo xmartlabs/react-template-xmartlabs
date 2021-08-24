@@ -14,8 +14,11 @@ import '@testing-library/jest-dom';
 const originalConsoleError = console.error;
 /* eslint-disable-next-line no-console */
 console.error = (...messages) => {
-  if (/(Failed prop type)/.test(...messages)) {
-    throw new Error(messages[0]);
+  // NOTE: PropTypes uses string formatting to log their messages to console.
+  // That's why this next Regexp is like it is.
+  if (/(Failed %s type: %s%s)/.test(messages.toString())) {
+    const errorMessage = `PropType failure: ${messages[2]}`;
+    throw new Error(errorMessage);
   } else {
     originalConsoleError(...messages);
   }

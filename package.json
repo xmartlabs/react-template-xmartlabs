@@ -4,7 +4,7 @@
   "description": "Xmartlabs' Create React App template",
   "main": "template.json",
   "scripts": {
-    "test": "node scripts/test.js --config jest.config.json",
+    "test": "node --inspect scripts/test.js --config jest.config.json",
     "lint": "eslint template/ --ext .js --ext .jsx --config .eslintrc.yml"
   },
   "repository": {
@@ -45,7 +45,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.2",
     "jest-watch-typeahead": "0.6.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
