@@ -1,13 +1,12 @@
+# Your Project Name
+
 This project was generated using [Create React App](https://github.com/facebook/create-react-app) with [Xmartlabs' template](https://github.com/xmartlabs/cra-template-xmartlabs).
 
 ## Post Install
 
-After creating a project with this template you need to take some extra steps to finish the setup.
+**NOTE: please make sure to delete this section after performing these steps since these have to be done only when creating the project.**
 
-* Copy the `.env.development.local.example` file and rename it to `.env.development.local`.
-* Copy the `.env.test.local.example` file and rename it to `.env.test.local`.
-* Define the variables in the environment file correctly.
-* Add the `clearMocks: true` option to the Jest configuration on the package.json file (read below).
+Add the `clearMocks: true` option to the Jest configuration on the package.json file (read below).
 
 ### Jest Configuration
 
@@ -20,6 +19,15 @@ To have tests run correctly you need to override the default options of Jest. To
   }
 }
 ```
+
+## Project Setup
+
+* Install Node 16.5.0 (as documented on [`.node-version`](./.node-version))
+* Install packages with `npm install`
+* Copy the `.env.development.local.example` file and rename it to `.env.development.local`.
+* Copy the `.env.test.local.example` file and rename it to `.env.test.local`.
+* Define the variables in the environment file correctly.
+* Start the project with `npm start`
 
 ## Running Tests
 
@@ -36,6 +44,7 @@ The `src` directory has the following structure:
 * `config`: Global app configuration files go here (e.g. a constants file).
 * `helpers`: Javascript files that provide helper functions to the app. These are not React components.
 * `hocs`: Higher Order Components are stored here.
+* `hooks`: directory for generic React hooks that can be reused across components.
 * `models`: Models (abstractions of data) go here.
 * `networking`: Includes all code related to networking.
   * `controllers`: All controllers of the app go here.
