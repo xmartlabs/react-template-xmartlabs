@@ -1,0 +1,30 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/your-react-app
+    docker:
+      - image: cimg/node:16.5.0
+        environment:
+          REACT_APP_API_BASE_URL: http://localhost:3001
+
+    steps:
+      - checkout:
+          path: ~/your-react-app
+
+      - run:
+          name: Installing dependencies
+          command: npm install
+
+      - run:
+          name: Run linter
+          command: npm run lint
+
+      - run:
+          name: Run tests
+          command: npm test
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
