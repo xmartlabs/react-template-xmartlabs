@@ -1,11 +1,22 @@
 # Airbnb Config: https://www.npmjs.com/package/eslint-config-airbnb
-extends: 'airbnb'
-parser: 'babel-eslint'
+# Airbnb Config for Typescript: https://www.npmjs.com/package/eslint-config-airbnb-typescript
+extends:
+  - 'airbnb'
+  - 'airbnb-typescript'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: 'module'
+  ecmaFeatures:
+    jsx: true
+  warnOnUnsupportedTypeScriptVersion: true
+  project: './tsconfig.json'
 env:
   browser: true
   jest: true
 plugins:
   - testing-library
+  - '@typescript-eslint'
 rules:
   # This rule has been deprecated, see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
   jsx-a11y/label-has-for: 'off'
@@ -13,8 +24,6 @@ rules:
   no-underscore-dangle:
     - error
     - allowAfterThis: true
-  # Sometimes object prop types are warranted.
-  react/forbid-prop-types: 'off'
   # We prefer not enforcing this. It's not generally a good idea to
   # name files containing JSX with a non-official extension.
   react/jsx-filename-extension: 'off'
@@ -24,6 +33,10 @@ rules:
   import/prefer-default-export: 'off'
   # Destructuring sometimes makes code harder to read.
   react/destructuring-assignment: 'off'
+  # For Typescript this is needed since it can call out false negatives.
+  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
+  # https://github.com/typescript-eslint/typescript-eslint/issues/2540#issuecomment-692505191
+  no-use-before-define: 'off'
 # Allows for absolute imports
 settings:
   import/resolver:

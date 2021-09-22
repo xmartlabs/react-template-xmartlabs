@@ -10,7 +10,7 @@
     "react-app-polyfill/jsdom"
   ],
   "setupFilesAfterEnv": [
-    "<rootDir>/template/src/setupTests.js"
+    "<rootDir>/template/src/setupTests.ts"
   ],
   "testMatch": [
     "<rootDir>/template/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
