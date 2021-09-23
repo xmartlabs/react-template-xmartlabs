@@ -23,7 +23,8 @@
       "extends": "./.eslintrc.yml"
     },
     "scripts": {
-      "lint": "eslint . --ext .js --ext .jsx --ext .ts --ext .tsx"
+      "build": "tsc && react-scripts build",
+      "lint": "eslint . --ext .js --ext .jsx --ext .ts --ext .tsx && tsc"
     }
   }
 }
