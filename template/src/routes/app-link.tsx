@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { getRouteFor } from './route-helpers';
+import { getRouteFor, Params } from './route-helpers';
 import { RouteName } from './routes';
 
 /*
@@ -17,12 +17,8 @@ import { RouteName } from './routes';
 type AppLinkProps = {
   children: React.ReactNode,
   className?: string,
-  pathParams?: {
-    [key: string]: string | number | boolean | null,
-  },
-  queryParams?: {
-    [key: string]: string | number | boolean | null,
-  },
+  pathParams?: Params,
+  queryParams?: Params,
   routeName: RouteName,
   targetBlank?: boolean,
 };

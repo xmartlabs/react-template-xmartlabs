@@ -1,7 +1,7 @@
 import React from 'react';
 
 enum LayoutType {
-  // Add more layout types heref
+  // Add more layout types here
   Home = 'Home',
 }
 

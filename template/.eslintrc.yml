@@ -1,12 +1,12 @@
 # Airbnb Config: https://www.npmjs.com/package/eslint-config-airbnb
 # Airbnb Config for Typescript: https://www.npmjs.com/package/eslint-config-airbnb-typescript
 extends:
-  - 'airbnb'
-  - 'airbnb-typescript'
+  - airbnb
+  - airbnb-typescript
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2018
-  sourceType: 'module'
+  sourceType: module
   ecmaFeatures:
     jsx: true
   warnOnUnsupportedTypeScriptVersion: true

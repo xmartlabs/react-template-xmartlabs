@@ -12,8 +12,8 @@ import { API_ROUTES } from 'networking/api-routes';
 class ExampleController {
   static async getExamples() {
     const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    const deSerializedGames = (response.data || []).map(ExampleSerializer.deSerialize);
-    return deSerializedGames.map((game) => new Example(game));
+    const deSerializedExample = (response.data || []).map(ExampleSerializer.deSerialize);
+    return deSerializedExample.map((example) => new Example(example));
   }
 
   static createExample(example: Example) {

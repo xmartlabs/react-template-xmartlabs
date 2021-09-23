@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { goToPage } from './route-helpers';
+import { goToPage, Params } from './route-helpers';
 import { RouteName } from './routes';
 
 /*
@@ -16,12 +16,8 @@ import { RouteName } from './routes';
 type AppRedirectProps = {
   children: React.ReactNode,
   className?: string,
-  pathParams?: {
-    [key: string]: string | number | boolean | null,
-  },
-  queryParams?: {
-    [key: string]: string | number | boolean | null,
-  },
+  pathParams?: Params,
+  queryParams?: Params,
   routeName: RouteName,
   targetBlank?: boolean,
 };

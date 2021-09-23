@@ -15,10 +15,10 @@ class ExampleSerializer {
     };
   }
 
-  static serialize(example: Example) {
+  static serialize(example: Example) : RawExample {
     return {
-      foo: example.foo,
-      bar: example.bar,
+      Foobaz: example.foo,
+      Barbaz: example.bar,
     };
   }
 }
