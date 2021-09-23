@@ -52,3 +52,9 @@ cd your-app && npm start
 ```
 
 4. Read the template's Readme at [`/template/README.md`](./template/README.md) for post installation instructions
+
+## Feature Support
+
+### PWA
+
+As of this moment this template does not support PWA mode instantly. If you want to add support for PWAs please refer to [cra-template-pwa](https://github.com/cra-template/pwa/tree/master/packages/cra-template-pwa-typescript) for more information on how you could go about setting up.
