@@ -264,7 +264,7 @@ Models provide a few advantages:
 
 Well, to be fair, models are the most "optional" part of this pattern. Using Typescript it's much easier to know what we're working with before runtime so we can be *pretty* sure about what we're doing.
 
-That said, models provide undeniable advantages and have almost zero cost to use (and also can be reused). It's up to the team developing wether you want to use models or not.
+That said, models provide undeniable advantages and have almost zero cost to use (and also can be reused). It's up to the team developing whether you want to use models or not.
 
 ## Component Styling
 
