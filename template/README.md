@@ -23,6 +23,7 @@ To have tests run correctly you need to override the default options of Jest. To
 ## Project Setup
 
 * Install Node 16.5.0 (as documented on [`.node-version`](./.node-version))
+* Install the appropriate version of npm: `npm i -g npm@7.24.0`
 * Install packages with `npm install`
 * Copy the `.env.development.local.example` file and rename it to `.env.development.local`.
 * Copy the `.env.test.local.example` file and rename it to `.env.test.local`.
@@ -49,6 +50,7 @@ The `src` directory has the following structure:
 * `networking`: Includes all code related to networking.
   * `controllers`: All controllers of the app go here.
   * `serializers`: All serializers of the app go here.
+  * `types`: All information regarding typing of networking data.
 * `pages`: React components that are entrypoints for a page of the SPA.
 * `routes`: All configuration related to routing of the pages goes here.
 
@@ -58,9 +60,9 @@ This project uses [React Router](https://github.com/ReactTraining/react-router) 
 
 ### Routing structure
 
-Our main objective is to have routes declared centrally and reused across the app. This avoids common issues like typos when writing paths. Configuration of the routes is stored on `src/routes/routes.js`. We store information of the routes, such as the name of the route and path. More information can be added to the `routes` object, considering it is later passed as props to the `Route` component of React Router. You'll notice that there's no React component linked to the route.
+Our main objective is to have routes declared centrally and reused across the app. This avoids common issues like typos when writing paths. Configuration of the routes is stored on `src/routes/routes.ts`. We store information of the routes, such as the name of the route and path. More information can be added to the `routes` object, considering it is later passed as props to the `Route` component of React Router. You'll notice that there's no React component linked to the route.
 
-The mapping between routes and React components is done in `src/route-components.js`. We do this in a separate component since it makes it easier to support [URL Splitting](https://blog.xmartlabs.com/2019/05/17/url-splitting/) later on. This isn't configured by default, so you'll have to do some more work to enable URL Splitting.
+The mapping between routes and React components is done in `src/route-components.ts`. We do this in a separate component since it makes it easier to support [URL Splitting](https://blog.xmartlabs.com/2019/05/17/url-splitting/) later on. This isn't configured by default, so you'll have to do some more work to enable URL Splitting.
 
 Some helpers have been defined, such as `AppLink` and `AppRedirect`. These are wrappers of the typical `Link` and `Redirect` of React Router. The advantage of these helpers is that they provide a different props API. Instead of having a `to` prop where you just pass the exact path and query string, they accept three different props:
 
@@ -73,26 +75,26 @@ It is highly encouraged that you use these helpers instead of the native ones of
 ### Creating a Route
 
 * Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
-* Add a name for the new route on `src/routes/routes.js`. Then, on the same file, add an entry to the routes object specifying the path of the route.
-* Add an entry to the object on `src/route-components.js` that links the name you defined previously to the component you created on the pages directory.
+* Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path of the route.
+* Add an entry to the object on `src/route-components.ts` that links the name you defined previously to the component you created on the pages directory.
 
 And that's it. If you defined the path correctly you should be able to access the component on that route. There are already examples on all of these files, so you should be able to follow them.
 
-**NOTE:** please define routes in order of specificity (more specific routes should come before) to avoid a less specific route matching before. You can also add the `exact: true` configuration option to the route on `src/routes/routes.js` to avoid matching less specific routes.
+**NOTE:** please define routes in order of specificity (more specific routes should come before) to avoid a less specific route matching before. You can also add the `exact: true` configuration option to the route on `src/routes/routes.ts` to avoid matching less specific routes.
 
 ### Using the helpers
 
 Let's imagine we have a route to the homepage `/home` and we have named it `home` on our routes object. In order to link to it from another page we must render an `AppLink` component like so:
 
-```jsx
-<AppLink routeName={routeNaming.HOME} />
+```tsx
+<AppLink routeName={RouteName.Home} />
 ```
 
 This will route your page to `/home` once clicked. Let's assume the route also receives a path parameter `id` (`/home/:id`) and also we want to pass some query parameters. Path parameters and query parameters are specified by Javascript objects, like this:
 
-```jsx
+```tsx
 <AppLink
-  routeName={routeNaming.HOME}
+  routeName={RouteName.Home}
   pathParams={{ id: 'foo' }}
   queryParams={{ bar: 'baz', bar2: 'baz2' }}
 >
@@ -110,13 +112,13 @@ The `Layout` component will be your best friend. It's only a matter of defining 
 
 You can apply the HOC like so:
 
-```js
-withLayout(LAYOUT_TYPES.MY_LAYOUT_TYPE, Component);
+```ts
+withLayout(LayoutType.MyLayoutType, Component);
 ```
 
 This could turn your `Component` from this:
 
-```jsx
+```tsx
 <div>
   <h1>My component</h1>
 </div>
@@ -124,7 +126,7 @@ This could turn your `Component` from this:
 
 To this:
 
-```jsx
+```tsx
 <div>
   <Navbar>
   <div>
@@ -152,37 +154,54 @@ That's why this project implements a particular networking pattern that involves
 
 All networking calls must be made in controllers. They are in charge of knowing where to go to fetch data, what kind of HTTP method to use, etc. You'll probably make a request at some point that returns data. Controllers are also in charge of deserializing the data via a serializer and instantiating models accordingly. Here's an example:
 
-```js
-// src/networking/controllers/example-controller.js
-import { Example } from 'src/models/example';
-import { ExampleSerializer } from '../serializers/example-serializer';
-import { ApiService } from '../api-service';
-import { API_ROUTES } from '../api-routes';
-
+```ts
+// src/networking/controllers/example-controller.ts
 class ExampleController {
   static async getExamples() {
-    const response = await ApiService.get(API_ROUTES.EXAMPLE);
-    const deSerializedExample = ExampleSerializer.deSerialize(response.data);
-    return new Example(deSerializedExample);
+    const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
+    const deSerializedExample = (response.data || []).map(ExampleSerializer.deSerialize);
+    return deSerializedExample.map((example) => new Example(example));
+  }
+
+  static createExample(example: Example) {
+    const serializedExample = ExampleSerializer.serialize(example);
+    return ApiService.post(API_ROUTES.EXAMPLE, {
+      example: serializedExample,
+    });
   }
 }
 
 export { ExampleController };
 ```
 
+This controller has two methods: `getExamples` and `createExamples`. The first method attempts to get a list of examples from the backend. Once the data arrives the controller will attempt to deserialize the data via the `ExampleSerializer` and then create instances of `Example` from each.
+
+The second method illustrates how we would go about *sending* data to the backend. In this case we do the inverse process as before: given an instance of `Example` the controller will attempt to serialize (as opposed to deserialize) it and send it as payload.
+
+Let's look at how exactly serializers work.
+
 ### Serializers
 
-Serializers act as a sort of firewall of data by deserializing data served by the API. Any kind of structured data that is returned by the API should be deserialized.
+Serializers act as a sort of firewall (or customs, if you will) of data by deserializing data served by the API. Any kind of structured data that is returned by the API should be deserialized. Any data sent to the API should, in turn, be serialized.
 
-The advantage of this is that you can redefine the fields of the data and remove unused ones.
+The advantage of this is that you can redefine the fields of the data and remove unused ones. This protects our frontend from unexpected changes in: key naming, JSON structure and other kinds of issues. Here's an example:
 
-```js
-// src/networking/serializers/example-serializer.js
+```ts
+// src/networking/serializers/example-serializer.ts
+import { Example } from 'models/example';
+
 class ExampleSerializer {
-  static deSerialize(data) {
+  static deSerialize(data: RawExample) : SerializedExample {
     return {
-      foo: data.foo,
-      bar: data.bar,
+      foo: data.Foobaz,
+      bar: data.Barbaz,
+    };
+  }
+
+  static serialize(example: Example) : RawExample {
+    return {
+      Foobaz: example.foo,
+      Barbaz: example.bar,
     };
   }
 }
@@ -190,21 +209,62 @@ class ExampleSerializer {
 export { ExampleSerializer };
 ```
 
+When deserializing in this (admittedly simple) example the `ExampleSerializer` receives an instance of `RawExample` and returns an instance of `SerializedExample`. In this case we're simplifying the keys of the JSON we've received, by removing the common suffix `baz`. When serializing we're restoring the example to the format the API will understand.
+
+#### Types
+
+When working with Typescript it's best to have specific types for everything. In this case we've defined the types like so:
+
+```ts
+// src/networking/types/example.d.ts
+type RawExample = {
+  Foobaz: string,
+  Barbaz: number,
+};
+
+type SerializedExample = {
+  foo: string,
+  bar: number,
+};
+```
+
+Types are defined separately to avoid issues with circular dependencies between models and serializers. Serializers import the model to access the class type but, unless types are separate, the model will need to import the serializer to also access its types.
+
 ### Models
 
-Models represent concepts of your app. Typically you'll use them together with controllers and serializers, where deserialized data will be fed to a model to instance it.
+Models represent concepts of your app. Typically you'll use them together with controllers and serializers, where deserialized data will be fed to a model to instance it. Let's look at what an `Example` model could look like:
 
-```js
-// src/models/example.js
+```ts
+// src/models/example.ts
 class Example {
-  constructor(params) {
+  foo: string;
+
+  bar: number;
+
+  constructor(params: SerializedExample) {
     this.foo = params.foo;
     this.bar = params.bar;
+  }
+
+  concatenateData(middlePart) {
+    return `${this.foo}${middlePart}${this.bar}`;
   }
 }
 
 export { Example };
 ```
+
+Models provide a few advantages:
+
+* Data now has *meaning*. An instance of a model conveys semantics much better than a normal Javascript Object.
+* Business logic can be injected on models so that it can be centrally accessed (look at the `concatenateData` method above).
+* It's easier to detect a possible bug by looking at the data we're managing on runtime. If I'm expecting an instance of Example and I do not get one then something went wrong somewhere.
+
+#### Do I Need Models?
+
+Well, to be fair, models are the most "optional" part of this pattern. Using Typescript it's much easier to know what we're working with before runtime so we can be *pretty* sure about what we're doing.
+
+That said, models provide undeniable advantages and have almost zero cost to use (and also can be reused). It's up to the team developing wether you want to use models or not.
 
 ## Component Styling
 
@@ -214,8 +274,8 @@ React apps can be styled in multiple ways. This project supports and is built to
 
 Components will probably need CSS that is local to them. If you need to do this simply create a Sass file with the same base name as the component, and under the same directory. For example:
 
-```jsx
-// src/components/button/button.jsx
+```tsx
+// src/components/button/button.tsx
 import React from 'react';
 
 import styles from './button.module.scss';
@@ -328,7 +388,7 @@ Due to how modules work, each time we import that generic file a new set of clas
 
 Want to have some generic classes to use on components? Import the file from the component itself and not from the Sass module:
 
-```jsx
+```tsx
 import React from 'react';
 
 import myLocalModule from './my-component.module.scss';
@@ -338,7 +398,9 @@ const MyComponent = () => (
   <div className={[myLocalModule.container, myGlobalModule.generic].join(' ')}>
     { /* More code here */ }
   </div>
-)
+);
+
+export { MyComponent };
 ```
 
 This will ensure that only a central version of the global CSS code is used. This project includes a file named `global-styles.module.scss` that should be used to export all global CSS.

@@ -15,7 +15,7 @@ If you want to know more about what the template itself provides, then read the 
 
 ## Contributing to this Template
 
-Make sure you have the appropriate version of Node (14.4.0) and NPM (6.14.5) installed.
+Make sure you have the appropriate version of Node (16.5.0) and NPM (7.24.0) installed.
 
 Then install the required packages:
 
@@ -30,6 +30,7 @@ Tests are run using the typical command:
 ```shell
 npm test
 ```
+
 ## Generate a Project with this Template
 
 1. Clone this repo:
