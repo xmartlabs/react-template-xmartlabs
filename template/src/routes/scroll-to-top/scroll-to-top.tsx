@@ -1,7 +1,8 @@
+import { LocationState, Location } from 'history';
 import React from 'react';
+import { RouteComponentProps } from 'react-router';
 
-type ScrollToTopProps = {
-  location: Location,
+type ScrollToTopProps = RouteComponentProps & {
   children: React.ReactNode,
 };
 
@@ -10,7 +11,7 @@ type ScrollToTopProps = {
   the page each time the router triggers a route change.
 */
 class ScrollToTop extends React.Component<ScrollToTopProps> {
-  static urlFromLocation(location: Location) {
+  static urlFromLocation(location: Location<LocationState>) {
     return `${location.pathname}${location.search}${location.hash}`;
   }
 
