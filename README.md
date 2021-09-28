@@ -53,7 +53,7 @@ cd your-app && npm start
 
 4. Read the template's Readme at [`/template/README.md`](./template/README.md) for post installation instructions
 
-## Feature Support
+## Unsupported Features
 
 ### PWA
 
