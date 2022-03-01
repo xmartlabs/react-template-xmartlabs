@@ -404,3 +404,18 @@ export { MyComponent };
 ```
 
 This will ensure that only a central version of the global CSS code is used. This project includes a file named `global-styles.module.scss` that should be used to export all global CSS.
+
+## Docker Configuration
+
+A [`Dockerfile`](./Dockerfile) and a [`.dockerignore`](./.dockerignore) have been added to this project. The main reason to use Docker is to generate a production build, it is not intended for use for development.
+
+In fact, the Dockerfile has instructions only for generating the production-ready build. The idea is to run the image connected to a volume, to which the static files will be copied once the image is run. You only need to define a volume and point it to the correct target. Inside the container the target should be the `host-build` directory, you can choose how you map that on your host machine.
+
+How to run:
+
+```sh
+docker build --tag IMAGE_NAME
+docker run --name CONTAINER_NAME --mount type=bind,source=PATH/TO/TARGET,target=/code/host-build IMAGE_NAME
+```
+
+Where `PATH/TO/TARGET` is the path on your local machine where the files will be copied to.
