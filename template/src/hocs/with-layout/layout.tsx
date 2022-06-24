@@ -13,6 +13,7 @@ type LayoutProps = {
 const Layout = ({ layoutType, children } : LayoutProps) => {
   if (layoutType === LayoutType.Home) {
     return (
+      // eslint-disable-next-line react/jsx-no-useless-fragment
       <>
         {children}
       </>

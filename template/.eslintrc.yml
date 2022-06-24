@@ -37,6 +37,10 @@ rules:
   # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
   # https://github.com/typescript-eslint/typescript-eslint/issues/2540#issuecomment-692505191
   no-use-before-define: 'off'
+  react/function-component-definition:
+    - error
+    - namedComponents: arrow-function
+      unnamedComponents: arrow-function
 # Allows for absolute imports
 settings:
   import/resolver:
