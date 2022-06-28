@@ -77,14 +77,14 @@ describe('ParamsHelper', () => {
   describe('updateQueryParams', () => {
     describe('with no current params and no new params', () => {
       it('should output an empty string', () => {
-        const params = ParamsHelper.updateQueryParams('', {});
+        const params = ParamsHelper.updateQueryParams({});
         expect(params).toEqual('');
       });
     });
 
     describe('with no current params and new params', () => {
       it('should output the correct string', () => {
-        const params = ParamsHelper.updateQueryParams('', {
+        const params = ParamsHelper.updateQueryParams({
           param1: 'value1',
           param2: 'value2',
           param3: 'value3',
@@ -94,7 +94,7 @@ describe('ParamsHelper', () => {
       });
 
       it('should encode values correctly', () => {
-        const params = ParamsHelper.updateQueryParams('', {
+        const params = ParamsHelper.updateQueryParams({
           'key+with symbols': '++value with symbols',
         });
         expect(params).toEqual('?key%2Bwith%20symbols=%2B%2Bvalue%20with%20symbols');
@@ -104,29 +104,29 @@ describe('ParamsHelper', () => {
     describe('with current params and new params', () => {
       it('should output the correct string', () => {
         const oldParams = '?oldparam1=value1';
-        const params = ParamsHelper.updateQueryParams(oldParams, {
+        const params = ParamsHelper.updateQueryParams({
           param1: 'value1',
           param2: 'value2',
           param3: 'value3',
           param4: 'value4',
-        });
+        }, oldParams);
         expect(params).toEqual('?oldparam1=value1&param1=value1&param2=value2&param3=value3&param4=value4');
       });
 
       it('should decode and re-encode old params correctly', () => {
         const oldParams = '?param%20with%20spaces=value%2Bplus';
-        const params = ParamsHelper.updateQueryParams(oldParams, {
+        const params = ParamsHelper.updateQueryParams({
           'key+with symbols': '++value with symbols',
-        });
+        }, oldParams);
         expect(params).toEqual('?param%20with%20spaces=value%2Bplus&key%2Bwith%20symbols=%2B%2Bvalue%20with%20symbols');
       });
 
       it('should replace old params', () => {
         const oldParams = '?param=value&param2=value2';
-        const params = ParamsHelper.updateQueryParams(oldParams, {
+        const params = ParamsHelper.updateQueryParams({
           param: 'newValue',
           param3: 'value3',
-        });
+        }, oldParams);
         expect(params).toEqual('?param=newValue&param2=value2&param3=value3');
       });
     });

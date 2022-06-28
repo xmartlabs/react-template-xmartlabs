@@ -14,12 +14,9 @@ import { RouteName } from './routes';
 */
 
 type AppRedirectProps = {
-  children: React.ReactNode,
-  className?: string,
   pathParams?: Params,
   queryParams?: Params,
   routeName: RouteName,
-  targetBlank?: boolean,
 };
 
 const defaultProps = {
@@ -27,7 +24,7 @@ const defaultProps = {
   queryParams: {},
 };
 
-const AppRedirect = (props: AppRedirectProps) => {
+const AppRedirect : React.FC<AppRedirectProps> = (props) => {
   useEffect(() => {
     goToPage(props.routeName, props.pathParams, props.queryParams);
   }, []);
