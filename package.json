@@ -33,7 +33,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "babel-jest": "^27.4.2",
     "babel-preset-react-app": "^10.0.1",
     "camelcase": "^6.2.1",
