@@ -5,10 +5,8 @@
   https://blog.xmartlabs.com/2020/07/09/frontend-architecture-and-best-practices/
 */
 
-import { Example } from 'models/example';
-
 class ExampleSerializer {
-  static deSerialize(data: RawExample) : SerializedExample {
+  static deSerialize(data: RawExample) : Example {
     return {
       foo: data.Foobaz,
       bar: data.Barbaz,

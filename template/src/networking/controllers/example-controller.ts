@@ -1,4 +1,3 @@
-import { Example } from 'models/example';
 import { ExampleSerializer } from 'networking/serializers/example-serializer';
 import { ApiService } from 'networking/api-service';
 import { API_ROUTES } from 'networking/api-routes';
@@ -12,8 +11,7 @@ import { API_ROUTES } from 'networking/api-routes';
 class ExampleController {
   static async getExamples() {
     const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    const deSerializedExample = (response.data || []).map(ExampleSerializer.deSerialize);
-    return deSerializedExample.map((example) => new Example(example));
+    return (response.data || []).map(ExampleSerializer.deSerialize);
   }
 
   static createExample(example: Example) {

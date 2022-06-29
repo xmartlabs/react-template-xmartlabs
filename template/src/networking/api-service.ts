@@ -1,8 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import { constants } from 'config/constants';
-import { ApiError } from 'models/api-error';
-import { ApiErrorSerializer } from 'networking/serializers/api-error-serializer';
+import { ApiError } from './api-error';
 
 enum HttpMethod {
   Get = 'get',
@@ -47,7 +46,8 @@ class ApiServiceClass {
     } catch (error: any) {
       if (error.response && error.response.data) {
         throw new ApiError({
-          ...ApiErrorSerializer.deSerialize(error.response.data),
+          code: error.response.data.code,
+          message: error.response.data.message,
           status: error.response.status,
         });
       }
