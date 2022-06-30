@@ -1,15 +1,5 @@
 # Xmartlabs Create React App Template
 
-![react version](https://img.shields.io/badge/react-16.13.1-brightgreen)
-![react-dom version](https://img.shields.io/badge/react--dom-16.13.1-brightgreen)
-![react-router-dom version](https://img.shields.io/badge/react--router--dom-5.1.2-brightgreen)
-![history version](https://img.shields.io/badge/history-4.10.1-brightgreen)
-![node-sass version](https://img.shields.io/badge/node--sass-4.14.1-brightgreen)
-![jest version](https://img.shields.io/badge/jest-24.9.0-brightgreen)
-![enzyme version](https://img.shields.io/badge/enzyme-3.11.0-brightgreen)
-![axios version](https://img.shields.io/badge/axios-0.21.1-brightgreen)
-![eslint version](https://img.shields.io/badge/eslint-7.2.0-brightgreen)
-
 This project contains Xmartlabs' Create React App template.
 If you want to know more about what the template itself provides, then read the template's Readme located in [`/template/README.md`](./template/README.md).
 
@@ -33,25 +23,19 @@ npm test
 
 ## Generate a Project with this Template
 
-1. Clone this repo:
+1. From the directory you want to create your new app in, run:
 
 ```shell
-git clone git@github.com:xmartlabs/cra-template-xmartlabs.git
+npx create-react-app your-app --template xmartlabs --use-npm
 ```
 
-2. From the directory you want to create your new app in, run:
-
-```shell
-npx create-react-app your-app --template file:cra-template-xmartlabs --use-npm
-```
-
-3. Then run the following command to start:
+2. Then run the following command to start:
 
 ```shell
 cd your-app && npm start
 ```
 
-4. Read the template's Readme at [`/template/README.md`](./template/README.md) for post installation instructions
+3. Read the template's Readme at [`/template/README.md`](./template/README.md) for post installation instructions
 
 ## Unsupported Features
 
