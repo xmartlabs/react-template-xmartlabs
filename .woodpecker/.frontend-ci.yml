@@ -19,12 +19,3 @@ pipeline:
     group: fe-build
     commands:
       - CI=true npm run test
-  js-try-cra:
-    <<: *common
-    group: fe-build
-    commands:
-      - CURRENT_DIR=$(pwd)
-      - cd /tmp
-      - npx create-react-app --template file:$CURRENT_DIR dummy-project
-      - cd dummy-project
-      - CI=true npm test
