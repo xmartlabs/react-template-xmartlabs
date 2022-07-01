@@ -46,7 +46,6 @@ The `src` directory has the following structure:
 * `helpers`: Javascript files that provide helper functions to the app. These are not React components.
 * `hocs`: Higher Order Components are stored here.
 * `hooks`: directory for generic React hooks that can be reused across components.
-* `models`: Models (abstractions of data) go here.
 * `networking`: Includes all code related to networking.
   * `controllers`: All controllers of the app go here.
   * `serializers`: All serializers of the app go here.
@@ -147,20 +146,22 @@ This is a very compact section that explains networking. For a more in-depth exp
 That's why this project implements a particular networking pattern that involves three distinct elements:
 
 * Controllers: handle the specific networking calls needed to fetch data or modify the state of the system on the backend.
-* Serializers: receive fresh data from the controller and transform it to remove unnecessary data, rename fields and prepare it to be fed into a model.
-* Models: abstractions of data that represent concepts of our frontend app. Typically instantiated with deserialized data from a serializer.
+* Serializers: receive fresh data from the controller and transform it to remove unnecessary data, rename fields and prepare it to be used by the application.
 
 ### Controllers
 
-All networking calls must be made in controllers. They are in charge of knowing where to go to fetch data, what kind of HTTP method to use, etc. You'll probably make a request at some point that returns data. Controllers are also in charge of deserializing the data via a serializer and instantiating models accordingly. Here's an example:
+All networking calls must be made in controllers. They are in charge of knowing where to go to fetch data, what kind of HTTP method to use, etc. You'll probably make a request at some point that returns data. Controllers are also in charge of deserializing the data via a serializer. Here's an example:
 
 ```ts
 // src/networking/controllers/example-controller.ts
+import { ExampleSerializer } from 'networking/serializers/example-serializer';
+import { ApiService } from 'networking/api-service';
+import { API_ROUTES } from 'networking/api-routes';
+
 class ExampleController {
   static async getExamples() {
     const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    const deSerializedExample = (response.data || []).map(ExampleSerializer.deSerialize);
-    return deSerializedExample.map((example) => new Example(example));
+    return (response.data || []).map(ExampleSerializer.deSerialize);
   }
 
   static createExample(example: Example) {
@@ -188,10 +189,8 @@ The advantage of this is that you can redefine the fields of the data and remove
 
 ```ts
 // src/networking/serializers/example-serializer.ts
-import { Example } from 'models/example';
-
 class ExampleSerializer {
-  static deSerialize(data: RawExample) : SerializedExample {
+  static deSerialize(data: RawExample) : Example {
     return {
       foo: data.Foobaz,
       bar: data.Barbaz,
@@ -228,43 +227,7 @@ type SerializedExample = {
 };
 ```
 
-Types are defined separately to avoid issues with circular dependencies between models and serializers. Serializers import the model to access the class type but, unless types are separate, the model will need to import the serializer to also access its types.
-
-### Models
-
-Models represent concepts of your app. Typically you'll use them together with controllers and serializers, where deserialized data will be fed to a model to instance it. Let's look at what an `Example` model could look like:
-
-```ts
-// src/models/example.ts
-class Example {
-  foo: string;
-
-  bar: number;
-
-  constructor(params: SerializedExample) {
-    this.foo = params.foo;
-    this.bar = params.bar;
-  }
-
-  concatenateData(middlePart) {
-    return `${this.foo}${middlePart}${this.bar}`;
-  }
-}
-
-export { Example };
-```
-
-Models provide a few advantages:
-
-* Data now has *meaning*. An instance of a model conveys semantics much better than a normal Javascript Object.
-* Business logic can be injected on models so that it can be centrally accessed (look at the `concatenateData` method above).
-* It's easier to detect a possible bug by looking at the data we're managing on runtime. If I'm expecting an instance of Example and I do not get one then something went wrong somewhere.
-
-#### Do I Need Models?
-
-Well, to be fair, models are the most "optional" part of this pattern. Using Typescript it's much easier to know what we're working with before runtime so we can be *pretty* sure about what we're doing.
-
-That said, models provide undeniable advantages and have almost zero cost to use (and also can be reused). It's up to the team developing whether you want to use models or not.
+Types are defined separately so that the types can be accessible throughout the app without need to import the serializer each time.
 
 ## Component Styling
 

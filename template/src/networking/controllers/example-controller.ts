@@ -1,4 +1,3 @@
-import { Example } from 'models/example';
 import { ExampleSerializer } from 'networking/serializers/example-serializer';
 import { ApiService } from 'networking/api-service';
 import { API_ROUTES } from 'networking/api-routes';
@@ -10,10 +9,9 @@ import { API_ROUTES } from 'networking/api-routes';
   https://blog.xmartlabs.com/2020/07/09/frontend-architecture-and-best-practices/
 */
 class ExampleController {
-  static async getExamples() {
+  static async getExamples() : Promise<Example[]> {
     const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    const deSerializedExample = (response.data || []).map(ExampleSerializer.deSerialize);
-    return deSerializedExample.map((example) => new Example(example));
+    return (response.data || []).map(ExampleSerializer.deSerialize);
   }
 
   static createExample(example: Example) {

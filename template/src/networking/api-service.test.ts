@@ -1,4 +1,4 @@
-import { ApiError } from 'models/api-error';
+import { ApiError } from './api-error';
 import { ApiService, HttpMethod } from './api-service';
 
 const mockGet = jest.fn();

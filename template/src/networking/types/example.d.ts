@@ -3,7 +3,7 @@ type RawExample = {
   Barbaz: number,
 };
 
-type SerializedExample = {
+type Example = {
   foo: string,
   bar: number,
 };
