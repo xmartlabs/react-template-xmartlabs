@@ -1,59 +1,31 @@
-import { createBrowserHistory } from 'history';
+/* eslint-disable @typescript-eslint/no-shadow */
+import { Home } from 'pages/home';
+import { About } from 'pages/about';
+import { NotFound } from 'pages/not-found';
+import { Route, setPathParams } from './utils';
 
-const history = createBrowserHistory();
-
-enum RouteName {
+export enum RouteName {
   Home = 'home',
+  About = 'about',
   NotFound = 'notFound',
 }
 
-type Route = {
-  name: RouteName,
-  path: string,
-  exact?: boolean,
-  pathParams?: string[],
-  component?: React.ComponentType,
-};
-
-const PATH_PARAM_REGEX = /:[^/]+/gi;
-/**
-  Analyzes the path defined for `route` and
-  returns a copy of the route with a new attribute
-  `pathParams` which is a list of strings that correspond to the path params.
-
-  @param {object} route - Object that represents a route.
-
-  @return {object} updated route with the new attribute.
-
-  @example
-
-    determineRouteParams({ name: 'product', path: '/product/:id', component: ProductPage })
-*/
-const determineRouteParams = (route: Route): Route => {
-  const newRoute = { ...route };
-  const { path } = newRoute;
-  // Extract the names of the parameters
-  const pathMatch = path.match(PATH_PARAM_REGEX) || [];
-  const pathParams = pathMatch.map((param) => param.slice(1));
-  newRoute.pathParams = pathParams || [];
-  return newRoute;
-};
-
-const routes = [
+export const routes: Route[] = [
   {
     name: RouteName.Home,
     path: '/',
     exact: true,
+    component: Home,
+  },
+  {
+    name: RouteName.About,
+    path: '/about',
+    exact: true,
+    component: About,
   },
   {
     name: RouteName.NotFound,
     path: '*',
+    component: NotFound,
   },
-].map(determineRouteParams);
-
-export {
-  determineRouteParams,
-  history,
-  RouteName,
-  routes,
-};
+].map(setPathParams);

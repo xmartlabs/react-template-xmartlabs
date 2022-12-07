@@ -8,7 +8,7 @@ describe('withLayout', () => {
   describe('when used correctly', () => {
     it('should return a function', () => {
       const Component = () => <div>Content</div>;
-      const WrappedComponent = withLayout(LayoutType.Home, Component);
+      const WrappedComponent = withLayout(LayoutType.Default, Component);
 
       expect(typeof WrappedComponent).toBe('function');
     });
