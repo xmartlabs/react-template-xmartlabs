@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { Router } from 'routes';
-import { routeConfig } from 'route-components';
+import { Router, routes } from 'routes';
 import 'index.scss';
 import { ErrorBoundary } from 'common/error-boundary';
 
 const App = () => (
   <ErrorBoundary>
-    <Router routeConfig={routeConfig} />
+    <Router routes={routes} />
   </ErrorBoundary>
 );
 

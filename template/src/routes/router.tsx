@@ -1,19 +1,19 @@
 import React from 'react';
 import { Route, Router as VendorRouter, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
-import { history, RouteName, routes } from './routes';
+import { routes } from './routes';
 import { ScrollToTop } from './scroll-to-top';
 
-type RouteConfig = {
-  name: RouteName,
-  component: React.ComponentType,
-};
+import type { Route as RouteType } from './utils';
+
+const history = createBrowserHistory();
 
 type RouterProps = {
-  routeConfig: RouteConfig[],
+  routes: RouteType[],
 };
 
-const zipRouteData = (routeData: RouteConfig[]) => (
+const zipRouteData = (routeData: RouteType[]) => (
   routeData.map((data) => {
     const route = routes.find((r) => r.name === data.name);
     return {
@@ -23,7 +23,7 @@ const zipRouteData = (routeData: RouteConfig[]) => (
   })
 );
 
-const renderRoutes = (routeData: RouteConfig[]) => (
+const renderRoutes = (routeData: RouteType[]) => (
   zipRouteData(routeData).map((data) => (
     <Route
       key={data.path}
@@ -38,10 +38,10 @@ const Router = (props: RouterProps) => (
   <VendorRouter history={history}>
     <ScrollToTop>
       <Switch>
-        {renderRoutes(props.routeConfig)}
+        {renderRoutes(props.routes)}
       </Switch>
     </ScrollToTop>
   </VendorRouter>
 );
 
-export { Router };
+export { Router, history };

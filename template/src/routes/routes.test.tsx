@@ -1,9 +1,10 @@
 import React from 'react';
 import { RouteName } from 'routes';
-import { determineRouteParams, routes } from './routes';
+import { routes } from './routes';
+import { setPathParams } from './utils';
 
 describe('routes', () => {
-  describe('determineRouteParams', () => {
+  describe('setPathParams', () => {
     describe('with route without path parameters', () => {
       it('should output the correct parameters', () => {
         const component = () => (<div />);
@@ -13,7 +14,7 @@ describe('routes', () => {
           path: '/',
         };
 
-        expect(determineRouteParams(route)).toEqual({
+        expect(setPathParams(route)).toEqual({
           name: RouteName.Home,
           component,
           path: '/',
@@ -31,7 +32,7 @@ describe('routes', () => {
           path: '/:id/product/:name',
         };
 
-        expect(determineRouteParams(route)).toEqual({
+        expect(setPathParams(route)).toEqual({
           name: RouteName.Home,
           component,
           path: '/:id/product/:name',

@@ -1,5 +1,6 @@
 import { ParamsHelper } from 'helpers/params-helper';
-import { history, RouteName, routes } from './routes';
+import { history } from './router';
+import { RouteName, routes } from './routes';
 
 export type Params = {
   [key: string]: string | boolean | number | null,

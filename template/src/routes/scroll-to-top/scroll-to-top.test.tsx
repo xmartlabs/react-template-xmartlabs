@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { mockScrollTo } from 'tests/support/window-mock';
-import { history } from 'routes/routes';
 import { ScrollToTop } from './scroll-to-top';
+import { history } from '../router';
 
 const defaultProps = {
   history,

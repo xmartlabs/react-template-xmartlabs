@@ -8,7 +8,7 @@ describe('Layout', () => {
     it('should render correctly', () => {
       const renderMethod = () => render(
         <Layout
-          layoutType={LayoutType.Home}
+          layoutType={LayoutType.Default}
         >
           <div>
             Content

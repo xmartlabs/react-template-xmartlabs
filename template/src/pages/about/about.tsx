@@ -3,15 +3,15 @@ import React from 'react';
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { AppLink, RouteName } from 'routes';
 
-import styles from './home.module.scss';
+import styles from './about.module.scss';
 
-const Home = () => (
+const About = () => (
   <div className={globalStyles.genericContainer}>
     <h1 className={styles.title}>
-      Welcome! This is the homepage.
-      <AppLink routeName={RouteName.About}>About</AppLink>
+      This is the About Page.
+      <AppLink routeName={RouteName.Home}>Home</AppLink>
     </h1>
   </div>
 );
 
-export { Home };
+export { About };
