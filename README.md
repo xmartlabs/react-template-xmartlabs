@@ -1,14 +1,14 @@
 # Xmartlabs Create React App Template
 
-![react version](https://img.shields.io/badge/react-16.13.1-brightgreen)
-![react-dom version](https://img.shields.io/badge/react--dom-16.13.1-brightgreen)
-![react-router-dom version](https://img.shields.io/badge/react--router--dom-5.1.2-brightgreen)
+![react version](https://img.shields.io/badge/react-18.0.0-brightgreen)
+![react-dom version](https://img.shields.io/badge/react--dom-18.0.0-brightgreen)
+![react-router-dom version](https://img.shields.io/badge/react--router--dom-5.3.3-brightgreen)
 ![history version](https://img.shields.io/badge/history-4.10.1-brightgreen)
-![node-sass version](https://img.shields.io/badge/node--sass-4.14.1-brightgreen)
-![jest version](https://img.shields.io/badge/jest-24.9.0-brightgreen)
+![node-sass version](https://img.shields.io/badge/node--sass-6.0.1-brightgreen)
+![jest version](https://img.shields.io/badge/jest-27.4.3-brightgreen)
 ![enzyme version](https://img.shields.io/badge/enzyme-3.11.0-brightgreen)
 ![axios version](https://img.shields.io/badge/axios-0.21.1-brightgreen)
-![eslint version](https://img.shields.io/badge/eslint-7.2.0-brightgreen)
+![eslint version](https://img.shields.io/badge/eslint-8.10.0-brightgreen)
 
 This project contains Xmartlabs' Create React App template.
 If you want to know more about what the template itself provides, then read the template's Readme located in [`/template/README.md`](./template/README.md).

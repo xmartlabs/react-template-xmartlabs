@@ -59,9 +59,7 @@ This project uses [React Router](https://github.com/ReactTraining/react-router) 
 
 ### Routing structure
 
-Our main objective is to have routes declared centrally and reused across the app. This avoids common issues like typos when writing paths. Configuration of the routes is stored on `src/routes/routes.ts`. We store information of the routes, such as the name of the route and path. More information can be added to the `routes` object, considering it is later passed as props to the `Route` component of React Router. You'll notice that there's no React component linked to the route.
-
-The mapping between routes and React components is done in `src/route-components.ts`. We do this in a separate component since it makes it easier to support [URL Splitting](https://blog.xmartlabs.com/2019/05/17/url-splitting/) later on. This isn't configured by default, so you'll have to do some more work to enable URL Splitting.
+Our main objective is to have routes declared centrally and reused across the app. This avoids common issues like typos when writing paths. Configuration of the routes is stored on `src/routes/routes.ts`. We store information of the routes, such as the name of the route, path and component. More information can be added to the `routes` object, considering it is later passed as props to the `Route` component of React Router.
 
 Some helpers have been defined, such as `AppLink` and `AppRedirect`. These are wrappers of the typical `Link` and `Redirect` of React Router. The advantage of these helpers is that they provide a different props API. Instead of having a `to` prop where you just pass the exact path and query string, they accept three different props:
 
@@ -74,8 +72,7 @@ It is highly encouraged that you use these helpers instead of the native ones of
 ### Creating a Route
 
 * Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
-* Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path of the route.
-* Add an entry to the object on `src/route-components.ts` that links the name you defined previously to the component you created on the pages directory.
+* Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path, component and any other configuration of the route.
 
 And that's it. If you defined the path correctly you should be able to access the component on that route. There are already examples on all of these files, so you should be able to follow them.
 
