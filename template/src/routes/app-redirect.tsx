@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { goToPage, Params } from './route-helpers';
-import { RouteName } from './routes';
+import type { RouteName, RouteParams } from './routes';
 
 /*
   This component is a wrapper for redirecting across and inside apps.
@@ -13,10 +13,10 @@ import { RouteName } from './routes';
   defined in this project. To link outside, use <a></a> tags as usual.
 */
 
-type AppRedirectProps = {
-  pathParams?: Params,
+type AppRedirectProps<R extends RouteName> = {
+  pathParams?: RouteParams[R],
   queryParams?: Params,
-  routeName: RouteName,
+  routeName: R,
 };
 
 const defaultProps = {
@@ -24,7 +24,7 @@ const defaultProps = {
   queryParams: {},
 };
 
-const AppRedirect : React.FC<AppRedirectProps> = (props) => {
+const AppRedirect = <R extends RouteName>(props: AppRedirectProps<R>) => {
   useEffect(() => {
     goToPage(props.routeName, props.pathParams, props.queryParams);
   }, []);
