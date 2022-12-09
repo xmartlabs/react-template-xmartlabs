@@ -2,7 +2,9 @@
 import { Home } from 'pages/home';
 import { About } from 'pages/about';
 import { NotFound } from 'pages/not-found';
-import { Route, setPathParams } from './utils';
+import type { ExtractRouteParams } from 'react-router';
+import type { Params } from './route-helpers';
+import { setPathParams } from './utils';
 
 export enum RouteName {
   Home = 'home',
@@ -10,10 +12,10 @@ export enum RouteName {
   NotFound = 'notFound',
 }
 
-export const routes: Route[] = [
+const ROUTES = [
   {
     name: RouteName.Home,
-    path: '/',
+    path: '/:page?',
     exact: true,
     component: Home,
   },
@@ -28,4 +30,14 @@ export const routes: Route[] = [
     path: '*',
     component: NotFound,
   },
-].map(setPathParams);
+] as const;
+
+/*
+* This type is used to extract the type of the route params
+* from the path string.
+*/
+export type RouteParams = {
+  [K in RouteName]: ExtractRouteParams<Extract<typeof ROUTES[number], { name: K }>['path']>;
+} & Params;
+
+export const routes = ROUTES.map(setPathParams);
