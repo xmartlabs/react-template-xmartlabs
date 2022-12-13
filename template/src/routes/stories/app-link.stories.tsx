@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {
   AppLink, RouteName,
@@ -24,7 +23,6 @@ export default {
 } as ComponentMeta<typeof AppLink>;
 
 export const Default: ComponentStory<typeof AppLink> = ({
-  // eslint-disable-next-line react/prop-types
   routeName, className, targetBlank, pathParams, queryParams, children,
 }) => (
   <AppLink

@@ -33,17 +33,7 @@
       "webpack": "^5.75.0"
     },
     "eslintConfig": {
-      "extends": "./.eslintrc.yml",
-      "overrides": [
-        {
-          "files": [
-            "**/*.stories.*"
-          ],
-          "rules": {
-            "import/no-anonymous-default-export": "off"
-          }
-        }
-      ]
+      "extends": "./.eslintrc.yml"
     },
     "browserslist": {
       "production": [
