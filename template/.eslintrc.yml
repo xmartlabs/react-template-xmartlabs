@@ -41,7 +41,6 @@ rules:
     - error
     - namedComponents: arrow-function
       unnamedComponents: arrow-function
-  import/no-anonymous-default-export: 'off'
   react/prop-types: 'off'
 # Allows for absolute imports
 settings:
