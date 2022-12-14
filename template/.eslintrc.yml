@@ -41,6 +41,7 @@ rules:
     - error
     - namedComponents: arrow-function
       unnamedComponents: arrow-function
+  react/prop-types: 'off'
 # Allows for absolute imports
 settings:
   import/resolver:

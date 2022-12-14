@@ -27,13 +27,19 @@ const getRouteFor = (routeName: RouteName, pathParams: Params = {}, queryParams:
   const route = findRoute(routeName);
 
   // Replace pathParams
-  let routePath = route.path;
-  Object.keys(pathParams).forEach((pathParam) => {
-    if (route.pathParams && !route.pathParams.includes(pathParam)) {
-      throw new Error(`Route path parameter name does not exist. Route is '${routePath}', and param was '${pathParam}'`);
+  const routePathParams = route.path.split('/');
+  const routePathPms = routePathParams.map((pathParam) => {
+    if (pathParam.startsWith(':')) {
+      const paramName = pathParam.match(/:[^/?]+/gi)?.[0].slice(1);
+      if (!paramName) {
+        throw new Error(`Path parameter '${pathParam}' is not valid for route '${routeName}'`);
+      }
+      return pathParams[paramName] || '';
     }
-    routePath = routePath.replace(`:${pathParam}`, String(pathParams[pathParam]));
+    return pathParam;
   });
+
+  const routePath = `/${routePathPms.filter((pathParam) => pathParam !== '').join('/')}`;
 
   // Inject queryParams
   const urlQueryParams = ParamsHelper.createQueryParams(queryParams);

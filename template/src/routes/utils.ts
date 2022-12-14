@@ -8,7 +8,7 @@ export type Route = {
   component?: React.ComponentType,
 };
 
-const PATH_PARAM_REGEX = /:[^/]+/gi;
+const PATH_PARAM_REGEX = /:[^/?]+/gi;
 /**
   Analyzes the path defined for `route` and
   returns a copy of the route with a new attribute
