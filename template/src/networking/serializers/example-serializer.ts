@@ -6,14 +6,14 @@
 */
 
 class ExampleSerializer {
-  static deSerialize(data: RawExample) : Example {
+  static deSerialize(data: RawExample): Example {
     return {
       foo: data.Foobaz,
       bar: data.Barbaz,
     };
   }
 
-  static serialize(example: Example) : RawExample {
+  static serialize(example: Example): RawExample {
     return {
       Foobaz: example.foo,
       Barbaz: example.bar,

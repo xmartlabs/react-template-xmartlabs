@@ -9,7 +9,7 @@ import { API_ROUTES } from 'networking/api-routes';
   https://blog.xmartlabs.com/2020/07/09/frontend-architecture-and-best-practices/
 */
 class ExampleController {
-  static async getExamples() : Promise<Example[]> {
+  static async getExamples(): Promise<Example[]> {
     const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
     return (response.data || []).map(ExampleSerializer.deSerialize);
   }
