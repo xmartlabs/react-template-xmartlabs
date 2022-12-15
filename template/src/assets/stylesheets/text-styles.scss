@@ -102,9 +102,6 @@ $text: (
   ),
 );
 
-/* Class-based text styles
- * This is just for reference, using mixins is preferred
- * Due to the large number of classes this generates, it's not recommended
 @each $text, $properties in $text {
   .text-#{$text} {
     font-size: nth(map-get($properties, 'mobile'), 1);
@@ -120,20 +117,6 @@ $text: (
     }
   }
 }
-*/
-
-@mixin setTextStyle($size) {
-  $sizeMap: map-get($text, $size);
-  font-size: nth(map-get($sizeMap, 'mobile'), 1);
-  line-height: nth(map-get($sizeMap, 'mobile'), 2);
-  color: nth(map-get($sizeMap, 'mobile'), 3);
-  text-transform: nth(map-get($sizeMap, 'mobile'), 4);
-  @include minWidth('md') {
-    font-size: nth(map-get($sizeMap, 'web'), 1);
-    line-height: nth(map-get($sizeMap, 'web'), 2);
-    text-transform: nth(map-get($sizeMap, 'web'), 4);
-  }
-}
 
 // Link
 .link {
@@ -142,7 +125,7 @@ $text: (
   transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: $text-primary-60;
+    color: $primary-color-60;
     text-decoration: none;
   }
 }
