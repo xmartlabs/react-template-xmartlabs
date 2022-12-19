@@ -195,3 +195,11 @@
     $prev-bp-value: $current-bp-value;
   }
 }
+
+@mixin maxWidth($breakpoint) {
+  @media only screen and (max-width: map-get($breakpoints, $breakpoint)) { @content };
+}
+
+@mixin minWidth($breakpoint) {
+  @media only screen and (min-width: map-get($breakpoints, $breakpoint)) { @content };
+}
