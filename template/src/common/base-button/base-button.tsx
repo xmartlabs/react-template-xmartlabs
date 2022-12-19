@@ -1,4 +1,4 @@
-type IProps = React.HTMLProps<HTMLButtonElement> & {
+export type IProps = React.HTMLProps<HTMLButtonElement> & {
   type?: 'button' | 'submit' | 'reset';
 };
 
