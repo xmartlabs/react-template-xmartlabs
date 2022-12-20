@@ -29,10 +29,6 @@ $shadow-colors: (
   accent-warning: $accent-warning-20,
 );
 
-/* Class-based shadows
- * This is just for reference, using mixins is preferred
- * Due to the large number of classes this generates, it's not recommended
- * ------------------------------------
 @each $shadow, $values in $shadows {
   @each $color, $color-value in $shadow-colors {
     .shadow-#{$color}-#{$shadow} {
@@ -40,7 +36,6 @@ $shadow-colors: (
     }
   }
 }
-*/
 
 @mixin setShadow($color, $shadow) {
   box-shadow: nth(map-get($shadows, $shadow), 1) rgba(map-get($shadow-colors, $color), nth(map-get($shadows, $shadow), 2));
