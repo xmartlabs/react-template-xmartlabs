@@ -4,11 +4,14 @@ import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { AppLink, RouteName } from 'routes';
 
 import { Button } from 'common/button';
+import { Avatar } from 'common/avatar';
 import styles from './home.module.scss';
 
 const Home = () => (
   <div className={globalStyles.genericContainer}>
     <h1 className={styles.title}>
+      <Avatar size="xl" />
+      <hr />
       Welcome! This is the homepage.
       <AppLink routeName={RouteName.About}>About</AppLink>
       <Button>Hola Mundo</Button>
