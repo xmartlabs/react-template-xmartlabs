@@ -1,7 +1,5 @@
-@use "sass:list";
-@use "sass:map";
-@import "../../assets/stylesheets/colors";
-@import "../../assets/stylesheets/text-styles";
+@use '../../assets/stylesheets/colors' as *;
+@use '../../assets/stylesheets/variables' as *;
 
 .avatarWrapper {
   display: inline-flex;

@@ -1,5 +1,6 @@
-@import "variables";
-@import "fonts";
+@use 'variables' as *;
+
+@import 'fonts';
 
 /*
   This file contains defaults for elements of the DOM.

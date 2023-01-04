@@ -1,0 +1,5 @@
+@use '../variables' as *;
+
+@mixin setShadow($color, $shadow) {
+  box-shadow: nth(map-get($shadows, $shadow), 1) rgba(map-get($shadow-colors, $color), nth(map-get($shadows, $shadow), 2));
+}

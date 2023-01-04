@@ -1,7 +1,5 @@
-@use "sass:list";
-@use "sass:map";
-@import "../../assets/stylesheets/colors";
-@import "../../assets/stylesheets/shadows";
+@use '../../assets/stylesheets/colors' as *;
+@use '../../assets/stylesheets/mixins' as *;
 
 // Sizes
 // xl (12px, 16px, 24px, 32px)

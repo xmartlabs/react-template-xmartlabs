@@ -1,47 +1,14 @@
-@use "sass:list";
-@use "sass:map";
-@import "colors";
+@use 'colors';
+@use 'variables';
 
 // Box Shadows
 // ------------------------------------
 
 // Shadows
-// 10: (0px 6px 8px -6px, 0.24),
-// ^     ^                 ^
-// |     |                 |
-// |     |               Opacity
-// |     Shadow Measurements
-// Shadow Name
-// ------------------------------------
-$shadows: (
-  10: (0 6px 8px -6px, 0.24),
-  20: (0 10px 18px -10px, 0.3),
-  30: (0 10px 25px -6px, 0.24),
-  40: (0 10px 25px -6px, 0.4),
-);
-$shadow-colors: (
-  primary: $primary-color-50,
-  secondary: $secondary-color-50,
-  light-surface: $surface-light-10,
-  dark-surface: $surface-dark-50,
-  accent-info: $accent-info-20,
-  accent-danger: $accent-danger-20,
-  accent-success: $accent-success-20,
-  accent-warning: $accent-warning-20,
-);
-
 @each $shadow, $values in $shadows {
   @each $color, $color-value in $shadow-colors {
     .shadow-#{$color}-#{$shadow} {
       box-shadow: list.nth($values, 1) rgba($color-value, list.nth($values, 2));
     }
   }
-}
-
-@mixin setShadow($color, $shadow) {
-  box-shadow:
-    list.nth(map.get($shadows, $shadow), 1) rgba(
-      map.get($shadow-colors, $color),
-      list.nth(map.get($shadows, $shadow), 2)
-    );
 }

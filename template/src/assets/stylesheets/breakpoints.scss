@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use 'variables' as *;
+@use 'mixins' as *;
 
 $generic-container-padding: 10px;
 $generic-item-margin: 40px;
