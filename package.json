@@ -5,7 +5,8 @@
   "main": "template.json",
   "scripts": {
     "test": "node --inspect scripts/test.js --config jest.config.json",
-    "lint": "eslint template/ --ext .js --ext .jsx --ext .ts --ext .tsx --config .eslintrc.yml && tsc --project template/tsconfig.json"
+    "lint": "eslint template/ --ext .js --ext .jsx --ext .ts --ext .tsx --config .eslintrc.yml && tsc --project template/tsconfig.json",
+    "sass-lint": "stylelint template/src/\"**/*.scss\""
   },
   "repository": {
     "type": "git",

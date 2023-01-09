@@ -19,3 +19,8 @@ pipeline:
     group: fe-build
     commands:
       - CI=true npm run test
+  sass-lint:
+    <<: *common
+    group: fe-build
+    commands:
+      - CI=true npm run sass-lint

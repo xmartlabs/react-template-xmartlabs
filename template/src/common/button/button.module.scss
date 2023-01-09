@@ -1,3 +1,5 @@
+@use "sass:list";
+@use "sass:map";
 @import "../../assets/stylesheets/colors";
 @import "../../assets/stylesheets/shadows";
 
@@ -199,10 +201,10 @@ $btn-styles: (
             }
           } @else {
             &:#{$state} {
-              $shadow: map-get($properties, "shadow");
+              $shadow: map.get($properties, "shadow");
 
               @if $shadow {
-                @include setShadow(nth($shadow, 1), nth($shadow, 2));
+                @include setShadow(list.nth($shadow, 1), list.nth($shadow, 2));
               }
 
               @each $property, $value in $properties {
@@ -218,9 +220,9 @@ $btn-styles: (
   // Sizes
   @each $size, $properties in $btn-sizes {
     &-#{$size} {
-      padding: nth($properties, 1) nth($properties, 2);
-      font-size: nth($properties, 3);
-      line-height: nth($properties, 4);
+      padding: list.nth($properties, 1) list.nth($properties, 2);
+      font-size: list.nth($properties, 3);
+      line-height: list.nth($properties, 4);
     }
   }
 }
