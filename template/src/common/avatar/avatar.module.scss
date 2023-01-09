@@ -1,5 +1,5 @@
-@import '../../assets/stylesheets/colors';
-@import '../../assets/stylesheets/text-styles';
+@import "../../assets/stylesheets/colors";
+@import "../../assets/stylesheets/text-styles";
 
 .avatarWrapper {
   display: inline-flex;
@@ -12,22 +12,22 @@
   $avatar-sizes: (
     xl: (
       size: 128px,
-      font: map-get(map-get($headings, 'h1'), 'web'),
+      font: map-get(map-get($headings, "h1"), "web"),
       icon: (40px, 32px),
     ),
     l: (
       size: 96px,
-      font: map-get(map-get($headings, 'h2'), 'web'),
+      font: map-get(map-get($headings, "h2"), "web"),
       icon: (24px, 20px),
     ),
     m: (
       size: 48px,
-      font: map-get(map-get($headings, 'h6'), 'web'),
+      font: map-get(map-get($headings, "h6"), "web"),
       icon: (16px, 12px),
     ),
     s: (
       size: 32px,
-      font: map-get(map-get($headings, 'h4'), 'mobile'),
+      font: map-get(map-get($headings, "h4"), "mobile"),
       icon: (12px, 8px),
     ),
     xs: (
@@ -51,7 +51,7 @@
       width: 100%;
       object-fit: cover;
     }
-    
+
     // Sizes
     @each $size, $properties in $avatar-sizes {
       &-#{$size} {
