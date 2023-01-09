@@ -1,3 +1,7 @@
+@import 'colors';
+@import 'mixins';
+@import 'variables';
+
 /*
   When using design systems it is a good practice to match
   the text styles of it on the project. Add all text styles here
@@ -14,3 +18,114 @@
 
   Use mixins if you want to add color to all text to avoid repetition.
 */
+
+// Headings
+// h1 (56px, 64px)
+// ^    ^    ^
+// |    |    |
+// |    |    Line height
+// |    Font size
+// Class name
+// ------------------------------
+$headings: (
+  h1: (
+    web: (56px, 64px),
+    mobile: (24px, 32px),
+  ),
+  h2: (
+    web: (48px, 56px),
+    mobile: (20px, 28px),
+  ),
+  h3: (
+    web: (40px, 40px),
+    mobile: (16px, 24px),
+  ),
+  h4: (
+    web: (32px, 40px),
+    mobile: (12px, 20px),
+  ),
+  h5: (
+    web: (24px, 32px),
+    mobile: (12px, 20px),
+  ),
+  h6: (
+    web: (16px, 24px),
+    mobile: (12px, 20px),
+  )
+);
+
+@each $heading, $properties in $headings {
+  .#{$heading} {
+    color: $text-neutral-50;
+    font-weight: bold;
+    font-size: nth(map-get($properties, 'mobile'), 1);
+    line-height: nth(map-get($properties, 'mobile'), 2);
+  }
+  @include minWidth('md') {
+    .#{$heading} {
+      font-size: nth(map-get($properties, 'web'), 1);
+      line-height: nth(map-get($properties, 'web'), 2);
+    }
+  }
+}
+
+// Text
+// large (24px, 32px, $text-neutral-40, none)
+// ^      ^      ^      ^                ^
+// |      |      |      |                |
+// |      |      |      |                Text transform
+// |      |      |      Color
+// |      |      Line height
+// |      Font size
+// Class name
+// ------------------------------------------
+$text: (
+  large: (
+    web: (20px, 28px, $text-neutral-40, none),
+    mobile: (16px, 24px, $text-neutral-40, none),
+  ),
+  medium: (
+    web: (16px, 24px, $text-neutral-40, none),
+    mobile: (14px, 20px, $text-neutral-40, none),
+  ),
+  small: (
+    web: (14px, 20px, $text-neutral-30, none),
+    mobile: (12px, 18px, $text-neutral-30, none),
+  ),
+  tiny: (
+    web: (12px, 16px, $text-neutral-30, none),
+    mobile: (10px, 14px, $text-neutral-30, none),
+  ),
+  overline: (
+    web: (12px, 16px, $text-neutral-40, uppercase),
+    mobile: (10px, 14px, $text-neutral-40, uppercase),
+  ),
+);
+
+@each $text, $properties in $text {
+  .text-#{$text} {
+    font-size: nth(map-get($properties, 'mobile'), 1);
+    line-height: nth(map-get($properties, 'mobile'), 2);
+    color: nth(map-get($properties, 'mobile'), 3);
+    text-transform: nth(map-get($properties, 'mobile'), 4);
+  }
+  @include minWidth('md') {
+    .text-#{$text} {
+      font-size: nth(map-get($properties, 'web'), 1);
+      line-height: nth(map-get($properties, 'web'), 2);
+      text-transform: nth(map-get($properties, 'web'), 4);
+    }
+  }
+}
+
+// Link
+.link {
+  color: $primary-color-90;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: $primary-color-60;
+    text-decoration: none;
+  }
+}

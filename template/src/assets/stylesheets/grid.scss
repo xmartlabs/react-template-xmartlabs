@@ -1,0 +1,20 @@
+.grid-desktop-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 32px;
+  margin: 64px;
+}
+
+.grid-tablet-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 24px;
+  margin: 24px;
+}
+
+.grid-mobile-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
+  margin: 16px;
+}
