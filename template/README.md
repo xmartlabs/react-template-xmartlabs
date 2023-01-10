@@ -365,6 +365,11 @@ export { MyComponent };
 
 This will ensure that only a central version of the global CSS code is used. This project includes a file named `global-styles.module.scss` that should be used to export all global CSS.
 
+### Stylelint
+
+In order to maintain a similar coding style across projects, we use Stylelint in a similar way we use Eslint.
+Stylelint runs by using the command `npm run sass-lint` and using the configuration under [`Stylelint file`](./.stylelintrc.yml).
+
 ## Docker Configuration
 
 A [`Dockerfile`](./Dockerfile) and a [`.dockerignore`](./.dockerignore) have been added to this project. The main reason to use Docker is to generate a production build, it is not intended for use for development.

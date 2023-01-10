@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'fonts';
+@import "variables";
+@import "fonts";
 
 /*
   This file contains defaults for elements of the DOM.
@@ -24,7 +24,8 @@ button {
   border: none;
   cursor: pointer;
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: none;
   }
 }

@@ -43,6 +43,7 @@ rules:
       unnamedComponents: arrow-function
   react/react-in-jsx-scope: 'off'
   react/prop-types: 'off'
+  '@typescript-eslint/type-annotation-spacing': error
 # Allows for absolute imports
 settings:
   import/resolver:

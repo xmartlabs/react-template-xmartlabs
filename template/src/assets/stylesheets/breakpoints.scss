@@ -1,13 +1,14 @@
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
-$genericContainerPadding: 10px;
-$genericItemMargin: 40px;
+$generic-container-padding: 10px;
+$generic-item-margin: 40px;
 
 .genericContainer {
   box-sizing: content-box;
   margin: 0 auto;
 }
+
 /*
   It is assumed this container will be used directly inside
   a genericContainer
@@ -19,16 +20,15 @@ $genericItemMargin: 40px;
 }
 
 .genericItemContainer > * {
-  margin-right: $genericItemMargin;
-  margin-bottom: $genericItemMargin;
+  margin-right: $generic-item-margin;
+  margin-bottom: $generic-item-margin;
 }
-
 
 @include setUpContainerSizes(
   "genericContainer",
   "genericItemContainer",
-  $genericContainerPadding,
-  $genericItemMargin,
+  $generic-container-padding,
+  $generic-item-margin,
   $items-per-row,
   $breakpoints
 );

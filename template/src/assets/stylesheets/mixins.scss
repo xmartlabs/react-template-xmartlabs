@@ -1,3 +1,5 @@
+@use "sass:map";
+
 /*
   Sets the target $class width to one that can hold the most $item-widths possible.
   It also sets margin-right to zero for the last child in a row.
@@ -17,16 +19,16 @@
   $margin,
   $quantity
 ) {
-
   $item-width: 100%;
   $final-container-width: 100%;
+
   /*
     Needed for the lowest breakpoint which doesn't have a lower threshold, so the
     container has to span the full width.
   */
-  @if ($container-width != null) {
+  @if $container-width {
     $final-container-width: $container-width;
-    $item-width: ($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity ;
+    $item-width: ($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity;
   }
 
   .#{$container-class} {
@@ -48,19 +50,21 @@
   EXAMPLE OUTPUT:
   "(max-width: 1500px) and (min-width: 750px)"
 */
-@function buildSafeMaxMinMediaQuery($max, $min) {
+@function buildsafemaxminmediaquery($max, $min) {
   $query: null;
 
-  @if ($max) {
+  @if $max {
     $query: "(max-width: #{$max})";
   }
-  @if ($min) {
-    @if ($query) {
+
+  @if $min {
+    @if $query {
       $query: "#{$query} and (min-width: #{$min})";
     } @else {
       $query: "(min-width: #{$min})";
     }
   }
+
   @return $query;
 }
 
@@ -83,7 +87,7 @@
   $bp-min,
   $bp-max
 ) {
-  $query: buildSafeMaxMinMediaQuery($bp-max, $bp-min);
+  $query: buildsafemaxminmediaquery($bp-max, $bp-min);
 
   @media #{$query} {
     @include modifyContainer(
@@ -97,22 +101,21 @@
   }
 }
 
-
 /*
   Gets the ith element from a map. The order is defined by how the elements where inserted into the map.
   If an ith position would end up outside the keys list, return null instead.
   EXAMPLE OUTPUT:
   1500px
 */
-@function getSafeMapValueFromPos($map, $i) {
-  $list: map-keys($map);
+@function getsafemapvaluefrompos($map, $i) {
+  $list: map.keys($map);
 
-  @if ($i < 1 or $i > length($list)) {
+  @if $i < 1 or $i > length($list) {
     @return null;
   }
+
   @return map-get($map, nth($list, $i));
 }
-
 
 /*
   Substracts from $value only if it is not null. If null, return same value.
@@ -120,9 +123,10 @@
   1500px - 1
 */
 @function safeSubtraction($value, $subtract) {
-  @if ($value) {
+  @if $value {
     @return $value - $subtract;
   }
+
   @return $value;
 }
 
@@ -180,14 +184,14 @@
   $prev-bp-value: null;
 
   @for $i from 1 through length($breakpoints) + 1 {
-    $current-bp-value: getSafeMapValueFromPos($breakpoints, $i);
+    $current-bp-value: getsafemapvaluefrompos($breakpoints, $i);
 
     @include modifyContainerWithMinMax(
       $container-class,
       $item-container-class,
       $padding,
       $item-margin,
-      getSafeMapValueFromPos($quantity-per-bp, $i),
+      getsafemapvaluefrompos($quantity-per-bp, $i),
       $current-bp-value,
       safeSubtraction($prev-bp-value, 1)
     );
@@ -197,9 +201,9 @@
 }
 
 @mixin maxWidth($breakpoint) {
-  @media only screen and (max-width: map-get($breakpoints, $breakpoint)) { @content };
+  @media only screen and (max-width: map-get($breakpoints, $breakpoint)) { @content; }
 }
 
 @mixin minWidth($breakpoint) {
-  @media only screen and (min-width: map-get($breakpoints, $breakpoint)) { @content };
+  @media only screen and (min-width: map-get($breakpoints, $breakpoint)) { @content; }
 }
