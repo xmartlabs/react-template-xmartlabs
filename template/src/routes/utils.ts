@@ -1,4 +1,16 @@
-import type { RouteName } from './routes';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory();
+
+export type Params = {
+  [key: string]: string | boolean | number | null,
+};
+
+export enum RouteName {
+  Home = 'home',
+  About = 'about',
+  NotFound = 'notFound',
+}
 
 export type Route = {
   name: RouteName,
