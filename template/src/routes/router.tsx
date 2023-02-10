@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Router as VendorRouter, Switch } from 'react-router-dom';
 import { ScrollToTop } from './scroll-to-top';
-import { history } from './utils';
-import type { Route as RouteType } from './utils';
+import { history } from './routes';
+import type { Route as RouteType } from './routes';
 import { RouteComponent } from './route-component';
 
 type RouterProps = {
