@@ -15,7 +15,7 @@ const renderRoutes = (routeData: RouteType[]) => (
       key={data.path}
       exact={data.exact}
       path={data.path}
-      component={RouteComponent.get(data.name)}
+      component={RouteComponent[data.name]}
     />
   ))
 );
