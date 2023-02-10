@@ -2,7 +2,7 @@ import React from 'react';
 
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { AppLink } from 'routes/app-link';
-import { RouteName } from 'routes/utils';
+import { RouteName } from 'routes/routes';
 
 import styles from './about.module.scss';
 

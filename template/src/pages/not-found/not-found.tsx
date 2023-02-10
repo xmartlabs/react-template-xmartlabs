@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AppLink } from 'routes/app-link';
-import { RouteName } from 'routes/utils';
+import { RouteName } from 'routes/routes';
 
 // TODO: implement this page
 const NotFound = () => (

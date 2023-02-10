@@ -50,7 +50,6 @@ export {
   setPathParams,
 };
 
-
 const ROUTES = [
   {
     name: RouteName.Home,
