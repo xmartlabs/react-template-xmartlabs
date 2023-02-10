@@ -72,7 +72,8 @@ It is highly encouraged that you use these helpers instead of the native ones of
 ### Creating a Route
 
 * Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
-* Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path, component and any other configuration of the route.
+* Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path and any other configuration of the route.
+* Add the name and related component to the RouteComponent dictionary on `src/routes/route-component.ts`.
 
 And that's it. If you defined the path correctly you should be able to access the component on that route. There are already examples on all of these files, so you should be able to follow them.
 
