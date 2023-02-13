@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-
-import { goToPage, Params } from './route-helpers';
-import type { RouteName, RouteParams } from './routes';
+import { goToPage } from './route-helpers';
+import type { RouteParams, Params, RouteName } from './routes';
 
 /*
   This component is a wrapper for redirecting across and inside apps.

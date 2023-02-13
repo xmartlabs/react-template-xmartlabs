@@ -1,7 +1,6 @@
 import React from 'react';
 import { RouteName } from 'routes';
-import { routes } from './routes';
-import { setPathParams } from './utils';
+import { routes, setPathParams } from './routes';
 
 describe('routes', () => {
   describe('setPathParams', () => {

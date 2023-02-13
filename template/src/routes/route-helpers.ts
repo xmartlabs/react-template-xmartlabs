@@ -1,10 +1,7 @@
 import { ParamsHelper } from 'helpers/params-helper';
-import { history } from './router';
-import { RouteName, routes } from './routes';
-
-export type Params = {
-  [key: string]: string | boolean | number | null,
-};
+import {
+  routes, Params, RouteName, history,
+} from './routes';
 
 /*
   Given a name, finds the route in the configuration that has that name.

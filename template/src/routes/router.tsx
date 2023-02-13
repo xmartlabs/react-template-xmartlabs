@@ -1,11 +1,9 @@
 import React from 'react';
 import { Route, Router as VendorRouter, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import { ScrollToTop } from './scroll-to-top';
-
-import type { Route as RouteType } from './utils';
-
-const history = createBrowserHistory();
+import { history } from './routes';
+import type { Route as RouteType } from './routes';
+import { RouteComponent } from './route-component';
 
 type RouterProps = {
   routes: RouteType[],
@@ -17,7 +15,7 @@ const renderRoutes = (routeData: RouteType[]) => (
       key={data.path}
       exact={data.exact}
       path={data.path}
-      component={data.component}
+      component={RouteComponent[data.name]}
     />
   ))
 );

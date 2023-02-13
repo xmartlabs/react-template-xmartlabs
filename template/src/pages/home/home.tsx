@@ -1,7 +1,8 @@
 import React from 'react';
 
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
-import { AppLink, RouteName } from 'routes';
+import { AppLink } from 'routes/app-link';
+import { RouteName } from 'routes/routes';
 
 import { Button } from 'common/button';
 import { Avatar } from 'common/avatar';
