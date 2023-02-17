@@ -1,0 +1,58 @@
+@use "sass:list";
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  cursor: default;
+}
+
+$modal-sizes: (
+  small: (400px),
+  medium: (600px),
+  big: (968px),
+);
+
+.modal {
+  /* Auto layout */
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  gap: 16px;
+
+  /* Surface / Light / 10 */
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: solid black 1px;
+  width: 100%;
+  position: fixed;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 50%;
+
+  // Sizes
+  @each $size, $properties in $modal-sizes {
+    &-#{$size} {
+      max-width: list.nth($properties, 1)
+    }
+  }
+
+  .closeButton {
+    position: absolute;
+    display: flex;
+    margin: 12px;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    color: #8A8AA8;
+    font-size: 24px;
+  }
+
+}
