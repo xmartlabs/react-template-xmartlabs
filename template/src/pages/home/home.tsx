@@ -12,7 +12,6 @@ import styles from './home.module.scss';
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const closeModal: () => void = () => { setOpenModal(false); };
-  const position = styles.modalPosition;
   return (
     <div className={globalStyles.genericContainer}>
       <h1 className={styles.title}>
@@ -20,15 +19,13 @@ const Home = () => {
         <hr />
         Welcome! This is the homepage.
         <AppLink routeName={RouteName.About}>About</AppLink>
-        <Button onClick={() => setOpenModal(true)}>Hola Mundo</Button>
+        <Button onClick={() => setOpenModal(true)}>Hello World</Button>
       </h1>
       {openModal && (
         <Modal
           isOpen={openModal}
           onClose={closeModal}
           size={ModalSizes.small}
-          modalClassName={position}
-          ariaLabelledby="modal-example"
         >
           <div className={styles.modalContent}>
             <h3 className={styles.modalTitle}>Title</h3>

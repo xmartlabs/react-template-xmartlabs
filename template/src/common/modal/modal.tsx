@@ -17,14 +17,12 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   hideCloseButton?: boolean;
   children?: React.ReactNode;
-  modalClassName?: string;
-  ariaLabelledby: string;
+  className?: string;
 }
 
 export const Modal = ({
-  size, title, hideCloseButton = false, children, isOpen, onClose, ...props
+  size, hideCloseButton = false, children, isOpen, onClose, className, ...props
 }: ModalProps) => {
-  const { modalClassName, ariaLabelledby } = props;
   useEffect(() => {
     const escFunction = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -44,9 +42,9 @@ export const Modal = ({
     <div className={modalStyles.overlay}>
       <div
         role="dialog"
-        aria-labelledby={ariaLabelledby}
         aria-modal="true"
-        className={classnames(modalStyles.modal, modalStyles[`modal-${size}`], modalClassName || '')}
+        className={classnames(modalStyles.modal, modalStyles[`modal-${size}`], className || '')}
+        {...props}
       >
         {!hideCloseButton && <button className={modalStyles.closeButton} type="button" onClick={onClose}><img alt="x icon" src={xSvg} /></button>}
         {children}
