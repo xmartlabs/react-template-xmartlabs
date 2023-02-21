@@ -27,7 +27,6 @@ describe('ScrollToTop', () => {
       },
     };
     return render(
-      /* eslint-disable-next-line react/jsx-props-no-spreading */
       <ScrollToTop {...props}>
         {children}
       </ScrollToTop>,
@@ -65,7 +64,6 @@ describe('ScrollToTop', () => {
           state: null,
         },
       };
-      /* eslint-disable-next-line react/jsx-props-no-spreading */
       rerender(<ScrollToTop {...props}>Children</ScrollToTop>);
 
       expect(mockScrollTo).toHaveBeenCalledTimes(1);

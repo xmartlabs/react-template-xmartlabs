@@ -8,7 +8,6 @@ const withLayout = <TOriginalProps extends {}>(
 ) => (
     (props: TOriginalProps) => (
       <Layout layoutType={layoutType}>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...props} />
       </Layout>
     )
