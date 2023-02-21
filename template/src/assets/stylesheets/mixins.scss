@@ -28,7 +28,7 @@
   */
   @if $container-width {
     $final-container-width: $container-width;
-    $item-width: calc(($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity)
+    $item-width: calc(($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity);
   }
 
   .#{$container-class} {

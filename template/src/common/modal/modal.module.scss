@@ -2,11 +2,11 @@
 @import "../../assets/stylesheets/colors";
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0 0 0 30%);
   position: fixed;
   width: 100vw;
   height: 100vh;
-  top:0;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -32,12 +32,12 @@ $modal-sizes: (
   border: solid black 1px;
   width: 100%;
   position: relative;
-  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 18px 0 rgba(0 0 0 75%);
 
   // Sizes
   @each $size, $properties in $modal-sizes {
     &-#{$size} {
-      max-width: list.nth($properties, 1)
+      max-width: list.nth($properties, 1);
     }
   }
 
@@ -49,5 +49,4 @@ $modal-sizes: (
     right: 0;
     color: $text-neutral-30;
   }
-
 }
