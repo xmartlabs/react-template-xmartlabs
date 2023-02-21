@@ -91,7 +91,6 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(({
         alt={alt}
         crossOrigin={crossOrigin}
         referrerPolicy={referrerPolicy}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
     );

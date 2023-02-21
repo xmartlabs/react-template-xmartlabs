@@ -21,7 +21,6 @@ export const Button: React.FC<IProps> = ({
       buttonStyles[`btn-${bSize}`],
       buttonStyles[`btn-${bColor}-${bStyle}`],
     )}
-    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
   >
     {leftIcon || null}

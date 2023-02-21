@@ -43,7 +43,6 @@ const AppLink = <R extends RouteName>(props: AppLinkProps<R>) => {
     <Link
       className={props.className}
       to={routePath}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...targetBlankProps}
     >
       {props.children}
