@@ -2,7 +2,7 @@
 @import "../../assets/stylesheets/colors";
 
 .overlay {
-  background-color: rgba(0 0 0 30%);
+  background-color: rgba(0 0 0 / 30%);
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -22,7 +22,6 @@ $modal-sizes: (
 );
 
 .modal {
-  /* Auto layout */
   display: flex;
   justify-content: center;
   padding: 24px;
@@ -32,7 +31,7 @@ $modal-sizes: (
   border: solid black 1px;
   width: 100%;
   position: relative;
-  box-shadow: 0 0 18px 0 rgba(0 0 0 75%);
+  box-shadow: 0 0 18px 0 rgba(0 0 0 / 75%);
 
   // Sizes
   @each $size, $properties in $modal-sizes {
