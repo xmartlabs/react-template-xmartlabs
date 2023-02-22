@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 @use 'sass:math';
 @use '../variables' as *;
 
@@ -56,14 +56,14 @@
   $query: null;
 
   @if $max {
-    $query: "(max-width: #{$max})";
+    $query: '(max-width: #{$max})';
   }
 
   @if $min {
     @if $query {
-      $query: "#{$query} and (min-width: #{$min})";
+      $query: '#{$query} and (min-width: #{$min})';
     } @else {
-      $query: "(min-width: #{$min})";
+      $query: '(min-width: #{$min})';
     }
   }
 

@@ -1,3 +1,5 @@
+@use 'sass:list';
+@use 'sass:map';
 @use 'colors' as *;
 @use 'mixins' as *;
 @use 'variables' as *;
@@ -24,14 +26,14 @@
   .#{$heading} {
     color: $text-neutral-50;
     font-weight: bold;
-    font-size: list.nth(map.get($properties, "mobile"), 1);
-    line-height: list.nth(map.get($properties, "mobile"), 2);
+    font-size: list.nth(map.get($properties, 'mobile'), 1);
+    line-height: list.nth(map.get($properties, 'mobile'), 2);
   }
 
-  @include minWidth("md") {
+  @include minWidth('md') {
     .#{$heading} {
-      font-size: list.nth(map.get($properties, "web"), 1);
-      line-height: list.nth(map.get($properties, "web"), 2);
+      font-size: list.nth(map.get($properties, 'web'), 1);
+      line-height: list.nth(map.get($properties, 'web'), 2);
     }
   }
 }
@@ -39,17 +41,17 @@
 // Text
 @each $text, $properties in $text {
   .text-#{$text} {
-    font-size: list.nth(map.get($properties, "mobile"), 1);
-    line-height: list.nth(map.get($properties, "mobile"), 2);
-    color: list.nth(map.get($properties, "mobile"), 3);
-    text-transform: list.nth(map.get($properties, "mobile"), 4);
+    font-size: list.nth(map.get($properties, 'mobile'), 1);
+    line-height: list.nth(map.get($properties, 'mobile'), 2);
+    color: list.nth(map.get($properties, 'mobile'), 3);
+    text-transform: list.nth(map.get($properties, 'mobile'), 4);
   }
 
-  @include minWidth("md") {
+  @include minWidth('md') {
     .text-#{$text} {
-      font-size: list.nth(map.get($properties, "web"), 1);
-      line-height: list.nth(map.get($properties, "web"), 2);
-      text-transform: list.nth(map.get($properties, "web"), 4);
+      font-size: list.nth(map.get($properties, 'web'), 1);
+      line-height: list.nth(map.get($properties, 'web'), 2);
+      text-transform: list.nth(map.get($properties, 'web'), 4);
     }
   }
 }

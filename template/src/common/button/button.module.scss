@@ -1,3 +1,5 @@
+@use 'sass:list';
+@use 'sass:map';
 @use '../../assets/stylesheets/colors' as *;
 @use '../../assets/stylesheets/mixins' as *;
 
@@ -28,17 +30,17 @@ $btn-styles: (
       hover: (
         background-color: $primary-color-40,
         color: $text-neutral-10,
-        shadow: ("primary", 10),
+        shadow: ('primary', 10),
       ),
       focus: (
         background-color: $primary-color-50,
         color: $text-neutral-10,
-        shadow: ("primary", 10),
+        shadow: ('primary', 10),
       ),
       active: (
         background-color: $primary-color-60,
         color: $text-neutral-10,
-        shadow: ("primary", 20),
+        shadow: ('primary', 20),
       ),
       disabled: (
         background-color: $surface-light-50,
@@ -55,19 +57,19 @@ $btn-styles: (
         background-color: $primary-color-10,
         border: 2px solid $primary-color-50,
         color: $primary-color-50,
-        shadow: ("primary", 10),
+        shadow: ('primary', 10),
       ),
       focus: (
         background-color: $primary-color-20,
         border: 2px solid $primary-color-70,
         color: $primary-color-70,
-        shadow: ("primary", 10),
+        shadow: ('primary', 10),
       ),
       active: (
         background-color: $primary-color-30,
         border: 2px solid $primary-color-90,
         color: $primary-color-90,
-        shadow: ("primary", 20),
+        shadow: ('primary', 20),
       ),
       disabled: (
         background-color: $surface-light-50,
@@ -107,17 +109,17 @@ $btn-styles: (
       hover: (
         background-color: $text-neutral-40,
         color: $text-neutral-10,
-        shadow: ("light-surface", 40),
+        shadow: ('light-surface', 40),
       ),
       focus: (
         background-color: $text-neutral-40,
         color: $text-neutral-10,
-        shadow: ("light-surface", 40),
+        shadow: ('light-surface', 40),
       ),
       active: (
         background-color: $text-neutral-50,
         color: $text-neutral-10,
-        shadow: ("light-surface", 40),
+        shadow: ('light-surface', 40),
       ),
       disabled: (
         background-color: $surface-light-50,
@@ -134,19 +136,19 @@ $btn-styles: (
         background-color: $surface-light-30,
         border: 2px solid $text-neutral-40,
         color: $text-neutral-40,
-        shadow: ("light-surface", 40),
+        shadow: ('light-surface', 40),
       ),
       focus: (
         background-color: $surface-light-30,
         border: 2px solid $text-neutral-40,
         color: $text-neutral-40,
-        shadow: ("light-surface", 40),
+        shadow: ('light-surface', 40),
       ),
       active: (
         background-color: $surface-light-40,
         border: 2px solid $text-neutral-50,
         color: $text-neutral-50,
-        shadow: ("light-surface", 40),
+        shadow: ('light-surface', 40),
       ),
       disabled: (
         background-color: $surface-light-50,
@@ -193,13 +195,13 @@ $btn-styles: (
     @each $variant, $states in $properties {
       &-#{$style}-#{$variant} {
         @each $state, $properties in $states {
-          @if $state == "enabled" {
+          @if $state == 'enabled' {
             @each $property, $value in $properties {
               #{$property}: $value;
             }
           } @else {
             &:#{$state} {
-              $shadow: map.get($properties, "shadow");
+              $shadow: map.get($properties, 'shadow');
 
               @if $shadow {
                 @include setShadow(list.nth($shadow, 1), list.nth($shadow, 2));
