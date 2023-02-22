@@ -8,7 +8,7 @@
     "lint": "eslint template/ --ext .js --ext .jsx --ext .ts --ext .tsx --config .eslintrc.yml && tsc --project template/tsconfig.json",
     "sass-lint": "stylelint template/src/\"**/*.scss\"",
     "create-test-project": "rm -rf project-test && create-react-app --template file:. project-test",
-    "import-changes": "node --inspect scripts/import-changes.js"
+    "import-changes": "node scripts/import-changes.js"
   },
   "repository": {
     "type": "git",
