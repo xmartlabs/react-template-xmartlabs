@@ -34,6 +34,10 @@ const askQuestion = (question) => {
   })
 }
 
+/**
+ * Given a directory, recursively finds all valid files to later (potentially) import.
+ * Valid files are those that are actually files and that are not in the ignored files list.
+*/
 const getValidFiles = (dirPath, validFiles = []) => {
   files = fs.readdirSync(dirPath);
 
@@ -51,6 +55,11 @@ const getValidFiles = (dirPath, validFiles = []) => {
   return validFiles;
 };
 
+/**
+ * Given a list of file paths inside the test project directory, this method
+ * compares those files to the template directory and returns only those that are
+ * new or that are different to the ones on the template project.
+ */
 const filterFiles = (files) => files.filter((f) => {
   const relativeFilePath = f.replace(TEST_PROJECT_PATH, '');
   const templateFile = path.join(ROOT_DIR, TEMPLATE_DIR, relativeFilePath);
@@ -65,6 +74,10 @@ const filterFiles = (files) => files.filter((f) => {
   return false;
 });
 
+/**
+ * Given a list of file paths inside the test project directory, this method
+ * copies all the files to the appropriate relative location in the template directory.
+ */
 const importFiles = (files) => {
   files.forEach((f) => {
     const relativeFilePath = f.replace(TEST_PROJECT_PATH, '');
