@@ -1,0 +1,19 @@
+.badge {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding: 4px 8px;
+  gap: 10px;
+  border-radius: 8px;
+
+  .closeIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+}
