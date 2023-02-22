@@ -30,6 +30,24 @@ Tests are run using the typical command:
 npm test
 ```
 
+Since this is a template project, the best way to test what you develop is by actually creating a project from it. There's a quick way to do it by running:
+
+```shell
+npm run create-test-project
+```
+
+That command will create a new project from the template on the `project-test` directory (which is conveniently ignored by git).
+
+It's recommended you make all the changes you want on the test project and then import them into the actual template. You can do so with this command:
+
+```shell
+npm run import-changes
+```
+
+The command runs through all the files on the test project and compares them to the template. If the files are different (or new) the command asumes that the file on the test project has newer changes. After computing those files, the utility will show you what files it wants to import into the template and you can decide if you want to run the import or not.
+
+**IMPORTANT**: make sure that you actually want to import the files, as the command does not really know if your template has newer changes. You might overwrite a file that you needed. It's recommended to commit your changes on the template before importing, just in case you lose progress.
+
 ## Generate a Project with this Template
 
 1. Clone this repo:
