@@ -1,7 +1,7 @@
 import { classnames } from 'helpers/utils';
+import { ReactComponent as CloseSVG } from 'assets/icons/close.svg';
 import badgeStyles from './badge.module.scss';
 import globalStyles from '../../assets/stylesheets/global-styles.module.scss';
-import { ReactComponent as CloseSVG } from './assets/close.svg';
 
 type IProps = React.HTMLProps<HTMLDivElement> & {
   closeable?: boolean;
@@ -34,7 +34,6 @@ export const Badge: React.FC<IProps> = ({
       backgroundColor: bgColor,
       color,
     }}
-    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
   >
     {leftElement || null}
