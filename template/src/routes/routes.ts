@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import type { ExtractRouteParams } from 'react-router';
 import { createBrowserHistory } from 'history';
 
