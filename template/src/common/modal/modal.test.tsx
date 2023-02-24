@@ -1,27 +1,30 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Modal, ModalSizes } from './modal';
 
+const createPortalDiv = () => {
+  let portalRoot = document.getElementById('modal');
+  if (!portalRoot) {
+    portalRoot = document.createElement('div');
+    portalRoot.setAttribute('id', 'modal');
+    document.body.appendChild(portalRoot);
+  }
+};
+
 describe('Modal', () => {
+  const handleClose = jest.fn();
+
   it('should render successfully', async () => {
-    let portalRoot = document.getElementById('modal');
-    if (!portalRoot) {
-      portalRoot = document.createElement('div');
-      portalRoot.setAttribute('id', 'modal');
-      document.body.appendChild(portalRoot);
-    }
-    const { baseElement } = render(<Modal isOpen size={ModalSizes.medium} onClose={() => true} />);
+    createPortalDiv();
+    const { baseElement } = render(
+      <Modal isOpen size={ModalSizes.medium} onClose={handleClose} />,
+    );
     expect(baseElement.firstChild).toMatchSnapshot();
   });
 
   it('should render successfully with correct size', async () => {
-    let portalRoot = document.getElementById('modal');
-    if (!portalRoot) {
-      portalRoot = document.createElement('div');
-      portalRoot.setAttribute('id', 'modal');
-      document.body.appendChild(portalRoot);
-    }
+    createPortalDiv();
     const { baseElement } = render(
-      <Modal isOpen size={ModalSizes.medium} onClose={() => true}>
+      <Modal isOpen size={ModalSizes.medium} onClose={handleClose}>
         <div>
           <h3>Title</h3>
           <span>
@@ -35,5 +38,44 @@ describe('Modal', () => {
     );
     const modal = baseElement.querySelector('.modal');
     expect(modal).toHaveClass('modal-medium');
+  });
+
+  it('should close after press ESC', async () => {
+    createPortalDiv();
+    const { baseElement } = render(
+      <Modal isOpen size={ModalSizes.medium} onClose={handleClose} />,
+    );
+    fireEvent.keyDown(global.document, {
+      keyCode: 'Escape',
+    });
+    expect(baseElement.firstChild).toMatchSnapshot();
+  });
+
+  test('modal shows the children and a close button', () => {
+    const { getByText } = render(
+      <Modal isOpen size={ModalSizes.medium} onClose={handleClose}>
+        <div>
+          <div>test</div>
+          <button onClick={handleClose}>cancel</button>
+        </div>
+      </Modal>,
+    );
+    expect(getByText('test')).toBeTruthy();
+    fireEvent.click(getByText(/cancel/i));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  test('modal executes onClose when press Escape Key', () => {
+    const { baseElement } = render(
+      <Modal isOpen size={ModalSizes.medium} onClose={handleClose}>
+        <div>
+          <div>test</div>
+          <button onClick={handleClose}>cancel</button>
+        </div>
+      </Modal>,
+    );
+    const modal = baseElement.getRootNode();
+    fireEvent.keyDown(modal, { key: 'Escape', code: 27, charCode: 27 });
+    expect(handleClose).toHaveBeenCalled();
   });
 });
