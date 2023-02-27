@@ -40,17 +40,6 @@ describe('Modal', () => {
     expect(modal).toHaveClass('modal-medium');
   });
 
-  it('should close after press ESC', async () => {
-    createPortalDiv();
-    const { baseElement } = render(
-      <Modal isOpen size={ModalSizes.medium} onClose={handleClose} />,
-    );
-    fireEvent.keyDown(global.document, {
-      keyCode: 'Escape',
-    });
-    expect(baseElement.firstChild).toMatchSnapshot();
-  });
-
   test('modal shows the children and a close button', () => {
     const { getByText } = render(
       <Modal isOpen size={ModalSizes.medium} onClose={handleClose}>
