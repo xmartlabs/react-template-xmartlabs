@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal should render successfully 1`] = `
+<div
+  id="modal"
+>
+  <div
+    class="overlay"
+  >
+    <div
+      aria-modal="true"
+      class="modal modal-medium"
+      role="dialog"
+    >
+      <button
+        class="closeButton"
+        type="button"
+      >
+        <img
+          alt="x icon"
+          src="x.svg"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;
