@@ -16,10 +16,11 @@ exports[`Modal should render successfully 1`] = `
         class="closeButton"
         type="button"
       >
-        <img
-          alt="x icon"
-          src="x.svg"
-        />
+        <svg
+          aria-label="Close"
+        >
+          close.svg
+        </svg>
       </button>
     </div>
   </div>
