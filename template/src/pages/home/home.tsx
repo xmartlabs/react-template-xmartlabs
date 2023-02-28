@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { AppLink } from 'routes/app-link';
