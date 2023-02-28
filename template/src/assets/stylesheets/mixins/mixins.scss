@@ -1,4 +1,6 @@
-@use "sass:map";
+@use 'sass:map';
+@use 'sass:math';
+@use '../variables' as *;
 
 /*
   Sets the target $class width to one that can hold the most $item-widths possible.
@@ -28,7 +30,7 @@
   */
   @if $container-width {
     $final-container-width: $container-width;
-    $item-width: calc(($container-width - $margin * ($quantity - 1) - 2 * $padding) / $quantity);
+    $item-width: math.div($container-width - $margin * ($quantity - 1) - 2 * $padding, $quantity);
   }
 
   .#{$container-class} {
@@ -54,14 +56,14 @@
   $query: null;
 
   @if $max {
-    $query: "(max-width: #{$max})";
+    $query: '(max-width: #{$max})';
   }
 
   @if $min {
     @if $query {
-      $query: "#{$query} and (min-width: #{$min})";
+      $query: '#{$query} and (min-width: #{$min})';
     } @else {
-      $query: "(min-width: #{$min})";
+      $query: '(min-width: #{$min})';
     }
   }
 

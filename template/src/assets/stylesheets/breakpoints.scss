@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use 'variables' as *;
+@use 'mixins' as *;
 
 $generic-container-padding: 10px;
 $generic-item-margin: 40px;
@@ -25,8 +25,8 @@ $generic-item-margin: 40px;
 }
 
 @include setUpContainerSizes(
-  "genericContainer",
-  "genericItemContainer",
+  'genericContainer',
+  'genericItemContainer',
   $generic-container-padding,
   $generic-item-margin,
   $items-per-row,

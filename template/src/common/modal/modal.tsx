@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { classnames } from 'helpers/utils';
-import xSvg from '../../assets/icons/x.svg';
+import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
 import modalStyles from './modal.module.scss';
 
 export enum ModalSizes {
@@ -46,7 +46,11 @@ export const Modal = ({
         className={classnames(modalStyles.modal, modalStyles[`modal-${size}`], className || '')}
         {...props}
       >
-        {!hideCloseButton && <button className={modalStyles.closeButton} type="button" onClick={onClose}><img alt="x icon" src={xSvg} /></button>}
+        {!hideCloseButton && (
+          <button className={modalStyles.closeButton} type="button" onClick={onClose}>
+            <CloseSVG aria-label="Close" />
+          </button>
+        )}
         {children}
       </div>
     </div>,
