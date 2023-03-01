@@ -44,9 +44,11 @@ It's recommended you make all the changes you want on the test project and then 
 npm run import-changes
 ```
 
-The command runs through all the files on the test project and compares them to the template. If the files are different (or new) the command asumes that the file on the test project has newer changes. After computing those files, the utility will show you what files it wants to import into the template and you can decide if you want to run the import or not.
+The command runs through all the files on the test project and compares them to the template. If the files are different (or new) the command asumes that the file on the test project has newer changes. After computing those files, the utility will show you what files it wants to import into the template and you can decide if you want to run the import or not. This also applies to files that might have been deleted from the original template.
 
 **IMPORTANT**: make sure that you actually want to import the files, as the command does not really know if your template has newer changes. You might overwrite a file that you needed. It's recommended to commit your changes on the template before importing, just in case you lose progress.
+
+**IMPORTANT**: changes on the `package.json` or `package-lock.json` files are ignored as they don't map to a file on the template itself. If you install a new package on the test project, make sure to add that dependency on the `template.json` file.
 
 ## Generate a Project with this Template
 
