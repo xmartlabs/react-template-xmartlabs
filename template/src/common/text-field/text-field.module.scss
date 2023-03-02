@@ -1,0 +1,116 @@
+@use "sass:list";
+@import "../../assets/stylesheets/colors";
+
+
+$input-colors: (
+  default: ($text-neutral-20),
+  error: ($accent-danger-30),
+  success: ($accent-success-30),
+  disabled: ($text-neutral-20),
+);
+
+$helper-colors: (
+  default: ($text-neutral-30),
+  error: ($accent-danger-30),
+  success: ($accent-success-30),
+  disabled: ($text-neutral-30),
+);
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputContainer {
+  width: 100%;
+}
+
+.iconLeft {
+  position: absolute;
+  font-size: 20px;
+  padding-left: 16px;
+  padding-top: 9px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconRight {
+  position: absolute;
+  font-size: 20px;
+  padding-right: 16px;
+  padding-top: 9px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  right: 0;
+}
+
+.inputStyle {
+  padding: 12px 48px 12px 48px;
+  width: 100%;
+  font-size: 12px;
+  border: 1px solid $text-neutral-20;
+  border-radius: 10px;
+  width: 100%;
+  transition: border, color 0.2s ease-in-out;
+  background-color: $surface-light-10;
+  color: $text-neutral-30;
+
+  // Colors
+  @each $color, $properties in $input-colors {
+    &-#{$color} {
+      border-color: list.nth($properties, 1);
+    }
+  }
+
+  &:active {
+    outline: 0;
+    border: 1px solid $primary-color-50;
+    color: $text-neutral-40;
+  }
+
+  &:hover {
+    border: 1px solid $primary-color-40;
+  }
+
+  &:focus {
+    outline: 0;
+    border: 1px solid $primary-color-50;
+    color: $text-neutral-40;
+  }
+
+  &:disabled {
+    border: 1px solid $text-neutral-20;
+    color: $text-neutral-30;
+    background-color: $surface-light-50;
+  }
+}
+
+.label {
+  margin-bottom: 4px;
+  margin-top: 16px;
+  color: $text-neutral-40;
+  font-weight: 700;
+}
+
+.helperText {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+
+  @each $color, $properties in $helper-colors {
+    &-#{$color} {
+      color: list.nth($properties, 1);
+    }
+  }
+}
+
+.helperCloseButton {
+  display: flex;
+  width: 24px;
+
+  @each $color, $properties in $helper-colors {
+    &-#{$color} {
+      color: list.nth($properties, 1);
+    }
+  }
+}
