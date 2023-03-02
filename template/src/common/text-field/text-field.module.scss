@@ -1,6 +1,5 @@
-@use "sass:list";
-@import "../../assets/stylesheets/colors";
-
+@use 'sass:list';
+@import '../../assets/stylesheets/colors';
 
 $input-colors: (
   default: ($text-neutral-20),
@@ -30,7 +29,6 @@ $helper-colors: (
   font-size: 20px;
   padding-left: 16px;
   padding-top: 9px;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
@@ -39,18 +37,16 @@ $helper-colors: (
   font-size: 20px;
   padding-right: 16px;
   padding-top: 9px;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   right: 0;
 }
 
 .inputStyle {
-  padding: 12px 48px 12px 48px;
+  padding: 12px 48px;
   width: 100%;
   font-size: 12px;
   border: 1px solid $text-neutral-20;
   border-radius: 10px;
-  width: 100%;
   transition: border, color 0.2s ease-in-out;
   background-color: $surface-light-10;
   color: $text-neutral-30;
