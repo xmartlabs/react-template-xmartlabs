@@ -14,28 +14,26 @@ $helper-colors: (
   disabled: ($text-neutral-30),
 );
 
-.wrapper {
+.inputContainer {
   position: relative;
   width: 100%;
-}
-
-.inputContainer {
-  width: 100%;
+  display: flex;
 }
 
 .iconLeft {
   position: absolute;
-  font-size: 20px;
-  padding-left: 16px;
-  padding-top: 9px;
+  margin-left: 12px;
+  margin-top: 8px;
   transition: all 0.3s ease-in-out;
+  &:hover {
+    cursor: text;
+  }
 }
 
 .iconRight {
   position: absolute;
-  font-size: 20px;
-  padding-right: 16px;
-  padding-top: 9px;
+  margin-right: 12px;
+  margin-top: 8px;
   transition: all 0.3s ease-in-out;
   right: 0;
 }
@@ -43,7 +41,6 @@ $helper-colors: (
 .inputStyle {
   padding: 12px 48px;
   width: 100%;
-  font-size: 12px;
   border: 1px solid $text-neutral-20;
   border-radius: 10px;
   transition: border, color 0.2s ease-in-out;
@@ -82,7 +79,6 @@ $helper-colors: (
 
 .label {
   margin-bottom: 4px;
-  margin-top: 16px;
   color: $text-neutral-40;
   font-weight: 700;
 }
@@ -90,7 +86,6 @@ $helper-colors: (
 .helperText {
   display: flex;
   align-items: center;
-  font-size: 12px;
 
   @each $color, $properties in $helper-colors {
     &-#{$color} {
@@ -99,9 +94,10 @@ $helper-colors: (
   }
 }
 
-.helperCloseButton {
+.helperIcon {
   display: flex;
-  width: 24px;
+  width: 16px;
+  margin-right: 4px;
 
   @each $color, $properties in $helper-colors {
     &-#{$color} {

@@ -48,17 +48,16 @@ const Home = () => {
         <form className={styles.form}>
           <h3 style={{ backgroundColor: 'lightgray', marginBottom: '48px' }}>Input example</h3>
           <TextField
-            status={TextFieldStatus.default}
+            status={TextFieldStatus.success}
             label="Email"
             LeftIcon={MailSVG}
-            leftIconAction={() => setOpenModal(true)}
             RightIcon={CloseSVG}
             rightIconAction={handleClear}
             name="example"
             placeholder="Enter your email..."
-            value={inputState}
+            // value={inputState}
             helperText={helperState}
-            closeHelper={() => setHelperState('')}
+            HelperIcon={MailSVG}
             onChange={handleChange}
           />
         </form>

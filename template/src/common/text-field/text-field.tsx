@@ -1,6 +1,6 @@
+import { useRef } from 'react';
 import { classnames } from 'helpers/utils';
 import styles from './text-field.module.scss';
-import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
 
 export enum TextFieldStatus {
   default = 'default',
@@ -14,17 +14,18 @@ interface TextFieldProps {
   label?: string;
   placeholder?: string;
   name: string;
-  value: string;
+  value?: string;
   LeftIcon?: React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
-  leftIconAction?: () => void;
   RightIcon?: React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
   rightIconAction?: () => void;
   helperText?: string;
-  closeHelper?: () => void;
+  HelperIcon?: React.FunctionComponent<
+  React.SVGProps<SVGSVGElement> & { title?: string | undefined }
+  >;
   className?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -37,18 +38,21 @@ export const TextField = ({
   onChange,
   name,
   helperText,
-  closeHelper,
+  HelperIcon,
   className,
   LeftIcon,
-  leftIconAction,
   RightIcon,
   rightIconAction,
-}: TextFieldProps) => (
-  <div>
-    <div className={styles.label}>
-      <span>{label}</span>
-    </div>
-    <div className={styles.wrapper}>
+}: TextFieldProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleClick = () => {
+    if (inputRef && inputRef.current) inputRef.current.focus();
+  };
+  return (
+    <div>
+      <div className={styles.label}>
+        <label htmlFor={name}>{label}</label>
+      </div>
       <div
         className={
           className
@@ -56,12 +60,23 @@ export const TextField = ({
             : classnames(styles.inputContainer)
         }
       >
-        {LeftIcon && (
-          <button className={styles.iconLeft} type="button" onClick={leftIconAction}>
-            <LeftIcon />
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={handleClick}
+          className={styles.iconLeft}
+        >
+          {LeftIcon && (<LeftIcon />)}
+        </button>
+        <button
+          type="button"
+          onClick={rightIconAction}
+          className={styles.iconRight}
+        >
+          {RightIcon && <RightIcon />}
+        </button>
         <input
+          id={name}
+          ref={inputRef}
           aria-label={name}
           data-testid={name}
           className={classnames(styles.inputStyle, styles[`inputStyle-${status}`])}
@@ -71,29 +86,13 @@ export const TextField = ({
           onChange={onChange}
           disabled={status === TextFieldStatus.disabled}
         />
-        {RightIcon && (
-          <button
-            className={styles.iconRight}
-            type="button"
-            onClick={rightIconAction}
-          >
-            <RightIcon />
-          </button>
-        )}
       </div>
+      {helperText && value && (
+        <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
+          {HelperIcon && <HelperIcon className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
+          <span>{helperText}</span>
+        </div>
+      )}
     </div>
-    {helperText && value && (
-      <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
-        <button
-          className={classnames(styles.helperCloseButton, styles[`helperCloseButton-${status}`])}
-          type="button"
-          onClick={closeHelper}
-          aria-label="Close"
-        >
-          <CloseSVG />
-        </button>
-        <span>{helperText}</span>
-      </div>
-    )}
-  </div>
-);
+  );
+};
