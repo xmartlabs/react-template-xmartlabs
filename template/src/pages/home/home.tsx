@@ -22,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     const mailformat = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
-    if (!inputState.match(mailformat)) {
+    if (!inputState.match(mailformat) && inputState !== '') {
       setHelperState('Not a valid email format');
     } else {
       setHelperState('');
@@ -55,7 +55,6 @@ const Home = () => {
             rightIconAction={handleClear}
             name="example"
             placeholder="Enter your email..."
-            // value={inputState}
             helperText={helperState}
             HelperIcon={MailSVG}
             onChange={handleChange}

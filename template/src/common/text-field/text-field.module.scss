@@ -5,13 +5,11 @@ $input-colors: (
   default: ($text-neutral-20),
   error: ($accent-danger-30),
   success: ($accent-success-30),
-  disabled: ($text-neutral-20),
 );
 $helper-colors: (
   default: ($text-neutral-30),
   error: ($accent-danger-30),
   success: ($accent-success-30),
-  disabled: ($text-neutral-30),
 );
 
 .inputContainer {
@@ -80,7 +78,7 @@ $helper-colors: (
 .label {
   margin-bottom: 4px;
   color: $text-neutral-40;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .helperText {

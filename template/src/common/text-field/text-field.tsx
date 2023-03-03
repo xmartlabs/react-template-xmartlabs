@@ -4,13 +4,13 @@ import styles from './text-field.module.scss';
 
 export enum TextFieldStatus {
   default = 'default',
-  disabled = 'disabled',
   error = 'error',
   success = 'success',
 }
 
 interface TextFieldProps {
   status?: TextFieldStatus;
+  disabled?: boolean;
   label?: string;
   placeholder?: string;
   name: string;
@@ -32,6 +32,7 @@ interface TextFieldProps {
 
 export const TextField = ({
   status = TextFieldStatus.default,
+  disabled = false,
   label,
   placeholder,
   value,
@@ -45,7 +46,7 @@ export const TextField = ({
   rightIconAction,
 }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const handleClick = () => {
+  const focusOnInput = () => {
     if (inputRef && inputRef.current) inputRef.current.focus();
   };
   return (
@@ -62,7 +63,7 @@ export const TextField = ({
       >
         <button
           type="button"
-          onClick={handleClick}
+          onClick={focusOnInput}
           className={styles.iconLeft}
         >
           {LeftIcon && (<LeftIcon />)}
@@ -84,10 +85,10 @@ export const TextField = ({
           name={name}
           placeholder={placeholder}
           onChange={onChange}
-          disabled={status === TextFieldStatus.disabled}
+          disabled={disabled}
         />
       </div>
-      {helperText && value && (
+      {helperText && (
         <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
           {HelperIcon && <HelperIcon className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
           <span>{helperText}</span>
