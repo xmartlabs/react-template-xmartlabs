@@ -19,27 +19,9 @@ $helper-colors: (
   display: flex;
 }
 
-.iconLeft {
-  position: absolute;
-  margin-left: 12px;
-  margin-top: 8px;
-  transition: all 0.3s ease-in-out;
-  
-  &:hover {
-    cursor: text;
-  }
-}
-
-.iconRight {
-  position: absolute;
-  margin-right: 12px;
-  margin-top: 8px;
-  transition: all 0.3s ease-in-out;
-  right: 0;
-}
 
 .inputStyle {
-  padding: 12px 48px;
+  padding: 12px;
   width: 100%;
   border: 1px solid $text-neutral-20;
   border-radius: 10px;

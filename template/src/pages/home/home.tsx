@@ -8,6 +8,7 @@ import { Avatar } from 'common/avatar';
 import { Modal } from 'common/modal';
 import { ModalSizes } from 'common/modal/modal';
 import { TextField, TextFieldStatus } from 'common/text-field';
+import { TextArea } from 'common/text-area';
 import styles from './home.module.scss';
 import { ReactComponent as MailSVG } from '../../assets/icons/mail.svg';
 import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
@@ -18,19 +19,32 @@ const Home = () => {
     setOpenModal(false);
   };
   const [inputState, setInputState] = useState('default@mail.com');
-  const [helperState, setHelperState] = useState('');
+  const [textAreaState, settextAreaState] = useState('random text with no sense');
+  const [helperIState, setHelperIState] = useState('');
+  const [helperTAState, setHelperTAState] = useState('');
 
   useEffect(() => {
     const mailformat = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
     if (!inputState.match(mailformat) && inputState !== '') {
-      setHelperState('Not a valid email format');
+      setHelperIState('Not a valid email format');
     } else {
-      setHelperState('');
+      setHelperIState('');
     }
   }, [inputState]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if (textAreaState.length < 20) {
+      setHelperTAState('Text Area should have more than 20 characters');
+    } else {
+      setHelperTAState('');
+    }
+  }, [textAreaState]);
+
+  const handleIChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(e.target.value);
+  };
+  const handletextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    settextAreaState(e.target.value);
   };
   const handleClear = () => {
     setInputState('');
@@ -55,9 +69,26 @@ const Home = () => {
             rightIconAction={handleClear}
             name="example"
             placeholder="Enter your email..."
-            helperText={helperState}
+            helperText={helperIState}
             HelperIcon={MailSVG}
-            onChange={handleChange}
+            onChange={handleIChange}
+          />
+        </form>
+      </div>
+      <div className={styles.formContainer}>
+        <form className={styles.form}>
+          <h3 style={{ backgroundColor: 'lightgray', marginBottom: '48px', marginTop: '48px' }}>Text Area</h3>
+          <TextArea
+            status={TextFieldStatus.error}
+            rows={3}
+            cols={10}
+            value={textAreaState}
+            label="Random Text"
+            name="example"
+            placeholder="Enter your email..."
+            helperText={helperTAState}
+            HelperIcon={CloseSVG}
+            onChange={handletextAreaChange}
           />
         </form>
       </div>
