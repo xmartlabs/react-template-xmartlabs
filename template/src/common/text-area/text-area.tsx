@@ -1,14 +1,14 @@
 import { classnames } from 'helpers/utils';
 import styles from './text-area.module.scss';
 
-export enum TextFieldStatus {
+export enum TextAreaStatus {
   default = 'default',
   error = 'error',
   success = 'success',
 }
 
 interface TextFieldProps {
-  status?: TextFieldStatus;
+  status?: TextAreaStatus;
   rows?: number;
   cols?: number;
   maxLength?: number;
@@ -26,7 +26,7 @@ interface TextFieldProps {
 }
 
 export const TextArea = ({
-  status = TextFieldStatus.default,
+  status = TextAreaStatus.default,
   rows,
   cols,
   maxLength = undefined,

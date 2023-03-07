@@ -17,7 +17,7 @@ interface TextFieldProps {
   value?: string;
   LeftIcon?: React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & { title?: string | undefined }
-  >;
+  > | undefined;
   RightIcon?: React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
@@ -41,7 +41,7 @@ export const TextField = ({
   helperText,
   HelperIcon,
   className,
-  LeftIcon,
+  LeftIcon = undefined,
   RightIcon,
   rightIconAction,
 }: TextFieldProps) => {

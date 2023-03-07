@@ -1,1 +1,1 @@
-export { TextArea } from './text-area';
+export { TextArea, TextAreaStatus } from './text-area';

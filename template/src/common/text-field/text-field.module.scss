@@ -24,6 +24,7 @@ $helper-colors: (
   margin-left: 12px;
   margin-top: 8px;
   transition: all 0.3s ease-in-out;
+  color: $text-neutral-30;
 
   &:hover {
     cursor: text;
@@ -36,6 +37,7 @@ $helper-colors: (
   margin-top: 8px;
   transition: all 0.3s ease-in-out;
   right: 0;
+  color: $text-neutral-30;
 }
 
 .inputStyle {
@@ -47,7 +49,6 @@ $helper-colors: (
   background-color: $surface-light-10;
   color: $text-neutral-30;
 
-  // Colors
   @each $color, $properties in $input-colors {
     &-#{$color} {
       border-color: list.nth($properties, 1);

@@ -28,7 +28,6 @@ $helper-colors: (
   background-color: $surface-light-10;
   color: $text-neutral-30;
 
-  // Colors
   @each $color, $properties in $input-colors {
     &-#{$color} {
       border-color: list.nth($properties, 1);
@@ -61,7 +60,7 @@ $helper-colors: (
 .label {
   margin-bottom: 4px;
   color: $text-neutral-40;
-  
+
   // @extend .text-medium;
 }
 
