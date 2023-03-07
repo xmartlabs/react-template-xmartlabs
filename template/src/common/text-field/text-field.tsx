@@ -66,20 +66,20 @@ export const TextField = ({
           onClick={focusOnInput}
           className={styles.iconLeft}
         >
-          {LeftIcon && (<LeftIcon />)}
+          {LeftIcon && (<LeftIcon data-testid="left-icon" />)}
         </button>
         <button
           type="button"
           onClick={rightIconAction}
           className={styles.iconRight}
         >
-          {RightIcon && <RightIcon />}
+          {RightIcon && <RightIcon data-testid="right-icon" />}
         </button>
         <input
           id={name}
           ref={inputRef}
           aria-label={name}
-          data-testid={name}
+          data-testid="input"
           className={classnames(styles.inputStyle, styles[`inputStyle-${status}`])}
           value={value}
           name={name}
