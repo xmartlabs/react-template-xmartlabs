@@ -1,5 +1,5 @@
 @use 'sass:list';
-@use  '../../assets/stylesheets/variables/text-styles.scss';
+@use '../../assets/stylesheets/variables/text-styles.scss';
 @import '../../assets/stylesheets/colors';
 
 $input-colors: (
@@ -18,7 +18,6 @@ $helper-colors: (
   width: 100%;
   display: flex;
 }
-
 
 .inputStyle {
   padding: 12px;
@@ -62,6 +61,7 @@ $helper-colors: (
 .label {
   margin-bottom: 4px;
   color: $text-neutral-40;
+  
   // @extend .text-medium;
 }
 

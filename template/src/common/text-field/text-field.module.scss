@@ -1,5 +1,5 @@
 @use 'sass:list';
-@use  '../../assets/stylesheets/variables/text-styles.scss';
+@use '../../assets/stylesheets/variables/text-styles.scss';
 @import '../../assets/stylesheets/colors';
 
 $input-colors: (
@@ -24,7 +24,7 @@ $helper-colors: (
   margin-left: 12px;
   margin-top: 8px;
   transition: all 0.3s ease-in-out;
-  
+
   &:hover {
     cursor: text;
   }
@@ -80,6 +80,7 @@ $helper-colors: (
 .label {
   margin-bottom: 4px;
   color: $text-neutral-40;
+
   // @extend .text-medium;
 }
 
