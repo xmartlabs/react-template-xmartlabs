@@ -61,7 +61,7 @@ export const TextArea = ({
         required={required}
         id={name}
         aria-label={name}
-        data-testid={name}
+        data-testid="textarea"
         rows={rows}
         cols={cols}
         className={classnames(styles.inputStyle, styles[`inputStyle-${status}`])}
@@ -77,7 +77,7 @@ export const TextArea = ({
     <div className={styles.bottomMessage}>
       {helperText && (
         <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
-          {HelperIcon && <HelperIcon className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
+          {HelperIcon && <HelperIcon data-testid="helper-icon" className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
           {helperText && <span>{helperText}</span>}
         </div>
       )}

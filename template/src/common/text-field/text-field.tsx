@@ -90,7 +90,7 @@ export const TextField = ({
       </div>
       {helperText && (
         <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
-          {HelperIcon && <HelperIcon className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
+          {HelperIcon && <HelperIcon data-testid="helper-icon" className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
           <span>{helperText}</span>
         </div>
       )}
