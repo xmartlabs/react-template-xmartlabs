@@ -83,8 +83,8 @@ const Home = () => {
           <TextArea
             rows={5}
             cols={10}
+            length={textAreaState?.length}
             maxLength={charactersLimit}
-            value={textAreaState}
             label="Random Text"
             name="example"
             placeholder="Enter a nice message..."

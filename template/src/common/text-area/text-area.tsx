@@ -9,14 +9,17 @@ export enum TextAreaStatus {
 
 interface TextFieldProps {
   status?: TextAreaStatus;
-  rows?: number;
-  cols?: number;
-  maxLength?: number;
+  required?: boolean;
   disabled?: boolean;
   label?: string;
   placeholder?: string;
   name: string;
   value?: string;
+  rows?: number;
+  cols?: number;
+  length?: number;
+  maxLength?: number;
+  minLength?: number;
   helperText?: string;
   HelperIcon?: React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & { title?: string | undefined }
@@ -27,9 +30,12 @@ interface TextFieldProps {
 
 export const TextArea = ({
   status = TextAreaStatus.default,
+  required = false,
   rows,
   cols,
-  maxLength = undefined,
+  length,
+  maxLength,
+  minLength,
   disabled = false,
   label,
   placeholder,
@@ -52,6 +58,7 @@ export const TextArea = ({
       }
     >
       <textarea
+        required={required}
         id={name}
         aria-label={name}
         data-testid={name}
@@ -64,6 +71,7 @@ export const TextArea = ({
         onChange={onChange}
         disabled={disabled}
         maxLength={maxLength}
+        minLength={minLength}
       />
     </div>
     <div className={styles.bottomMessage}>
@@ -75,7 +83,7 @@ export const TextArea = ({
       )}
       {maxLength && (
         <div className={classnames(styles.countText, styles[`countText-${status}`])}>
-          {maxLength && <span>{`${value?.length || 0}/${maxLength}`}</span>}
+          {maxLength && <span>{`${length || 0}/${maxLength}`}</span>}
         </div>
       )}
     </div>
