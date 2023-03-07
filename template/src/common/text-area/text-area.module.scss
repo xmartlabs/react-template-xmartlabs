@@ -65,9 +65,15 @@ $helper-colors: (
   // @extend .text-medium;
 }
 
+.bottomMessage {
+  display: flex;
+  align-items: center;
+}
+
 .helperText {
   display: flex;
   align-items: center;
+  margin-right: 16px;
 
   @each $color, $properties in $helper-colors {
     &-#{$color} {
@@ -80,6 +86,17 @@ $helper-colors: (
   display: flex;
   width: 16px;
   margin-right: 4px;
+
+  @each $color, $properties in $helper-colors {
+    &-#{$color} {
+      color: list.nth($properties, 1);
+    }
+  }
+}
+
+.countText {
+  display: flex;
+  margin-left: auto;
 
   @each $color, $properties in $helper-colors {
     &-#{$color} {

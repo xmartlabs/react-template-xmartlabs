@@ -19,9 +19,11 @@ const Home = () => {
     setOpenModal(false);
   };
   const [inputState, setInputState] = useState('default@mail.com');
-  const [textAreaState, settextAreaState] = useState('random text with no sense');
+  const [textAreaState, settextAreaState] = useState('random text');
   const [helperIState, setHelperIState] = useState('');
   const [helperTAState, setHelperTAState] = useState('');
+
+  const charactersLimit = 35;
 
   useEffect(() => {
     const mailformat = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
@@ -33,11 +35,11 @@ const Home = () => {
   }, [inputState]);
 
   useEffect(() => {
-    if (textAreaState.length < 20) {
-      setHelperTAState('Text Area should have more than 20 characters');
-    } else {
-      setHelperTAState('');
-    }
+    if (textAreaState?.length < 10 && textAreaState?.length > 0) {
+      setHelperTAState('At least 10 characters needed');
+    } else if (textAreaState?.length === charactersLimit) {
+      setHelperTAState('Character limit reached');
+    } else setHelperTAState('');
   }, [textAreaState]);
 
   const handleIChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +62,7 @@ const Home = () => {
       </h1>
       <div className={styles.formContainer}>
         <form className={styles.form}>
-          <h3 style={{ backgroundColor: 'lightgray', marginBottom: '48px' }}>Input example</h3>
+          <h3 style={{ backgroundColor: 'lightgray', marginBottom: '48px' }}>Text Field</h3>
           <TextField
             status={TextFieldStatus.success}
             label="Email"
@@ -77,15 +79,15 @@ const Home = () => {
       </div>
       <div className={styles.formContainer}>
         <form className={styles.form}>
-          <h3 style={{ backgroundColor: 'lightgray', marginBottom: '48px', marginTop: '48px' }}>Text Area</h3>
+          <h3 style={{ backgroundColor: 'lightgray', marginBottom: '48px' }}>Text Area</h3>
           <TextArea
-            status={TextFieldStatus.error}
-            rows={3}
+            rows={5}
             cols={10}
+            maxLength={charactersLimit}
             value={textAreaState}
             label="Random Text"
             name="example"
-            placeholder="Enter your email..."
+            placeholder="Enter a nice message..."
             helperText={helperTAState}
             HelperIcon={CloseSVG}
             onChange={handletextAreaChange}

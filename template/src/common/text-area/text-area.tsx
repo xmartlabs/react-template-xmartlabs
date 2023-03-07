@@ -9,8 +9,9 @@ export enum TextFieldStatus {
 
 interface TextFieldProps {
   status?: TextFieldStatus;
-  rows: number;
-  cols: number;
+  rows?: number;
+  cols?: number;
+  maxLength?: number;
   disabled?: boolean;
   label?: string;
   placeholder?: string;
@@ -28,6 +29,7 @@ export const TextArea = ({
   status = TextFieldStatus.default,
   rows,
   cols,
+  maxLength = undefined,
   disabled = false,
   label,
   placeholder,
@@ -61,13 +63,21 @@ export const TextArea = ({
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
+        maxLength={maxLength}
       />
     </div>
-    {helperText && (
-      <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
-        {HelperIcon && <HelperIcon className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
-        <span>{helperText}</span>
-      </div>
-    )}
+    <div className={styles.bottomMessage}>
+      {helperText && (
+        <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
+          {HelperIcon && <HelperIcon className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
+          {helperText && <span>{helperText}</span>}
+        </div>
+      )}
+      {maxLength && (
+        <div className={classnames(styles.countText, styles[`countText-${status}`])}>
+          {maxLength && <span>{`${value?.length || 0}/${maxLength}`}</span>}
+        </div>
+      )}
+    </div>
   </div>
 );
