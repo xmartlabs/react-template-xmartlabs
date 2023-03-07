@@ -1,5 +1,11 @@
 @use '../colors' as *;
 
+$font-weights: (
+  regular: 400,
+  semibold: 500,
+  bold: 700
+);
+
 // Headings
 // h1 (56px, 64px)
 // ^    ^    ^
