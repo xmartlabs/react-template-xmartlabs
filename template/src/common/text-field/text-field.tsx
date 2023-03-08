@@ -41,7 +41,7 @@ export const TextField = ({
   helperText,
   HelperIcon,
   className,
-  LeftIcon = undefined,
+  LeftIcon,
   RightIcon,
   rightIconAction,
 }: TextFieldProps) => {

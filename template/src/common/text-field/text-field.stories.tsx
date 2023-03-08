@@ -4,6 +4,12 @@ import { TextField, TextFieldStatus } from './text-field';
 import { ReactComponent as MailSVG } from '../../assets/icons/mail.svg';
 import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
 
+const ICONS = {
+  MailSVG,
+  CloseSVG,
+  undefined,
+};
+
 export default {
   title: 'Common/Text Field',
   component: TextField,
@@ -11,6 +17,42 @@ export default {
     status: {
       control: {
         type: 'select',
+      },
+    },
+    LeftIcon: {
+      options: Object.keys(ICONS),
+      mapping: ICONS,
+      control: {
+        type: 'select',
+        labels: {
+          undefined: 'None',
+          MailSVG: 'Mail',
+          CloseSVG: 'Close',
+        },
+      },
+    },
+    RightIcon: {
+      options: Object.keys(ICONS),
+      mapping: ICONS,
+      control: {
+        type: 'select',
+        labels: {
+          undefined: 'None',
+          MailSVG: 'Mail',
+          CloseSVG: 'Close',
+        },
+      },
+    },
+    HelperIcon: {
+      options: Object.keys(ICONS),
+      mapping: ICONS,
+      control: {
+        type: 'select',
+        labels: {
+          undefined: 'None',
+          MailSVG: 'Mail',
+          CloseSVG: 'Close',
+        },
       },
     },
   },

@@ -1,7 +1,14 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
 import { TextArea, TextAreaStatus } from './text-area';
+import { ReactComponent as MailSVG } from '../../assets/icons/mail.svg';
 import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
+
+const ICONS = {
+  MailSVG,
+  CloseSVG,
+  undefined,
+};
 
 export default {
   title: 'Common/Text Area',
@@ -10,6 +17,18 @@ export default {
     status: {
       control: {
         type: 'select',
+      },
+    },
+    HelperIcon: {
+      options: Object.keys(ICONS),
+      mapping: ICONS,
+      control: {
+        type: 'select',
+        labels: {
+          undefined: 'None',
+          MailSVG: 'Mail',
+          CloseSVG: 'Close',
+        },
       },
     },
   },
@@ -25,7 +44,14 @@ const Template: ComponentStory<typeof TextArea> = (args) => {
   const handleIChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputState(e.target.value);
   };
-  return <TextArea {...args} onChange={handleIChange} value={inputState} />;
+  return (
+    <TextArea
+      {...args}
+      onChange={handleIChange}
+      length={inputState?.length}
+      value={inputState}
+    />
+  );
 };
 
 export const Default = Template.bind({});
