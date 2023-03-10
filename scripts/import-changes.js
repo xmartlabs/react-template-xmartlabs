@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const readline = require('readline');
 
@@ -106,6 +106,7 @@ const importFiles = (files) => {
     const relativeFilePath = f.replace(TEST_PROJECT_PATH, '');
     const templateFile = path.join(TEMPLATE_PATH, relativeFilePath);
 
+    fs.ensureDirSync(path.dirname(templateFile));
     fs.copyFileSync(f, templateFile);
   });
 
