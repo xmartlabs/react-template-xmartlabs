@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../variables' as *;
+
+@mixin setShadow($color, $shadow) {
+  $shadow-arg: list.nth(map.get($shadows, $shadow), 1);
+  $color-arg: rgba(map.get($shadow-colors, $color), list.nth(map.get($shadows, $shadow), 2));
+
+  box-shadow: $shadow-arg $color-arg;
+}

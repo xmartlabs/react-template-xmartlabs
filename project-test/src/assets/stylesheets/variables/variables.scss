@@ -1,0 +1,24 @@
+/*
+  All generic variables go here. Please avoid
+  adding code that generates CSS in this file.
+*/
+
+$primary-font-family: 'Gilroy';
+$primary-font: $primary-font-family, arial, sans-serif;
+
+/* Breakpoint-related variables */
+$breakpoints: (
+  xl: 1400px,
+  lg: 1200px,
+  md: 992px,
+  sm: 768px,
+  xs: 576px,
+);
+$items-per-row: (
+  xl: 5,
+  lg: 4,
+  md: 3,
+  sm: 2,
+  xs: 2,
+  xxs: 1,
+);

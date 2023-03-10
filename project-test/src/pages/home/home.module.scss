@@ -1,0 +1,26 @@
+.container {
+  background-color: #fafafa;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.modalTitle {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.modalFooter {
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.modalContent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+}

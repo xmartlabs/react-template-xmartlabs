@@ -1,0 +1,51 @@
+@use 'sass:list';
+@import '../../assets/stylesheets/colors';
+
+.overlay {
+  background-color: rgba(0 0 0 / 30%);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$modal-sizes: (
+  small: (400px),
+  medium: (600px),
+  big: (968px),
+);
+
+.modal {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  gap: 16px;
+  background-color: $surface-light-10;
+  border-radius: 8px;
+  border: solid black 1px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 18px 0 rgba(0 0 0 / 75%);
+
+  // Sizes
+  @each $size, $properties in $modal-sizes {
+    &-#{$size} {
+      max-width: list.nth($properties, 1);
+    }
+  }
+
+  .closeButton {
+    position: absolute;
+    display: flex;
+    margin: 12px;
+    top: 0;
+    right: 0;
+    color: $text-neutral-30;
+  }
+}

@@ -1,0 +1,14 @@
+@use 'colors';
+@use 'variables';
+
+// Box Shadows
+// ------------------------------------
+
+// Shadows
+@each $shadow, $values in $shadows {
+  @each $color, $color-value in $shadow-colors {
+    .shadow-#{$color}-#{$shadow} {
+      box-shadow: list.nth($values, 1) rgba($color-value, list.nth($values, 2));
+    }
+  }
+}

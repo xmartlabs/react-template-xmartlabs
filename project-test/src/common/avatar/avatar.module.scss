@@ -1,0 +1,88 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../../assets/stylesheets/colors' as *;
+@use '../../assets/stylesheets/variables' as *;
+
+.avatarWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  // Sizes
+  // ------------------------------
+  $avatar-sizes: (
+    xl: (
+      size: 128px,
+      font: map.get(map.get($headings, 'h1'), 'web'),
+      icon: (40px, 32px),
+    ),
+    l: (
+      size: 96px,
+      font: map.get(map.get($headings, 'h2'), 'web'),
+      icon: (24px, 20px),
+    ),
+    m: (
+      size: 48px,
+      font: map.get(map.get($headings, 'h6'), 'web'),
+      icon: (16px, 12px),
+    ),
+    s: (
+      size: 32px,
+      font: map.get(map.get($headings, 'h4'), 'mobile'),
+      icon: (12px, 8px),
+    ),
+    xs: (
+      size: 16px,
+      font: (6px, 16px),
+      icon: (6px, 4px),
+    ),
+  );
+
+  .avatar {
+    border-radius: 50%;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    // Sizes
+    @each $size, $properties in $avatar-sizes {
+      &-#{$size} {
+        width: map.get($properties, size);
+        height: map.get($properties, size);
+        font-size: list.nth(map.get($properties, font), 1);
+        line-height: list.nth(map.get($properties, font), 2);
+      }
+    }
+  }
+
+  .avatarIcon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $primary-color-50;
+    color: $text-neutral-10;
+    bottom: 0;
+    right: 0;
+
+    // Sizes
+    @each $size, $properties in $avatar-sizes {
+      &-#{$size} {
+        width: list.nth(map.get($properties, icon), 1);
+        height: list.nth(map.get($properties, icon), 1);
+        font-size: list.nth(map.get($properties, icon), 2);
+      }
+    }
+  }
+}

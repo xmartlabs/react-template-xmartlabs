@@ -1,0 +1,228 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../../assets/stylesheets/colors' as *;
+@use '../../assets/stylesheets/mixins' as *;
+
+// Sizes
+// xl (12px, 16px, 24px, 32px)
+//  ^   ^     ^     ^     ^
+//  |   |     |     |     |
+//  |   |     |     |     Line height
+//  |   |     |     Font size
+//  |   |     Padding right
+//  |   Padding left
+//  Padding top
+// ------------------------------
+$btn-sizes: (
+  xl: (12px, 16px, 24px, 32px),
+  l: (12px, 16px, 16px, 24px),
+  m: (10px, 16px, 14px, 20px),
+  s: (8px, 12px, 12px, 16px),
+  xs: (6px, 8px, 10px, 12px),
+);
+$btn-styles: (
+  primary: (
+    filled: (
+      enabled: (
+        background-color: $primary-color-50,
+        color: $text-neutral-10,
+      ),
+      hover: (
+        background-color: $primary-color-40,
+        color: $text-neutral-10,
+        shadow: ('primary', 10),
+      ),
+      focus: (
+        background-color: $primary-color-50,
+        color: $text-neutral-10,
+        shadow: ('primary', 10),
+      ),
+      active: (
+        background-color: $primary-color-60,
+        color: $text-neutral-10,
+        shadow: ('primary', 20),
+      ),
+      disabled: (
+        background-color: $surface-light-50,
+        color: $text-neutral-30,
+      ),
+    ),
+    stroke: (
+      enabled: (
+        background-color: $surface-light-10,
+        border: 2px solid $primary-color-50,
+        color: $primary-color-50,
+      ),
+      hover: (
+        background-color: $primary-color-10,
+        border: 2px solid $primary-color-50,
+        color: $primary-color-50,
+        shadow: ('primary', 10),
+      ),
+      focus: (
+        background-color: $primary-color-20,
+        border: 2px solid $primary-color-70,
+        color: $primary-color-70,
+        shadow: ('primary', 10),
+      ),
+      active: (
+        background-color: $primary-color-30,
+        border: 2px solid $primary-color-90,
+        color: $primary-color-90,
+        shadow: ('primary', 20),
+      ),
+      disabled: (
+        background-color: $surface-light-50,
+        border: 2px solid $text-neutral-30,
+        color: $text-neutral-30,
+      ),
+    ),
+    ghost: (
+      enabled: (
+        background-color: $surface-light-10,
+        color: $primary-color-50,
+      ),
+      hover: (
+        background-color: $primary-color-10,
+        color: $primary-color-50
+      ),
+      focus: (
+        background-color: $primary-color-20,
+        color: $primary-color-70,
+      ),
+      active: (
+        background-color: $primary-color-30,
+        color: $primary-color-90,
+      ),
+      disabled: (
+        background-color: $surface-light-10,
+        color: $text-neutral-30,
+      ),
+    ),
+  ),
+  secondary: (
+    filled: (
+      enabled: (
+        background-color: $text-neutral-30,
+        color: $text-neutral-10,
+      ),
+      hover: (
+        background-color: $text-neutral-40,
+        color: $text-neutral-10,
+        shadow: ('light-surface', 40),
+      ),
+      focus: (
+        background-color: $text-neutral-40,
+        color: $text-neutral-10,
+        shadow: ('light-surface', 40),
+      ),
+      active: (
+        background-color: $text-neutral-50,
+        color: $text-neutral-10,
+        shadow: ('light-surface', 40),
+      ),
+      disabled: (
+        background-color: $surface-light-50,
+        color: $text-neutral-30,
+      ),
+    ),
+    stroke: (
+      enabled: (
+        background-color: $surface-light-10,
+        border: 2px solid $text-neutral-30,
+        color: $text-neutral-30,
+      ),
+      hover: (
+        background-color: $surface-light-30,
+        border: 2px solid $text-neutral-40,
+        color: $text-neutral-40,
+        shadow: ('light-surface', 40),
+      ),
+      focus: (
+        background-color: $surface-light-30,
+        border: 2px solid $text-neutral-40,
+        color: $text-neutral-40,
+        shadow: ('light-surface', 40),
+      ),
+      active: (
+        background-color: $surface-light-40,
+        border: 2px solid $text-neutral-50,
+        color: $text-neutral-50,
+        shadow: ('light-surface', 40),
+      ),
+      disabled: (
+        background-color: $surface-light-50,
+        border: 2px solid $text-neutral-30,
+        color: $text-neutral-30,
+      ),
+    ),
+    ghost: (
+      enabled: (
+        background-color: $surface-light-10,
+        color: $text-neutral-30,
+      ),
+      hover: (
+        background-color: $surface-light-20,
+        color: $text-neutral-40,
+      ),
+      focus: (
+        background-color: $surface-light-20,
+        color: $text-neutral-40,
+      ),
+      active: (
+        background-color: $surface-light-30,
+        color: $text-neutral-50,
+      ),
+      disabled: (
+        background-color: $surface-light-10,
+        color: $text-neutral-20,
+      ),
+    ),
+  ),
+);
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  gap: 8px;
+
+  // Styles
+  @each $style, $properties in $btn-styles {
+    @each $variant, $states in $properties {
+      &-#{$style}-#{$variant} {
+        @each $state, $properties in $states {
+          @if $state == 'enabled' {
+            @each $property, $value in $properties {
+              #{$property}: $value;
+            }
+          } @else {
+            &:#{$state} {
+              $shadow: map.get($properties, 'shadow');
+
+              @if $shadow {
+                @include setShadow(list.nth($shadow, 1), list.nth($shadow, 2));
+              }
+
+              @each $property, $value in $properties {
+                #{$property}: $value;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Sizes
+  @each $size, $properties in $btn-sizes {
+    &-#{$size} {
+      padding: list.nth($properties, 1) list.nth($properties, 2);
+      font-size: list.nth($properties, 3);
+      line-height: list.nth($properties, 4);
+    }
+  }
+}

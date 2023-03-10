@@ -1,0 +1,11 @@
+extends:
+  - stylelint-config-standard-scss
+rules:
+  # On default, Stylelint uses kebab but since most of our classes are camel case due to
+  # CSS Modules, we redefine the patterns here.
+  selector-class-pattern: "^[a-z][a-zA-Z0-9]+$"
+  scss/at-function-pattern: "^[a-z][a-zA-Z0-9]+$"
+  scss/at-mixin-pattern: "^[a-z][a-zA-Z0-9]+$"
+  # Options are between lower or upper for function names.
+  function-name-case: lower
+  string-quotes: single
