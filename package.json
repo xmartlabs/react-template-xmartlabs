@@ -79,5 +79,9 @@
   },
   "peerDependencies": {
     "create-react-app": "5.0.1"
+  },
+  "dependencies": {
+    "vite-plugin-svgr": "^2.4.0",
+    "vite-tsconfig-paths": "^4.0.5"
   }
 }
