@@ -1,20 +1,29 @@
+const svgrPlugin = require('vite-plugin-svgr');
+const viteTsconfig = require('vite-tsconfig-paths');
+const tsconfigPaths = viteTsconfig.default;
+
+const { mergeConfig } = require('vite');
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "@storybook/preset-create-react-app",
-    "storybook-addon-pseudo-states"
-  ],
-  "framework": "@storybook/react",
+  "addons": ['@storybook/addon-links', '@storybook/addon-essentials'],
   "core": {
-    "builder": "@storybook/builder-webpack5"
+    "builder": '@storybook/builder-vite',
   },
-  "features": {
-    "interactionsDebugger": true
-  }
-}
+  async viteFinal(config) {
+    config.plugins = [
+      ...config.plugins,
+      svgrPlugin({
+        svgrOptions: {
+          icon: true,
+        },
+      })
+    ];
+    return mergeConfig(config, {
+      plugins: [tsconfigPaths()],
+    });
+  },
+};
