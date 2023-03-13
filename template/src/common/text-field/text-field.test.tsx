@@ -11,7 +11,7 @@ describe('TextField', () => {
 
   it('should render with status', async () => {
     const el = render(<TextField name="email" status={TextFieldStatus.success} onChange={() => null} />);
-    expect(el.getByTestId('input')).toHaveClass('inputStyle-success');
+    expect(el.getByTestId('input')).toHaveClass('success');
   });
 
   it('should render with Icons', async () => {

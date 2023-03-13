@@ -10,7 +10,7 @@ describe('TextArea', () => {
 
   it('should render with status', async () => {
     const el = render(<TextArea name="random" status={TextAreaStatus.success} onChange={() => null} />);
-    expect(el.getByTestId('textarea')).toHaveClass('inputStyle-success');
+    expect(el.getByTestId('textarea')).toHaveClass('success');
   });
 
   it('should render with Label', async () => {
