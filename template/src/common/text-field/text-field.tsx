@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { classnames } from 'helpers/utils';
 import styles from './text-field.module.scss';
 
@@ -15,17 +15,11 @@ interface TextFieldProps {
   placeholder?: string;
   name: string;
   value?: string;
-  LeftIcon?: React.FunctionComponent<
-  React.SVGProps<SVGSVGElement> & { title?: string | undefined }
-  > | undefined;
-  RightIcon?: React.FunctionComponent<
-  React.SVGProps<SVGSVGElement> & { title?: string | undefined }
-  >;
-  rightIconAction?: () => void;
+  leftIcon?: React.FunctionComponent;
+  rightIcon?: React.FunctionComponent;
+  onRightIconClick?: () => void;
   helperText?: string;
-  HelperIcon?: React.FunctionComponent<
-  React.SVGProps<SVGSVGElement> & { title?: string | undefined }
-  >;
+  helperIcon?: React.FunctionComponent;
   className?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -39,16 +33,19 @@ export const TextField = ({
   onChange,
   name,
   helperText,
-  HelperIcon,
+  helperIcon,
   className,
-  LeftIcon,
-  RightIcon,
-  rightIconAction,
+  leftIcon,
+  rightIcon,
+  onRightIconClick,
 }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const focusOnInput = () => {
     if (inputRef && inputRef.current) inputRef.current.focus();
   };
+  const LeftIcon = leftIcon;
+  const RightIcon = rightIcon;
+  const HelperIcon = helperIcon;
   return (
     <div>
       <div className={styles.label}>
@@ -70,7 +67,7 @@ export const TextField = ({
         </button>
         <button
           type="button"
-          onClick={rightIconAction}
+          onClick={onRightIconClick}
           className={styles.iconRight}
         >
           {RightIcon && <RightIcon data-testid="right-icon" />}
@@ -80,7 +77,7 @@ export const TextField = ({
           ref={inputRef}
           aria-label={name}
           data-testid="input"
-          className={classnames(styles.inputStyle, styles[`inputStyle-${status}`], LeftIcon ? styles.withPaddingLeft : '', RightIcon ? styles.withPaddingRight : '')}
+          className={classnames(styles.inputStyle, styles[status], LeftIcon ? styles.withPaddingLeft : '', RightIcon ? styles.withPaddingRight : '')}
           value={value}
           name={name}
           placeholder={placeholder}
@@ -89,8 +86,12 @@ export const TextField = ({
         />
       </div>
       {helperText && (
-        <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
-          {HelperIcon && <HelperIcon data-testid="helper-icon" className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
+        <div className={classnames(styles.helperText, styles[status])}>
+          {HelperIcon && (
+          <div className={classnames(styles.helperIcon, styles[status])}>
+            <HelperIcon data-testid="helper-icon" />
+          </div>
+          )}
           <span>{helperText}</span>
         </div>
       )}

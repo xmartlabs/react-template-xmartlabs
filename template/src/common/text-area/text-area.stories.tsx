@@ -58,20 +58,20 @@ export const Default = Template.bind({});
 
 export const WithHelperText = Template.bind({});
 WithHelperText.args = {
-  HelperIcon: CloseSVG,
+  helperIcon: CloseSVG,
   helperText: 'This is just a recommendation',
 };
 
 export const WithStatusSuccess = Template.bind({});
 WithStatusSuccess.args = {
-  HelperIcon: CloseSVG,
+  helperIcon: CloseSVG,
   helperText: 'This is just a recommendation',
   status: TextAreaStatus.success,
 };
 
 export const WithStatusError = Template.bind({});
 WithStatusError.args = {
-  HelperIcon: CloseSVG,
+  helperIcon: CloseSVG,
   helperText: 'This is just a recommendation',
   status: TextAreaStatus.error,
 };
@@ -85,7 +85,7 @@ export const WithMaxLength = Template.bind({});
 WithMaxLength.args = {
   maxLength: 20,
   helperText: 'Helper Text',
-  HelperIcon: CloseSVG,
+  helperIcon: CloseSVG,
 };
 
 export const WithLabel = Template.bind({});
@@ -96,7 +96,7 @@ WithLabel.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  HelperIcon: CloseSVG,
+  helperIcon: CloseSVG,
   helperText: 'Text Area disabled',
   maxLength: 100,
 };

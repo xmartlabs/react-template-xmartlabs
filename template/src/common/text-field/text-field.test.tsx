@@ -15,7 +15,7 @@ describe('TextField', () => {
   });
 
   it('should render with Icons', async () => {
-    const el = render(<TextField name="email" placeholder="Email" onChange={() => null} LeftIcon={MailSVG} RightIcon={CloseSVG} />);
+    const el = render(<TextField name="email" placeholder="Email" onChange={() => null} leftIcon={MailSVG} rightIcon={CloseSVG} />);
     expect(el.getByTestId('left-icon')).toBeTruthy();
     expect(el.getByTestId('right-icon')).toBeTruthy();
   });
@@ -26,7 +26,7 @@ describe('TextField', () => {
   });
 
   it('should render with Helper Text', async () => {
-    const el = render(<TextField name="email" helperText="Helper" onChange={() => null} HelperIcon={CloseSVG} />);
+    const el = render(<TextField name="email" helperText="Helper" onChange={() => null} helperIcon={CloseSVG} />);
     expect(el.findByText('Helper')).toBeTruthy();
     expect(el.getByTestId('helper-icon')).toBeTruthy();
   });

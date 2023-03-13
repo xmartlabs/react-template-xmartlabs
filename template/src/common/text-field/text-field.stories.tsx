@@ -19,7 +19,7 @@ export default {
         type: 'select',
       },
     },
-    LeftIcon: {
+    leftIcon: {
       options: Object.keys(ICONS),
       mapping: ICONS,
       control: {
@@ -31,7 +31,7 @@ export default {
         },
       },
     },
-    RightIcon: {
+    rightIcon: {
       options: Object.keys(ICONS),
       mapping: ICONS,
       control: {
@@ -43,7 +43,7 @@ export default {
         },
       },
     },
-    HelperIcon: {
+    helperIcon: {
       options: Object.keys(ICONS),
       mapping: ICONS,
       control: {
@@ -73,20 +73,20 @@ export const Default = Template.bind({});
 
 export const WithHelperText = Template.bind({});
 WithHelperText.args = {
-  HelperIcon: MailSVG,
+  helperIcon: MailSVG,
   helperText: 'This is just a recommendation',
 };
 
 export const WithStatusSuccess = Template.bind({});
 WithStatusSuccess.args = {
-  HelperIcon: MailSVG,
+  helperIcon: MailSVG,
   helperText: 'This is just a recommendation',
   status: TextFieldStatus.success,
 };
 
 export const WithStatusError = Template.bind({});
 WithStatusError.args = {
-  HelperIcon: MailSVG,
+  helperIcon: MailSVG,
   helperText: 'This is just a recommendation',
   status: TextFieldStatus.error,
 };
@@ -103,13 +103,13 @@ WithLabel.args = {
 
 export const WithIcons = Template.bind({});
 WithIcons.args = {
-  LeftIcon: MailSVG,
-  RightIcon: CloseSVG,
+  leftIcon: MailSVG,
+  rightIcon: CloseSVG,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
-  HelperIcon: CloseSVG,
+  helperIcon: CloseSVG,
   helperText: 'Input disabled',
 };

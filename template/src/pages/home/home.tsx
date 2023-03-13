@@ -66,13 +66,13 @@ const Home = () => {
           <TextField
             status={TextFieldStatus.success}
             label="Email"
-            LeftIcon={MailSVG}
-            RightIcon={CloseSVG}
-            rightIconAction={handleClear}
+            leftIcon={MailSVG}
+            rightIcon={CloseSVG}
+            onRightIconClick={handleClear}
             name="example"
             placeholder="Enter your email..."
             helperText={helperIState}
-            HelperIcon={MailSVG}
+            helperIcon={MailSVG}
             onChange={handleIChange}
           />
         </form>
@@ -89,7 +89,7 @@ const Home = () => {
             name="example"
             placeholder="Enter a nice message..."
             helperText={helperTAState}
-            HelperIcon={CloseSVG}
+            helperIcon={CloseSVG}
             onChange={handletextAreaChange}
           />
         </form>

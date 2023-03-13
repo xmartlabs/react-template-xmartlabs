@@ -29,7 +29,7 @@ $helper-colors: (
   color: $text-neutral-30;
 
   @each $color, $properties in $input-colors {
-    &-#{$color} {
+    &.#{$color} {
       border-color: list.nth($properties, 1);
     }
   }
@@ -75,7 +75,7 @@ $helper-colors: (
   margin-right: 16px;
 
   @each $color, $properties in $helper-colors {
-    &-#{$color} {
+    &.#{$color} {
       color: list.nth($properties, 1);
     }
   }
@@ -87,7 +87,7 @@ $helper-colors: (
   margin-right: 4px;
 
   @each $color, $properties in $helper-colors {
-    &-#{$color} {
+    &.#{$color} {
       color: list.nth($properties, 1);
     }
   }
@@ -98,7 +98,7 @@ $helper-colors: (
   margin-left: auto;
 
   @each $color, $properties in $helper-colors {
-    &-#{$color} {
+    &.#{$color} {
       color: list.nth($properties, 1);
     }
   }

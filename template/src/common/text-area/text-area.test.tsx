@@ -19,7 +19,7 @@ describe('TextArea', () => {
   });
 
   it('should render with Helper Text', async () => {
-    const el = render(<TextArea name="email" helperText="Helper" onChange={() => null} HelperIcon={CloseSVG} />);
+    const el = render(<TextArea name="email" helperText="Helper" onChange={() => null} helperIcon={CloseSVG} />);
     expect(el.findByText('Helper')).toBeTruthy();
     expect(el.getByTestId('helper-icon')).toBeTruthy();
   });

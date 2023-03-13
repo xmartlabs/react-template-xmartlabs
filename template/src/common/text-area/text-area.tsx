@@ -21,7 +21,7 @@ interface TextFieldProps {
   maxLength?: number;
   minLength?: number;
   helperText?: string;
-  HelperIcon?: React.FunctionComponent<
+  helperIcon?: React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
   className?: string;
@@ -43,49 +43,52 @@ export const TextArea = ({
   onChange,
   name,
   helperText,
-  HelperIcon,
+  helperIcon,
   className,
-}: TextFieldProps) => (
-  <div>
-    <div className={styles.label}>
-      <label htmlFor={name}>{label}</label>
+}: TextFieldProps) => {
+  const HelperIcon = helperIcon;
+  return (
+    <div>
+      <div className={styles.label}>
+        <label htmlFor={name}>{label}</label>
+      </div>
+      <div
+        className={
+          className
+            ? classnames(styles.inputContainer, className)
+            : classnames(styles.inputContainer)
+        }
+      >
+        <textarea
+          required={required}
+          id={name}
+          aria-label={name}
+          data-testid="textarea"
+          rows={rows}
+          cols={cols}
+          className={classnames(styles.inputStyle, styles[status])}
+          value={value}
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+          disabled={disabled}
+          maxLength={maxLength}
+          minLength={minLength}
+        />
+      </div>
+      <div className={styles.bottomMessage}>
+        {helperText && (
+          <div className={classnames(styles.helperText, styles[status])}>
+            {HelperIcon && <HelperIcon data-testid="helper-icon" className={classnames(styles.helperIcon, styles[status])} />}
+            {helperText && <span>{helperText}</span>}
+          </div>
+        )}
+        {maxLength && (
+          <div className={classnames(styles.countText, styles[status])}>
+            {maxLength && <span>{`${length || 0}/${maxLength}`}</span>}
+          </div>
+        )}
+      </div>
     </div>
-    <div
-      className={
-        className
-          ? classnames(styles.inputContainer, className)
-          : classnames(styles.inputContainer)
-      }
-    >
-      <textarea
-        required={required}
-        id={name}
-        aria-label={name}
-        data-testid="textarea"
-        rows={rows}
-        cols={cols}
-        className={classnames(styles.inputStyle, styles[`inputStyle-${status}`])}
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        onChange={onChange}
-        disabled={disabled}
-        maxLength={maxLength}
-        minLength={minLength}
-      />
-    </div>
-    <div className={styles.bottomMessage}>
-      {helperText && (
-        <div className={classnames(styles.helperText, styles[`helperText-${status}`])}>
-          {HelperIcon && <HelperIcon data-testid="helper-icon" className={classnames(styles.helperIcon, styles[`helperIcon-${status}`])} />}
-          {helperText && <span>{helperText}</span>}
-        </div>
-      )}
-      {maxLength && (
-        <div className={classnames(styles.countText, styles[`countText-${status}`])}>
-          {maxLength && <span>{`${length || 0}/${maxLength}`}</span>}
-        </div>
-      )}
-    </div>
-  </div>
-);
+  );
+};
