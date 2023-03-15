@@ -1,18 +1,18 @@
 const fetchVariable = (varName: string, defaultValue?: string) => {
-  if (!process.env[varName] && typeof defaultValue === 'undefined') {
+  if (!import.meta.env[varName] && typeof defaultValue === 'undefined') {
     throw new Error(`Mandatory environment variable ${varName} is not set.`);
   }
-  return process.env[varName] || defaultValue;
+  return import.meta.env[varName] || defaultValue;
 };
 
-const nodeEnv = fetchVariable('NODE_ENV');
+const nodeEnv = fetchVariable('VITE_USER_NODE_ENV');
 const environment = {
   isDevelopment: nodeEnv === 'development',
   isProduction: nodeEnv === 'production',
 };
 
 export const constants = {
-  apiBaseURL: fetchVariable('REACT_APP_API_BASE_URL', 'REPLACE ME'),
+  apiBaseURL: fetchVariable('VITE_API_BASE_URL', 'REPLACE ME'),
 
   environment,
 };

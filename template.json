@@ -23,15 +23,12 @@
       "@storybook/addon-essentials": "^6.5.14",
       "@storybook/addon-interactions": "^6.5.14",
       "@storybook/addon-links": "^6.5.14",
-      "@storybook/builder-webpack5": "^6.5.14",
-      "@storybook/manager-webpack5": "^6.5.14",
       "@storybook/node-logger": "^6.5.14",
-      "@storybook/preset-create-react-app": "^4.1.2",
       "@storybook/react": "^6.5.14",
+      "@storybook/builder-vite": "^0.4.2",
       "@storybook/testing-library": "^0.0.13",
       "storybook-addon-pseudo-states": "^1.15.2",
-      "babel-plugin-named-exports-order": "^0.0.2",
-      "webpack": "^5.75.0"
+      "babel-plugin-named-exports-order": "^0.0.2"
     },
     "devDependencies": {
       "sass": "^1.56.1",
@@ -54,7 +51,7 @@
       ]
     },
     "scripts": {
-      "build": "tsc && react-scripts build",
+      "build": "tsc && vite build",
       "lint": "eslint . --ext .js --ext .jsx --ext .ts --ext .tsx && tsc",
       "storybook": "start-storybook -p 6006 -s public",
       "build-storybook": "build-storybook -s public",

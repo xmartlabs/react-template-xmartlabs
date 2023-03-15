@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vite/client"],
     "target": "es5",
     "lib": [
       "dom",
@@ -26,5 +27,6 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
