@@ -2,7 +2,7 @@ x-common:
   &common
   image: 'node:16.5.0'
   environment:
-    - VITE_API_BASE_URL=http://dummy-server
+    - REACT_APP_API_BASE_URL=http://dummy-server
 
 pipeline:
   setup:
