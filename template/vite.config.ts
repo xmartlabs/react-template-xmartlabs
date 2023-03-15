@@ -11,9 +11,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@' : path.resolve(__dirname, './src'),
-      $fonts: resolve('./src/assets/fonts')
-    }
+      '@': path.resolve(__dirname, './src'),
+      $fonts: resolve('./src/assets/fonts'),
+    },
   },
   plugins: [
     react(),
@@ -24,4 +24,4 @@ export default defineConfig({
       },
     }),
   ],
-})
+});

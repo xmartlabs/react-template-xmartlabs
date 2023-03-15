@@ -10,6 +10,7 @@ parserOptions:
   ecmaFeatures:
     jsx: true
   warnOnUnsupportedTypeScriptVersion: true
+  parser: '@typescript-eslint/parser'
   project: './tsconfig.json'
 env:
   browser: true
