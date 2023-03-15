@@ -5,7 +5,7 @@ const fetchVariable = (varName: string, defaultValue?: string) => {
   return import.meta.env[varName] || defaultValue;
 };
 
-const nodeEnv = fetchVariable('VITE_USER_NODE_ENV');
+const nodeEnv = fetchVariable('MODE');
 const environment = {
   isDevelopment: nodeEnv === 'development',
   isProduction: nodeEnv === 'production',
