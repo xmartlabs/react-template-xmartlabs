@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React, { useEffect, useState } from 'react';
 import { classnames } from 'helpers/utils';
 import { Sizes } from 'common/types';

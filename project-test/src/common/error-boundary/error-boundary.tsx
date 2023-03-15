@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import { logger } from 'helpers/logger';
+import { logger } from 'helpers/logger';
 import { UnexpectedError } from 'pages/unexpected-error';
 
 type ErrorBoundaryProps = {
@@ -27,8 +27,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
       // Unhandled rejections do not necessarily indicate a crash
       // of the whole application, so there's no immediate need
       // to show a fallback UI.
-      console.warn(`Unhandled Promise rejection: ${event.reason}`);
-      console.error(event.reason);
+      logger.warn(`Unhandled Promise rejection: ${event.reason}`);
+      logger.error(event.reason);
     });
   }
 
@@ -37,7 +37,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   componentDidCatch(error: Error) {
-    console.log(error);
+    logger.log(error);
   }
 
   render() {

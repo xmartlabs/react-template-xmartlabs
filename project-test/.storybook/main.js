@@ -1,3 +1,4 @@
+const { resolve } = require('path');
 const svgrPlugin = require('vite-plugin-svgr');
 const viteTsconfig = require('vite-tsconfig-paths');
 const tsconfigPaths = viteTsconfig.default;
@@ -22,6 +23,10 @@ module.exports = {
         },
       })
     ];
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      $fonts: resolve('./src/assets/fonts')
+    }
     return mergeConfig(config, {
       plugins: [tsconfigPaths()],
     });
