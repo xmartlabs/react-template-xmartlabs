@@ -1,4 +1,4 @@
-import 'vite/client'
+import 'vite/client';
 
 /// <reference types="node" />
 /// <reference types="react" />

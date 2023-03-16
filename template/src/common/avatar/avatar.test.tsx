@@ -1,6 +1,6 @@
 // test for button component
-
-import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { render } from '../../../test-utils';
 import { Avatar } from './avatar';
 
 describe('Avatar', () => {

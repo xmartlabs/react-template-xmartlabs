@@ -1,8 +1,9 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
-import path, { resolve } from 'path';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,7 +12,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
       $fonts: resolve('./src/assets/fonts'),
     },
   },
@@ -24,4 +24,9 @@ export default defineConfig({
       },
     }),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './setupTests.ts',
+  },
 });
