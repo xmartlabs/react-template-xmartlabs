@@ -1,6 +1,9 @@
 // test for badge component
 
 import { render } from '@testing-library/react';
+import {
+  describe, expect, it, vi,
+} from 'vitest';
 import { Badge } from './badge';
 
 describe('Badge', () => {
@@ -25,15 +28,15 @@ describe('Badge', () => {
   });
 
   it('should render with the correct colors', () => {
-    const { getByText } = render(<Badge bgColor="#FF0000" color="#FFFFFF" closeIconBgColor="#000000" closeIconColor="#FFFFFF" closeable closeIcon="X">Badge</Badge>);
-    expect(getByText('Badge')).toHaveStyle('background-color: #FF0000');
-    expect(getByText('Badge')).toHaveStyle('color: #FFFFFF');
-    expect(getByText('X')).toHaveStyle('background-color: #000000');
-    expect(getByText('X')).toHaveStyle('color: #FFFFFF');
+    const { getByText } = render(<Badge bgColor="rgb(255, 0, 0)" color="rgb(255, 255, 255)" closeIconBgColor="rgb(0, 0, 0)" closeIconColor="rgb(255, 255, 255)" closeable closeIcon="X">Badge</Badge>);
+    expect(getByText('Badge').style.backgroundColor).toBe('rgb(255, 0, 0)');
+    expect(getByText('Badge').style.color).toBe('rgb(255, 255, 255)');
+    expect(getByText('X').style.backgroundColor).toBe('rgb(0, 0, 0)');
+    expect(getByText('X').style.color).toBe('rgb(255, 255, 255)');
   });
 
   it('should call the onClose function when the close icon is clicked', () => {
-    const onClose = jest.fn();
+    const onClose = vi.fn();
     const { getByText } = render(<Badge closeable closeIcon="X" onClose={onClose} />);
     getByText('X').click();
     expect(onClose).toHaveBeenCalled();

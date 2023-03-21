@@ -1,11 +1,14 @@
+import {
+  describe, expect, it, vi,
+} from 'vitest';
 import { ApiError } from './api-error';
 import { ApiService, HttpMethod } from './api-service';
 
-const mockGet = jest.fn();
-const mockPost = jest.fn();
-const mockPut = jest.fn();
-const mockPatch = jest.fn();
-const mockDelete = jest.fn();
+const mockGet = vi.fn();
+const mockPost = vi.fn();
+const mockPut = vi.fn();
+const mockPatch = vi.fn();
+const mockDelete = vi.fn();
 const mockDictionary = {
   get: mockGet,
   post: mockPost,
@@ -13,14 +16,16 @@ const mockDictionary = {
   patch: mockPatch,
   delete: mockDelete,
 };
-jest.mock('axios', () => ({
-  create: () => ({
-    get: () => mockGet(),
-    post: () => mockPost(),
-    put: () => mockPut(),
-    patch: () => mockPatch(),
-    delete: () => mockDelete(),
-  }),
+vi.mock('axios', () => ({
+  default: {
+    create: () => ({
+      get: () => mockGet(),
+      post: () => mockPost(),
+      put: () => mockPut(),
+      patch: () => mockPatch(),
+      delete: () => mockDelete(),
+    }),
+  },
 }));
 
 describe('ApiService', () => {

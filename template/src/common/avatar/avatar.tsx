@@ -115,10 +115,11 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(({
         {children}
       </figure>
       {iconComponent ? (
-        <div className={classnames(
-          avatarStyles.avatarIcon,
-          avatarStyles[`avatarIcon-${size}`],
-        )}
+        <div
+          className={classnames(
+            avatarStyles.avatarIcon,
+            avatarStyles[`avatarIcon-${size}`],
+          )}
         >
           {iconComponent}
         </div>

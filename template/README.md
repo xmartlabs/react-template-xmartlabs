@@ -9,7 +9,7 @@ This project was generated using [Create React App](https://github.com/facebook/
 Add the `clearMocks: true` option to the Jest configuration on the package.json file (read below).
 
 ### Jest Configuration
-
+<!-- THIS SHOULD BE MODIFIED -->
 To have tests run correctly you need to override the default options of Jest. To do this you simply need to add a `jest` key on your package JSON with the following content:
 
 ```json

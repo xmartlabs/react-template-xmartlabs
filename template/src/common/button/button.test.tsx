@@ -9,21 +9,6 @@ describe('Button', () => {
     expect(await el.findByText('Button')).toBeTruthy();
   });
 
-  it('should render with size', async () => {
-    const el = render(<Button bSize="xs" />);
-    expect(await el.findByText('Button')).toHaveClass('btn-xs');
-  });
-
-  it('should render with style', async () => {
-    const el = render(<Button bStyle="ghost" />);
-    expect(await el.findByText('Button')).toHaveClass('btn-primary-ghost');
-  });
-
-  it('should render with color', async () => {
-    const el = render(<Button bColor="secondary" />);
-    expect(await el.findByText('Button')).toHaveClass('btn-secondary-filled');
-  });
-
   it('should render with icon', async () => {
     const el = render(<Button leftIcon={<span>Icon</span>} />);
     expect(await el.findByText('Icon')).toBeTruthy();

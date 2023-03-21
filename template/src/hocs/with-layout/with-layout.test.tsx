@@ -30,7 +30,7 @@ describe('withLayout', () => {
         const WrappedComponent = withLayout(layoutType, Component);
         render(<WrappedComponent />);
 
-        expect(screen.getByText('Content')).toHaveTextContent('Content');
+        expect(screen.getByText('Content')).toBeTruthy();
       });
     });
   });

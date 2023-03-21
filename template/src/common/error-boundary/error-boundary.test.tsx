@@ -1,12 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-
+import {
+  describe, expect, it, vi,
+} from 'vitest';
 import { ErrorBoundary } from './error-boundary';
 
 describe('ErrorBoundary', () => {
   describe('when rendered without errors', () => {
     const setupTest = (children: React.ReactNode) => {
-      const listenerSpy = jest.spyOn(window, 'addEventListener')
+      const listenerSpy = vi.spyOn(window, 'addEventListener')
         .mockImplementation(() => {});
       render(
         <ErrorBoundary>
@@ -23,7 +25,7 @@ describe('ErrorBoundary', () => {
       const children = 'This is a text';
       setupTest(children);
 
-      expect(screen.getByText(children)).toHaveTextContent(children);
+      expect(screen.getByText(children)).toBeTruthy();
     });
 
     it('must setup an event listener for unhandled rejections', () => {

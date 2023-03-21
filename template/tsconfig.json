@@ -27,6 +27,6 @@
     "baseUrl": "./src"
   },
   "include": [
-    "src", "./vite.config.ts", "./setupTests.ts", "./test-utils.ts"
+    "src", "./vite.config.ts",
   ]
 }
