@@ -1,3 +1,32 @@
 {
-  "extends": "./template/tsconfig.json"
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "composite": true,
+    "allowUnreachableCode": false,
+    "allowJs": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./src"
+  },
+  "include": [
+    "src", "./vite.config.ts",
+  ]
 }
