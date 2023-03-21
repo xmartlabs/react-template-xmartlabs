@@ -49,14 +49,10 @@ export const TextArea = ({
   const HelperIcon = helperIcon;
   return (
     <div>
-      <div className={styles.label}>
-        <label htmlFor={name}>{label}</label>
-      </div>
+      <label className={styles.label} htmlFor={name}>{label}</label>
       <div
         className={
-          className
-            ? classnames(styles.inputContainer, className)
-            : classnames(styles.inputContainer)
+          classnames(styles.inputContainer, className || '')
         }
       >
         <textarea

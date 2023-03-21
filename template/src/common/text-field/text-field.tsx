@@ -48,14 +48,10 @@ export const TextField = ({
   const HelperIcon = helperIcon;
   return (
     <div>
-      <div className={styles.label}>
-        <label htmlFor={name}>{label}</label>
-      </div>
+      <label htmlFor={name}>{label}</label>
       <div
         className={
-          className
-            ? classnames(styles.inputContainer, className)
-            : classnames(styles.inputContainer)
+          classnames(styles.inputContainer, className || '')
         }
       >
         <button
