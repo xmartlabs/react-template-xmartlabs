@@ -1,16 +1,16 @@
-# Xmartlabs Create React App Template
+# Xmartlabs Create React Boilerplate
 
-![react version](https://img.shields.io/badge/react-18.0.0-brightgreen)
-![react-dom version](https://img.shields.io/badge/react--dom-18.0.0-brightgreen)
-![react-router-dom version](https://img.shields.io/badge/react--router--dom-5.3.3-brightgreen)
+![react version](https://img.shields.io/badge/react-18.2.0-brightgreen)
+![react-dom version](https://img.shields.io/badge/react--dom-18.2.0-brightgreen)
+![react-router-dom version](https://img.shields.io/badge/react--router--dom-5.3.4-brightgreen)
+![vite version](https://img.shields.io/badge/vite-4.1.4-brightgreen)
 ![history version](https://img.shields.io/badge/history-4.10.1-brightgreen)
-![node-sass version](https://img.shields.io/badge/node--sass-6.0.1-brightgreen)
+![sass version](https://img.shields.io/badge/sass-1.58.3-brightgreen)
 ![vitest version](https://img.shields.io/badge/vitest-0.29.2-brightgreen)
-![axios version](https://img.shields.io/badge/axios-0.21.1-brightgreen)
+![axios version](https://img.shields.io/badge/axios-0.21.4-brightgreen)
 ![eslint version](https://img.shields.io/badge/eslint-8.10.0-brightgreen)
 
-This project contains Xmartlabs' Create React App template.
-If you want to know more about what the template itself provides, then read the template's Readme located in [`/template/README.md`](./template/README.md).
+This project contains Xmartlabs' React Boilerplate.
 
 ## Contributing to this Boilerplate
 
