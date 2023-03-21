@@ -1,0 +1,255 @@
+@use 'variables';
+
+/*
+  Add your font-face definitions on this file. Please
+  define the font-family as a variable on the variables file.
+  For example:
+
+  @font-face {
+    font-family: $primary-font-family;
+    src: ...
+  }
+
+  If you don't need any custom fonts or are using a CDN then
+  leave this file empty.
+*/
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Bold Italic'),
+    local('Gilroy-BoldItalic'),
+    url('$fonts/Gilroy-BoldItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy ExtraBold'),
+    local('Gilroy-ExtraBold'),
+    url('$fonts/Gilroy-ExtraBold.woff2') format('woff2'),
+    url('$fonts/Gilroy-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Heavy'),
+    local('Gilroy-Heavy'),
+    url('$fonts/Gilroy-Heavy.woff2') format('woff2'),
+    url('$fonts/Gilroy-Heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Light'),
+    local('Gilroy-Light'),
+    url('$fonts/Gilroy-Light.woff2') format('woff2'),
+    url('$fonts/Gilroy-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Heavy Italic'),
+    local('Gilroy-HeavyItalic'),
+    url('$fonts/Gilroy-HeavyItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-HeavyItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy ExtraBold Italic'),
+    local('Gilroy-ExtraBoldItalic'),
+    url('$fonts/Gilroy-ExtraBoldItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-ExtraBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Light Italic'),
+    local('Gilroy-LightItalic'),
+    url('$fonts/Gilroy-LightItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Bold'),
+    local('Gilroy-Bold'),
+    url('$fonts/Gilroy-Bold.woff2') format('woff2'),
+    url('$fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Black Italic'),
+    local('Gilroy-BlackItalic'),
+    url('$fonts/Gilroy-BlackItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-BlackItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Black'),
+    local('Gilroy-Black'),
+    url('$fonts/Gilroy-Black.woff2') format('woff2'),
+    url('$fonts/Gilroy-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Thin Italic'),
+    local('Gilroy-ThinItalic'),
+    url('$fonts/Gilroy-ThinItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-ThinItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy UltraLight'),
+    local('Gilroy-UltraLight'),
+    url('$fonts/Gilroy-UltraLight.woff2') format('woff2'),
+    url('$fonts/Gilroy-UltraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Regular Italic'),
+    local('Gilroy-RegularItalic'),
+    url('$fonts/Gilroy-RegularItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-RegularItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Thin'),
+    local('Gilroy-Thin'),
+    url('$fonts/Gilroy-Thin.woff2') format('woff2'),
+    url('$fonts/Gilroy-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy SemiBold Italic'),
+    local('Gilroy-SemiBoldItalic'),
+    url('$fonts/Gilroy-SemiBoldItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-SemiBoldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy UltraLight Italic'),
+    local('Gilroy-UltraLightItalic'),
+    url('$fonts/Gilroy-UltraLightItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-UltraLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Medium Italic'),
+    local('Gilroy-MediumItalic'),
+    url('$fonts/Gilroy-MediumItalic.woff2') format('woff2'),
+    url('$fonts/Gilroy-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Medium'),
+    local('Gilroy-Medium'),
+    url('$fonts/Gilroy-Medium.woff2') format('woff2'),
+    url('$fonts/Gilroy-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy SemiBold'),
+    local('Gilroy-SemiBold'),
+    url('$fonts/Gilroy-SemiBold.woff2') format('woff2'),
+    url('$fonts/Gilroy-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src:
+    local('Gilroy Regular'),
+    local('Gilroy-Regular'),
+    url('$fonts/Gilroy-Regular.woff2') format('woff2'),
+    url('$fonts/Gilroy-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
