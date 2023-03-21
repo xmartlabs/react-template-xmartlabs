@@ -44,30 +44,3 @@ exports[`Modal > should render successfully 1`] = `
   </div>
 </div>
 `;
-
-exports[`Modal should render successfully 1`] = `
-<div
-  id="modal"
->
-  <div
-    class="overlay"
-  >
-    <div
-      aria-modal="true"
-      class="modal modal-medium"
-      role="dialog"
-    >
-      <button
-        class="closeButton"
-        type="button"
-      >
-        <svg
-          aria-label="Close"
-        >
-          close.svg
-        </svg>
-      </button>
-    </div>
-  </div>
-</div>
-`;
