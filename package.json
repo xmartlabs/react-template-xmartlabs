@@ -1,6 +1,21 @@
 {
   "name": "react-boilerplate-xmartlabs",
   "version": "0.1.0",
+  "description": "Xmartlabs' React Boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmartlabs/xmartlabs-cra-template.git"
+  },
+  "keywords": [
+    "vite",
+    "react"
+  ],
+  "author": "Xmartlabs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xmartlabs/xmartlabs-cra-template/issues"
+  },
+  "homepage": "https://github.com/xmartlabs/xmartlabs-cra-template#readme",
   "private": true,
   "dependencies": {
     "@storybook/addon-actions": "^6.5.16",
