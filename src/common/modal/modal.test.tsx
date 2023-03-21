@@ -24,7 +24,7 @@ describe('Modal', () => {
     expect(baseElement.firstChild).toMatchSnapshot();
   });
 
-  test('modal shows the children and a close button', () => {
+  it('modal shows the children and a close button', () => {
     const { getByText } = render(
       <Modal isOpen size={ModalSizes.medium} onClose={handleClose}>
         <div>
@@ -38,7 +38,7 @@ describe('Modal', () => {
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
-  test('modal executes onClose when press Escape Key', () => {
+  it('modal executes onClose when press Escape Key', () => {
     const { baseElement } = render(
       <Modal isOpen size={ModalSizes.medium} onClose={handleClose}>
         <div>

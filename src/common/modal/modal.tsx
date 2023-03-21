@@ -11,7 +11,7 @@ export enum ModalSizes {
   unresticted = 'unresticted',
 }
 
-interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   size: ModalSizes
   isOpen: boolean;
   onClose: () => void;
