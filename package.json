@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
+    "eslint-plugin-testing-library": "^5.10.2",
     "jsdom": "^21.1.1"
   }
 }
