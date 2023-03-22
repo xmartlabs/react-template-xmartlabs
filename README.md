@@ -73,12 +73,6 @@ npm install
 And that's it! now you are ready to build on top, the commands to start, test and run storybook are listed above.
 
 
-## Unsupported Features
-
-### PWA
-
-As of this moment this template does not support PWA mode instantly. If you want to add support for PWAs please refer to [cra-template-pwa](https://github.com/cra-template/pwa/tree/master/packages/cra-template-pwa-typescript) for more information on how you could go about setting up.
-
 ## Project structure
 
 The `src` directory has the following structure:
