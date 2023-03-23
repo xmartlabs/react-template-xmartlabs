@@ -1,7 +1,5 @@
-import React from 'react';
-import { Route, Router as VendorRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ScrollToTop } from './scroll-to-top';
-import { history } from './routes';
 import type { Route as RouteType } from './routes';
 import { RouteComponent } from './route-component';
 
@@ -13,21 +11,20 @@ const renderRoutes = (routeData: RouteType[]) => (
   routeData.map((data) => (
     <Route
       key={data.path}
-      exact={data.exact}
       path={data.path}
-      component={RouteComponent[data.name]}
+      element={RouteComponent[data.name]}
     />
   ))
 );
 
 const Router = (props: RouterProps) => (
-  <VendorRouter history={history}>
+  <BrowserRouter>
     <ScrollToTop>
-      <Switch>
+      <Routes>
         {renderRoutes(props.routes)}
-      </Switch>
+      </Routes>
     </ScrollToTop>
-  </VendorRouter>
+  </BrowserRouter>
 );
 
-export { Router, history };
+export { Router };

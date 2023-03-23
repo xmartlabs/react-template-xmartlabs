@@ -2,10 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { mockScrollTo } from 'tests/support/window-mock';
 import { ScrollToTop } from './scroll-to-top';
-import { history } from '../router';
 
 const defaultProps = {
-  history,
   match: {
     params: {},
     isExact: false,
