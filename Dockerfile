@@ -1,6 +1,6 @@
-FROM node:16.5.0
+FROM node:18.15.0
 
-RUN npm i -g npm@7.24.0
+RUN npm i -g npm@9.6.2
 
 RUN mkdir -p /code/node_modules && chown -R node:node /code
 
