@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ScrollToTop } from './scroll-to-top';
 import type { Route as RouteType } from './routes';
@@ -8,13 +9,16 @@ type RouterProps = {
 };
 
 const renderRoutes = (routeData: RouteType[]) => (
-  routeData.map((data) => (
-    <Route
-      key={data.path}
-      path={data.path}
-      element={RouteComponent[data.name]}
-    />
-  ))
+  routeData.map((data) => {
+    const routeComponent: React.ReactNode = React.createElement(RouteComponent[data.name]);
+    return (
+      <Route
+        key={data.path}
+        path={data.path}
+        element={routeComponent}
+      />
+    );
+  })
 );
 
 const Router = (props: RouterProps) => (

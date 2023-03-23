@@ -4,9 +4,9 @@ import { NotFound } from 'pages/not-found';
 import { RouteName } from './routes';
 
 const RouteComponent = {
-  [RouteName.Home]: <Home />,
-  [RouteName.About]: <About />,
-  [RouteName.NotFound]: <NotFound />,
+  [RouteName.Home]: Home,
+  [RouteName.About]: About,
+  [RouteName.NotFound]: NotFound,
 };
 
 export { RouteComponent };

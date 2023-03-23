@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { ParamsHelper } from 'helpers/params-helper';
 import { routes, Params, RouteName } from './routes';
 
-const navigate = useNavigate();
 /*
   Given a name, finds the route in the configuration that has that name.
   Throws an exception if it doesn't exist. This is done this way since it
@@ -46,7 +45,7 @@ const getRouteFor = (routeName: RouteName, pathParams: Params = {}, queryParams:
 const goToPage = (routeName: RouteName, pathParams: Params = {}, queryParams: Params = {}) => {
   const routePath = getRouteFor(routeName, pathParams, queryParams);
 
-  navigate(routePath);
+  redirect(routePath);
 };
 
 export {
