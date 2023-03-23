@@ -10,7 +10,6 @@
 ![axios version](https://img.shields.io/badge/axios-0.21.4-brightgreen)
 ![eslint version](https://img.shields.io/badge/eslint-8.10.0-brightgreen)
 
-This project contains Xmartlabs' React Boilerplate.
 
 ## Contributing to this Boilerplate
 
@@ -53,7 +52,7 @@ npm install -g degit
 2. Download the master branch of a repo from GitHub to the current working directory:
 
 ```shell
-degit xmartlabs/cra-template-xmartlabs my-new-project-name
+degit xmartlabs/react-template-xmartlabs my-new-project-name
 ```
 
 If the second argument is omitted, the repo will be cloned to the current directory.
