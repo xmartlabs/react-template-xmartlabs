@@ -43,25 +43,27 @@ npm run storybook
 
 For this we recommend using [degit](https://www.npmjs.com/package/degit)
 
-1. Install degit:
+1. Download the master branch of a repo from GitHub to the current working directory:
 
 ```shell
-npm install -g degit
-```
-
-2. Download the master branch of a repo from GitHub to the current working directory:
-
-```shell
-degit xmartlabs/react-template-xmartlabs my-new-project-name
+npx degit xmartlabs/react-template-xmartlabs my-new-project-name
 ```
 
 If the second argument is omitted, the repo will be cloned to the current directory.
 
-3. Move to my new project folder:
+2. Move to my new project folder:
 
 ```shell
 cd my-new-project-name
 ```
+
+3. Initialize a Git repository
+
+```shell
+git init
+```
+
+You'll have to link it to the project remote manually.
 
 4. Install the required packages:
 
@@ -70,7 +72,6 @@ npm install
 ```
 
 And that's it! now you are ready to build on top, the commands to start, test and run storybook are listed above.
-
 
 ## Project structure
 
