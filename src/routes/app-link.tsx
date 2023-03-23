@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getRouteFor } from './route-helpers';
-import type { Params, RouteName } from './routes';
+import type { RouteParams, Params, RouteName } from './routes';
 
 /*
   This component is a wrapper for linking across and inside apps.
@@ -17,7 +17,7 @@ import type { Params, RouteName } from './routes';
 type AppLinkProps<R extends RouteName> = {
   children: React.ReactNode,
   className?: string,
-  pathParams?: Params,
+  pathParams?: RouteParams[R],
   queryParams?: Params,
   routeName: R,
   targetBlank?: boolean,
