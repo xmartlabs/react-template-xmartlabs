@@ -13,7 +13,7 @@ const defaultProps = {
 };
 
 describe('ScrollToTop', () => {
-  const setupTest = (children = 'Children') => {
+  const setupTest = (children = <p>Children</p>) => {
     const props = {
       ...defaultProps,
       location: {
@@ -35,10 +35,10 @@ describe('ScrollToTop', () => {
     });
 
     it('renders its children correctly', () => {
-      const children = 'Other Children';
+      const children = <p>Other Children</p>;
       setupTest(children);
 
-      expect(() => screen.getByText(children)).not.toThrow();
+      expect(() => screen.getByText('Other Children')).not.toThrow();
     });
 
     it('does not call window.scrollTo', () => {
@@ -61,7 +61,7 @@ describe('ScrollToTop', () => {
           state: null,
         },
       };
-      rerender(<ScrollToTop {...props}>Children</ScrollToTop>);
+      rerender(<ScrollToTop {...props}><p>Children</p></ScrollToTop>);
 
       expect(mockScrollTo).toHaveBeenCalledTimes(1);
     });
