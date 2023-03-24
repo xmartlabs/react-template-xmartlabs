@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import type { Location } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 interface ScrollToTopProps {
-  location: Location,
   children: JSX.Element,
 }
 
@@ -15,7 +15,8 @@ const urlFromLocation = (location?: Location) => (
   the page each time the router triggers a route change.
 */
 const ScrollToTop = (props: ScrollToTopProps) => {
-  const { children, location } = props;
+  const location: Location = useLocation();
+  const { children } = props;
   const previousUrl = useRef<string>(urlFromLocation(location));
 
   useEffect(() => {

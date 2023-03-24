@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import {
   describe, expect, it, afterEach, vi,
 } from 'vitest';
+import { BrowserRouter } from 'react-router-dom';
 import { mockScrollTo } from 'tests/support/window-mock';
 import { ScrollToTop } from './scroll-to-top';
 
@@ -31,9 +32,11 @@ describe('ScrollToTop', () => {
       },
     };
     return render(
-      <ScrollToTop {...props}>
-        {children}
-      </ScrollToTop>,
+      <BrowserRouter>
+        <ScrollToTop {...props}>
+          {children}
+        </ScrollToTop>
+      </BrowserRouter>,
     );
   };
   describe('when rendering', () => {
@@ -49,7 +52,7 @@ describe('ScrollToTop', () => {
     });
 
     it('does not call window.scrollTo', () => {
-      const thing = setupTest();
+      // const thing = setupTest();
       // console.log(thing.debug())
 
       expect(mockScrollTo).not.toHaveBeenCalled();
@@ -70,7 +73,11 @@ describe('ScrollToTop', () => {
           key: 'default',
         },
       };
-      rerender(<ScrollToTop {...props}><p>Children</p></ScrollToTop>);
+      rerender(
+        <BrowserRouter>
+          <ScrollToTop {...props}><p>Another Children</p></ScrollToTop>
+        </BrowserRouter>,
+      );
 
       expect(mockScrollTo).toHaveBeenCalledTimes(1);
     });

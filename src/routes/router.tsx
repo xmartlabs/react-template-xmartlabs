@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  BrowserRouter, Routes, Route, useLocation,
+  BrowserRouter, Routes, Route,
 } from 'react-router-dom';
-import type { Location } from 'react-router-dom';
 import { ScrollToTop } from './scroll-to-top';
 import type { Route as RouteType } from './routes';
 import { RouteComponent } from './route-component';
@@ -24,17 +23,14 @@ const renderRoutes = (routeData: RouteType[]) => (
   })
 );
 
-const Router = (props: RouterProps) => {
-  const location: Location = useLocation();
-  return (
-    <BrowserRouter>
-      <ScrollToTop location={location}>
-        <Routes>
-          {renderRoutes(props.routes)}
-        </Routes>
-      </ScrollToTop>
-    </BrowserRouter>
-  );
-};
+const Router = (props: RouterProps) => (
+  <BrowserRouter>
+    <ScrollToTop>
+      <Routes>
+        {renderRoutes(props.routes)}
+      </Routes>
+    </ScrollToTop>
+  </BrowserRouter>
+);
 
 export { Router };
