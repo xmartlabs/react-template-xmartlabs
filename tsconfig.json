@@ -27,6 +27,6 @@
     "baseUrl": "./src"
   },
   "include": [
-    "src", "./vite.config.ts",
+    "src", "./vite.config.ts", "./teardown.js"
   ]
 }
