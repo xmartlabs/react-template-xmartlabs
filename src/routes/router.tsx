@@ -12,7 +12,7 @@ type RouterProps = {
 
 const renderRoutes = (routeData: RouteType[]) => (
   routeData.map((data) => {
-    const routeComponent: React.ReactNode = React.createElement(RouteComponent[data.name]);
+    const routeComponent = React.createElement(RouteComponent[data.name]);
     return (
       <Route
         key={data.path}
