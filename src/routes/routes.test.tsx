@@ -18,7 +18,7 @@ describe('routes', () => {
           name: RouteName.Home,
           component,
           path: '/',
-          pathParams: [],
+          pathParams: {},
         });
       });
     });
@@ -36,7 +36,7 @@ describe('routes', () => {
           name: RouteName.Home,
           component,
           path: '/:id/product/:name',
-          pathParams: ['id', 'name'],
+          pathParams: { id: '', name: '' },
         });
       });
     });
@@ -68,7 +68,7 @@ describe('routes', () => {
 
     it('should have a pathParams parameter', () => {
       routes.forEach((route) => {
-        expect(route.pathParams).toBeInstanceOf(Array);
+        expect(route.pathParams).toBeInstanceOf(Object);
       });
     });
   });

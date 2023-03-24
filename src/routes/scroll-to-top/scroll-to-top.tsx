@@ -1,29 +1,29 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import type { Location } from 'react-router';
 
 interface ScrollToTopProps {
+  location: Location,
   children: JSX.Element,
 }
+
+const urlFromLocation = (location?: Location) => (
+  location ? `${location.pathname}${location.search}` : ''
+);
 
 /*
   This component is useful to trigger a scroll to the top of
   the page each time the router triggers a route change.
 */
 const ScrollToTop = (props: ScrollToTopProps) => {
-  const location = useLocation();
-  const { children } = props;
-  const [previousUrl, setPreviousUrl] = useState('');
-
-  const urlFromLocation = () => (
-    `${location}${location.search}`
-  );
+  const { children, location } = props;
+  const previousUrl = useRef<string>(urlFromLocation(location));
 
   useEffect(() => {
-    const currentUrl = urlFromLocation();
-    if (currentUrl !== previousUrl) {
+    const currentUrl = urlFromLocation(location);
+    if (currentUrl !== previousUrl.current) {
       window.scrollTo(0, 0);
     }
-    setPreviousUrl(`${location}${location.search}`);
+    previousUrl.current = currentUrl;
   }, [location]);
 
   return children;

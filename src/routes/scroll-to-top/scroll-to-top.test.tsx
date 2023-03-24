@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import {
+  describe, expect, it, afterEach, vi,
+} from 'vitest';
 import { mockScrollTo } from 'tests/support/window-mock';
 import { ScrollToTop } from './scroll-to-top';
 
@@ -13,6 +15,10 @@ const defaultProps = {
 };
 
 describe('ScrollToTop', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.resetAllMocks();
+  });
   const setupTest = (children = <p>Children</p>) => {
     const props = {
       ...defaultProps,
@@ -21,6 +27,7 @@ describe('ScrollToTop', () => {
         hash: '#hash',
         search: '?param1=value1',
         state: null,
+        key: 'default',
       },
     };
     return render(
@@ -42,7 +49,8 @@ describe('ScrollToTop', () => {
     });
 
     it('does not call window.scrollTo', () => {
-      setupTest();
+      const thing = setupTest();
+      // console.log(thing.debug())
 
       expect(mockScrollTo).not.toHaveBeenCalled();
     });
@@ -59,6 +67,7 @@ describe('ScrollToTop', () => {
           hash: '#hash',
           search: '?param1=value1',
           state: null,
+          key: 'default',
         },
       };
       rerender(<ScrollToTop {...props}><p>Children</p></ScrollToTop>);
