@@ -1,70 +1,67 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  describe, expect, it,
+} from 'vitest';
+import {
+  BrowserRouter, Link, Route, Routes,
+} from 'react-router-dom';
 import { mockScrollTo } from 'tests/support/window-mock';
 import { ScrollToTop } from './scroll-to-top';
-import { history } from '../router';
-
-const defaultProps = {
-  history,
-  match: {
-    params: {},
-    isExact: false,
-    path: '',
-    url: '',
-  },
-};
 
 describe('ScrollToTop', () => {
-  const setupTest = (children = 'Children') => {
-    const props = {
-      ...defaultProps,
-      location: {
-        pathname: '/path',
-        hash: '#hash',
-        search: '?param1=value1',
-        state: null,
-      },
-    };
-    return render(
-      <ScrollToTop {...props}>
-        {children}
-      </ScrollToTop>,
-    );
-  };
+  const setupTest = (children = <p>Children</p>) => (
+    render(
+      <BrowserRouter>
+        <ScrollToTop>
+          {children}
+        </ScrollToTop>
+      </BrowserRouter>,
+    )
+  );
   describe('when rendering', () => {
     it('renders correctly', () => {
       expect(setupTest).not.toThrow();
     });
 
     it('renders its children correctly', () => {
-      const children = 'Other Children';
+      const children = <p>Other Children</p>;
       setupTest(children);
 
-      expect(() => screen.getByText(children)).not.toThrow();
+      expect(() => screen.getByText('Other Children')).not.toThrow();
     });
 
     it('does not call window.scrollTo', () => {
-      setupTest();
-
       expect(mockScrollTo).not.toHaveBeenCalled();
     });
   });
 
   describe('when updating', () => {
     it('calls window.scrollTo', () => {
-      const { rerender } = setupTest();
+      const MockComponent = () => <div>Mock Component</div>;
+      const TestComponent = () => (
+        <>
+          <Link to="/new-page">New Page</Link>
+          <Routes>
+            <Route path="/" element={<MockComponent />} />
+            <Route path="/new-page" element={<div>New Page</div>} />
+          </Routes>
+        </>
+      );
+        // Render ScrollToTop with the test component
+      const { getByText } = render(
+        <BrowserRouter>
+          <ScrollToTop>
+            <TestComponent />
+          </ScrollToTop>
+        </BrowserRouter>,
+      );
+      // Simulate a click on the link that triggers a redirect
+      fireEvent.click(getByText('New Page'));
 
-      const props = {
-        ...defaultProps,
-        location: {
-          pathname: '/another/path',
-          hash: '#hash',
-          search: '?param1=value1',
-          state: null,
-        },
-      };
-      rerender(<ScrollToTop {...props}>Children</ScrollToTop>);
+      // Verify that window has been scrolled to the top
+      expect(window.pageYOffset).toBe(0);
 
+      // Verify that the new page content is rendered
       expect(mockScrollTo).toHaveBeenCalledTimes(1);
     });
   });

@@ -1,7 +1,6 @@
+import { redirect } from 'react-router-dom';
 import { ParamsHelper } from 'helpers/params-helper';
-import {
-  routes, Params, RouteName, history,
-} from './routes';
+import { routes, Params, RouteName } from './routes';
 
 /*
   Given a name, finds the route in the configuration that has that name.
@@ -46,7 +45,7 @@ const getRouteFor = (routeName: RouteName, pathParams: Params = {}, queryParams:
 const goToPage = (routeName: RouteName, pathParams: Params = {}, queryParams: Params = {}) => {
   const routePath = getRouteFor(routeName, pathParams, queryParams);
 
-  history.push(routePath);
+  redirect(routePath);
 };
 
 export {

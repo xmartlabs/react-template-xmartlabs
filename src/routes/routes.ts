@@ -1,11 +1,4 @@
-import type { ExtractRouteParams } from 'react-router';
-import { createBrowserHistory } from 'history';
-
-export const history = createBrowserHistory();
-
-export type Params = {
-  [key: string]: string | boolean | number | null,
-};
+export type Params = Record<string, string | boolean | number | null>;
 
 export enum RouteName {
   Home = 'home',
@@ -17,7 +10,7 @@ export type Route = {
   name: RouteName,
   path: string,
   exact?: boolean,
-  pathParams?: string[],
+  pathParams?: Record<string, string>,
   component?: React.ComponentType,
 };
 
@@ -40,8 +33,12 @@ const setPathParams = (route: Route): Route => {
   const { path } = newRoute;
   // Extract the names of the parameters
   const pathMatch = path.match(PATH_PARAM_REGEX) || [];
-  const pathParams = pathMatch.map((param) => param.slice(1));
-  newRoute.pathParams = pathParams || [];
+  const pathParams: Record<string, string> = {};
+  pathMatch.forEach((param) => {
+    const paramName = param.slice(1);
+    pathParams[paramName] = '';
+  });
+  newRoute.pathParams = pathParams;
   return newRoute;
 };
 
@@ -71,7 +68,7 @@ const ROUTES = [
 * from the path string.
 */
 export type RouteParams = {
-  [K in RouteName]: ExtractRouteParams<Extract<typeof ROUTES[number], { name: K }>['path']>;
+  [K in RouteName]: Route;
 } & Params;
 
 export const routes = ROUTES.map(setPathParams);
