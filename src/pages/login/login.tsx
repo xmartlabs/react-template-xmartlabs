@@ -1,5 +1,8 @@
-import { Button } from 'common/button';
 import { useState } from 'react';
+
+import { Button } from 'common/button';
+import { TextField } from 'common/text-field';
+import styles from './login.module.scss';
 
 export const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -8,18 +11,14 @@ export const Login = () => {
   const formValid = !!email && !!password;
 
   return (
-    <form>
-      <label>
-        Email
-        <input type="text" name="email" onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <Button type="submit" disabled={!formValid}>
-        Submit
-      </Button>
-    </form>
+    <div className={styles.container}>
+      <form className={styles.form}>
+        <TextField className={styles.field} label="Email" name="email" onChange={(e) => setEmail(e.target.value)} />
+        <TextField className={styles.field} label="Password" name="password" type="password" onChange={(e) => setPassword(e.target.value)} />
+        <Button className={styles.submitButton} type="submit" disabled={!formValid}>
+          Submit
+        </Button>
+      </form>
+    </div>
   );
 };

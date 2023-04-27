@@ -10,18 +10,20 @@ type IProps = IBaseButtonProps & {
   bColor?: 'primary' | 'secondary';
   rightIcon?: React.ReactNode;
   leftIcon?: React.ReactNode;
+  className?: string;
 };
 
 export const Button: React.FC<IProps> = ({
-  bSize = 'm', bStyle = 'filled', bColor = 'primary', children = 'Button', rightIcon, leftIcon, ...props
+  bSize = 'm', bStyle = 'filled', bColor = 'primary', children = 'Button', className = '', rightIcon, leftIcon, ...props
 }) => (
   <BaseButton
+    {...props}
     className={classnames(
+      className,
       buttonStyles.btn,
       buttonStyles[`btn-${bSize}`],
       buttonStyles[`btn-${bColor}-${bStyle}`],
     )}
-    {...props}
   >
     {leftIcon || null}
     {children}

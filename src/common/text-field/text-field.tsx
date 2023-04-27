@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { HTMLInputTypeAttribute, useRef } from 'react';
 import { classnames } from 'helpers/utils';
 import styles from './text-field.module.scss';
 
@@ -9,35 +9,37 @@ export enum TextFieldStatus {
 }
 
 export interface TextFieldProps {
-  status?: TextFieldStatus;
-  disabled?: boolean;
-  label?: string;
-  placeholder?: string;
-  name: string;
-  value?: string;
-  leftIcon?: React.FunctionComponent;
-  rightIcon?: React.FunctionComponent;
-  onRightIconClick?: () => void;
-  helperText?: string;
-  helperIcon?: React.FunctionComponent;
   className?: string;
+  disabled?: boolean;
+  helperIcon?: React.FunctionComponent;
+  helperText?: string;
+  label?: string;
+  leftIcon?: React.FunctionComponent;
+  name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onRightIconClick?: () => void;
+  placeholder?: string;
+  rightIcon?: React.FunctionComponent;
+  status?: TextFieldStatus;
+  type?: HTMLInputTypeAttribute;
+  value?: string;
 }
 
 export const TextField = ({
-  status = TextFieldStatus.default,
-  disabled = false,
-  label,
-  placeholder,
-  value,
-  onChange,
-  name,
-  helperText,
-  helperIcon,
   className,
+  disabled = false,
+  helperIcon,
+  helperText,
+  label,
   leftIcon,
-  rightIcon,
+  name,
+  onChange,
   onRightIconClick,
+  placeholder,
+  rightIcon,
+  status = TextFieldStatus.default,
+  type = 'text',
+  value,
 }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const focusOnInput = () => {
@@ -54,31 +56,36 @@ export const TextField = ({
           classnames(styles.inputContainer, className || '')
         }
       >
-        <button
-          type="button"
-          onClick={focusOnInput}
-          className={styles.iconLeft}
-        >
-          {LeftIcon && (<LeftIcon data-testid="left-icon" />)}
-        </button>
-        <button
-          type="button"
-          onClick={onRightIconClick}
-          className={styles.iconRight}
-        >
-          {RightIcon && <RightIcon data-testid="right-icon" />}
-        </button>
+        {!!LeftIcon && (
+          <button
+            type="button"
+            onClick={focusOnInput}
+            className={styles.iconLeft}
+          >
+            <LeftIcon data-testid="left-icon" />
+          </button>
+        )}
+        {!!RightIcon && (
+          <button
+            type="button"
+            onClick={onRightIconClick}
+            className={styles.iconRight}
+          >
+            <RightIcon data-testid="right-icon" />
+          </button>
+        )}
         <input
-          id={name}
-          ref={inputRef}
           aria-label={name}
-          data-testid="input"
           className={classnames(styles.inputStyle, styles[status], LeftIcon ? styles.withPaddingLeft : '', RightIcon ? styles.withPaddingRight : '')}
-          value={value}
-          name={name}
-          placeholder={placeholder}
-          onChange={onChange}
+          data-testid="input"
           disabled={disabled}
+          id={name}
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+          ref={inputRef}
+          type={type}
+          value={value}
         />
       </div>
       {helperText && (
