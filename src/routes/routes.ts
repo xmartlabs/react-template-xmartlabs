@@ -3,6 +3,7 @@ export type Params = Record<string, string | boolean | number | null>;
 export enum RouteName {
   Home = 'home',
   About = 'about',
+  Login = 'login',
   NotFound = 'notFound',
 }
 
@@ -55,6 +56,11 @@ const ROUTES = [
   {
     name: RouteName.About,
     path: '/about',
+    exact: true,
+  },
+  {
+    name: RouteName.Login,
+    path: '/login',
     exact: true,
   },
   {

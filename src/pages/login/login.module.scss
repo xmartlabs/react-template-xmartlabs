@@ -1,0 +1,28 @@
+@use '../../assets/stylesheets/text-styles.scss';
+@import '../../assets/stylesheets/colors';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 30px;
+}
+
+.form {
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid $text-neutral-20;
+  border-radius: 5px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.submitButton {
+  width: 150px;
+  margin: 0 auto;
+}

@@ -19,6 +19,9 @@ plugins:
 rules:
   # This rule has been deprecated, see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
   jsx-a11y/label-has-for: 'off'
+  jsx-a11y/label-has-associated-control:
+    - error
+    - assert: either
   # When using methods with underscores inside a class, you need to enable this rule
   no-underscore-dangle:
     - error
