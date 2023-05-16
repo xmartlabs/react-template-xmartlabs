@@ -1,14 +1,17 @@
 import {
+  RouteObject,
   createBrowserRouter,
 } from 'react-router-dom';
 import type { Route as RouteType } from './routes';
 import { RouteComponent } from './route-component';
 import { RouteLayout } from './route-layout';
+import { RouterErrorBoundary } from './router-error-boundary';
 
-const createRoutes = (routeData: RouteType[]) => (
+const createRoutes = (routeData: RouteType[]): RouteObject[] => (
   [
     {
       Component: RouteLayout,
+      ErrorBoundary: RouterErrorBoundary,
       children: routeData.map((data) => ({
         ...data,
         Component: RouteComponent[data.name],
