@@ -104,13 +104,13 @@ Some helpers have been defined, such as `AppLink` and `AppRedirect`. These are w
 * `pathParams`: A map of path params. Examples below.
 * `queryParams`: A map of query params. Examples below.
 
-It is highly encouraged that you use these helpers instead of the native ones of React Router. If you need more functionality, implement it on the helpers directly. Another useful helper is `goToPage`, which is a function that receives the same parameters. The difference is that you can use this function to imperatively trigger a route change.
+It is highly encouraged that you use these helpers instead of the native ones of React Router. If you need more functionality, implement it on the helpers directly. Another useful helper is the `useGoToPage` hook, which is a function that receives the same parameters. This hook replaces usage of the `useNavigate` hook.
 
 ### Creating a Route
 
 * Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
 * Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path and any other configuration of the route.
-* Add the name and related component to the RouteComponent dictionary on `src/routes/route-component.ts`.
+* Add the name and related component to the `RouteComponent` dictionary on `src/routes/route-component.ts`.
 
 And that's it. If you defined the path correctly you should be able to access the component on that route. There are already examples on all of these files, so you should be able to follow them.
 
@@ -134,7 +134,27 @@ This will route your page to `/home` once clicked. Let's assume the route also r
 >
 ```
 
-This link will link to `/home/foo?bar=baz&bar2=baz2`. It's worth noting that the `Redirect` component also has the same prop interface, and the `goToProps` helper accepts three parameters with the same names, so you should feel at home when using all three of them.
+This link will link to `/home/foo?bar=baz&bar2=baz2`. It's worth noting that the `Redirect` component also has the same prop interface, and the `useGoToPage` hook returns a function that accepts three parameters with the same names, so you should feel at home when using all three of them. Here's how to use the hook:
+
+```tsx
+const MyComponent = () => {
+  const goToPage = useGoToPage();
+
+  const navigate = () => {
+    // Assume RouteName.UserDetail equals '/users/:id'
+    // Navigates to `/users/foo?bar=baz`
+    goToPage(RouteName.UserDetail, { id: 'foo' }, { bar: 'baz' });
+  }
+
+  return (
+    <button onClick={navigate}>Navigate!</button>
+  )
+};
+```
+
+### Route Layout
+
+There's a `RouteLayout` component which wraps all routes. It's used for rendering components inside the scope of the router but in a way that every route is wrapped. You should only change this component if you need to add functionality that spans all routes and that requires being inside the scope of the router to work.
 
 ## Component Layouts
 
