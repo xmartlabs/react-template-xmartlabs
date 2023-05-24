@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { goToPage } from './route-helpers';
-import type { Params, RouteName } from './routes';
+import { useGoToPage } from 'hooks/use-go-to-page';
+
+import type { Params, RouteName } from '../../routes/routes';
 
 /*
   This component is a wrapper for redirecting across and inside apps.
@@ -24,6 +25,7 @@ const defaultProps = {
 };
 
 const AppRedirect = <R extends RouteName>(props: AppRedirectProps<R>) => {
+  const goToPage = useGoToPage();
   useEffect(() => {
     goToPage(props.routeName, props.pathParams, props.queryParams);
   }, []);

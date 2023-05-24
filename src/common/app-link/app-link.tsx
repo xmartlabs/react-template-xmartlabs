@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getRouteFor } from './route-helpers';
-import type { Params, RouteName } from './routes';
+import { getRouteFor } from '../../routes/route-helpers';
+import type { Params, RouteName } from '../../routes/routes';
 
 /*
   This component is a wrapper for linking across and inside apps.
