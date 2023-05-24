@@ -46,7 +46,7 @@ For this we recommend using [degit](https://www.npmjs.com/package/degit)
 1. Download the master branch of a repo from GitHub to the current working directory:
 
 ```shell
-npx degit xmartlabs/react-template-xmartlabs my-new-project-name
+npx degit@latest xmartlabs/react-template-xmartlabs my-new-project-name
 ```
 
 If the second argument is omitted, the repo will be cloned to the current directory.

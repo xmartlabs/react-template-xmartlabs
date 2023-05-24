@@ -1,9 +1,11 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { RouterProvider } from 'react-router-dom';
+import { AppLink } from 'common/app-link';
 import {
-  AppLink, RouteName,
-  Router, routes,
-} from '../index';
+  RouteName,
+  createRouter,
+  routes,
+} from '../../routes/index';
 
 export default {
   title: 'AppLink',
@@ -12,11 +14,15 @@ export default {
     (story) => {
       const routesMapped = routes.map((route) => ({
         ...route,
-        component: story,
+        Component: story,
       }));
 
+      const router = createRouter(routesMapped);
+
       return (
-        <Router routes={routesMapped} />
+        <div>
+          <RouterProvider router={router} />
+        </div>
       );
     },
   ],
