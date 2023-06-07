@@ -1,10 +1,10 @@
-@use '../../assets/stylesheets/colors' as colors;
+@use '../../assets/stylesheets/colors' as *;
 @use '../../assets/stylesheets/shadows';
 
 .container {
   @extend .shadow-light-surface-40;
   padding: 20px 0;
-  border-bottom: 1px solid colors.$surface-dark-10;
+  border-bottom: 1px solid $surface-dark-10;
 }
 
 .internalContainer {
