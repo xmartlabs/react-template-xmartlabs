@@ -7,6 +7,7 @@ enum LayoutType {
   // Add more layout types here
   Default = 'Default',
   NavAndFooter = 'NavAndFooter',
+  Nav = 'Nav',
 }
 
 type LayoutProps = {
@@ -27,6 +28,14 @@ const Layout = ({ layoutType, children }: LayoutProps) => {
         </div>
         <Footer />
       </div>
+    );
+  }
+  if (layoutType === LayoutType.Nav) {
+    return (
+      <>
+        <Navbar />
+        {children}
+      </>
     );
   }
   return null;
