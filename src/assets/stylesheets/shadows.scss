@@ -1,11 +1,11 @@
 @use 'sass:list';
-@use './variables/shadows.scss' as shadows;
+@use './variables/shadows.scss' as *;
 
 // Box Shadows
 // ------------------------------------
 // Shadows
-@each $shadow, $values in shadows.$shadows {
-  @each $color, $color-value in shadows.$shadow-colors {
+@each $shadow, $values in $shadows {
+  @each $color, $color-value in $shadow-colors {
     .shadow-#{$color}-#{$shadow} {
       box-shadow: list.nth($values, 1) rgba($color-value, list.nth($values, 2));
     }

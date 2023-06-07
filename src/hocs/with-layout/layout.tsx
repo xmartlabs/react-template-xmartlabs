@@ -1,5 +1,7 @@
-import { Navbar } from 'common/navbar';
 import React from 'react';
+import { Footer } from 'common/footer';
+import { Navbar } from 'common/navbar';
+import styles from './layout.module.scss';
 
 enum LayoutType {
   // Add more layout types here
@@ -18,10 +20,13 @@ const Layout = ({ layoutType, children }: LayoutProps) => {
   }
   if (layoutType === LayoutType.NavAndFooter) {
     return (
-      <>
-        <Navbar />
-        {children}
-      </>
+      <div className={styles.container}>
+        <div>
+          <Navbar />
+          {children}
+        </div>
+        <Footer />
+      </div>
     );
   }
   return null;
