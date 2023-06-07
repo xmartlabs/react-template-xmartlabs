@@ -54,8 +54,6 @@ const Home = () => {
   return (
     <div className={globalStyles.genericContainer}>
       <h1 className={styles.title}>
-        <Avatar size="xl" />
-        <hr />
         Welcome! This is the HomePage.
         <AppLink routeName={RouteName.About}>About</AppLink>
         <Button onClick={() => setOpenModal(true)}>Hello World</Button>

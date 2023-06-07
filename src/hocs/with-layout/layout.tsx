@@ -1,8 +1,10 @@
+import { Navbar } from 'common/navbar';
 import React from 'react';
 
 enum LayoutType {
   // Add more layout types here
   Default = 'Default',
+  NavAndFooter = 'NavAndFooter',
 }
 
 type LayoutProps = {
@@ -12,9 +14,12 @@ type LayoutProps = {
 
 const Layout = ({ layoutType, children }: LayoutProps) => {
   if (layoutType === LayoutType.Default) {
+    return children;
+  }
+  if (layoutType === LayoutType.NavAndFooter) {
     return (
-      // eslint-disable-next-line react/jsx-no-useless-fragment
       <>
+        <Navbar />
         {children}
       </>
     );
