@@ -9,12 +9,14 @@
 
 .header {
   @extend .h1;
+
   margin: 0;
   text-align: center;
 }
 
 .subheader {
   @extend .text-large-regular;
+
   margin-top: 20px;
   text-align: center;
 }

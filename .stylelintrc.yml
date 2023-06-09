@@ -6,6 +6,8 @@ rules:
   selector-class-pattern: "^[a-z][a-zA-Z0-9]+$"
   scss/at-function-pattern: "^[a-z][a-zA-Z0-9]+$"
   scss/at-mixin-pattern: "^[a-z][a-zA-Z0-9]+$"
+  # This rule prevents us from using our text styles as extensions or as standalone classes.
+  scss/at-extend-no-missing-placeholder: null
   # Options are between lower or upper for function names.
   function-name-case: lower
   string-quotes: single

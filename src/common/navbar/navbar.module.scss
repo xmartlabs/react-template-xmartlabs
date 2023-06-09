@@ -3,6 +3,7 @@
 
 .container {
   @extend .shadow-light-surface-40;
+
   padding: 20px 0;
   border-bottom: 1px solid $surface-dark-10;
 }
