@@ -1,38 +1,20 @@
+@use '../../assets/stylesheets/text-styles.scss' as *;
+
 .container {
-  background-color: #fafafa;
-}
-
-.title {
-  font-weight: bold;
-}
-
-.modalTitle {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.modalFooter {
-  align-self: flex-end;
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.modalContent {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 20px;
+.header {
+  @extend .h1;
+  margin: 0;
+  text-align: center;
 }
 
-.formContainer {
-  padding: 20px;
-}
-
-.form {
-  margin: 0 auto;
-  max-width: 400px;
-  background: transparent;
-  padding: 30px;
-  border-radius: 0;
+.subheader {
+  @extend .text-large-regular;
+  margin-top: 20px;
+  text-align: center;
 }

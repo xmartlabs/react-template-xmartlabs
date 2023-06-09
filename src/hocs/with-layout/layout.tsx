@@ -22,7 +22,7 @@ const Layout = ({ layoutType, children }: LayoutProps) => {
   if (layoutType === LayoutType.NavAndFooter) {
     return (
       <div className={styles.container}>
-        <div>
+        <div className={styles.internalContainer}>
           <Navbar />
           {children}
         </div>

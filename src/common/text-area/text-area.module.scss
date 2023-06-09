@@ -58,7 +58,7 @@ $helper-colors: (
 }
 
 .label {
-  @extend %text-medium-bold;
+  @extend .text-medium-bold;
 
   margin-bottom: 4px;
   color: $text-neutral-40;

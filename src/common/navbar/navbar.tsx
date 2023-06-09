@@ -9,7 +9,9 @@ export const Navbar = () => (
     <div className={globalStyles.genericContainer}>
       <div className={styles.internalContainer}>
         <div>
-          Logo goes here
+          <AppLink routeName={RouteName.Home}>
+            Logo goes here
+          </AppLink>
         </div>
         <div className={styles.rightContainer}>
           <nav>
