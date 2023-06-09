@@ -15,9 +15,9 @@ type LayoutProps = {
   layoutType: LayoutType,
 };
 
-const Layout = ({ layoutType, children }: LayoutProps) => {
+const Layout = ({ layoutType, children }: LayoutProps): JSX.Element | null => {
   if (layoutType === LayoutType.Default) {
-    return children;
+    return <div>{children}</div>;
   }
   if (layoutType === LayoutType.NavAndFooter) {
     return (
