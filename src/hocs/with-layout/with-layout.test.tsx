@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
+import { renderWithRouter } from 'tests/helpers/render-with-router';
 import { describe, expect, it } from 'vitest';
 import { withLayout } from './with-layout';
 import { LayoutType } from './layout';
@@ -18,7 +19,7 @@ describe('withLayout', () => {
       Object.values(LayoutType).forEach((layoutType) => {
         const WrappedComponent = withLayout(layoutType, Component);
 
-        expect(() => render(<WrappedComponent />)).not.toThrow();
+        expect(() => renderWithRouter(<WrappedComponent />)).not.toThrow();
       });
     });
 
@@ -27,9 +28,11 @@ describe('withLayout', () => {
 
       Object.values(LayoutType).forEach((layoutType) => {
         const WrappedComponent = withLayout(layoutType, Component);
-        render(<WrappedComponent />);
+        renderWithRouter(<WrappedComponent />);
 
         expect(screen.getByText('Content')).toBeTruthy();
+        // Cleans up the screen so the multiple renders are removed.
+        cleanup();
       });
     });
   });
