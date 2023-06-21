@@ -1,7 +1,22 @@
+@use '../../assets/stylesheets/text-styles.scss' as *;
+
 .container {
-  background-color: #fafafa;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.title {
-  font-weight: bold;
+.header {
+  @extend .h1;
+
+  margin: 0;
+  text-align: center;
+}
+
+.subheader {
+  @extend .text-large-regular;
+
+  margin-top: 20px;
+  text-align: center;
 }

@@ -41,7 +41,7 @@
 // Text
 @each $text, $properties in $text {
   @each $weight-name, $font-weight in $font-weights {
-    %text-#{$text}-#{$weight-name} {
+    .text-#{$text}-#{$weight-name} {
       font-size: list.nth(map.get($properties, 'mobile'), 1);
       line-height: list.nth(map.get($properties, 'mobile'), 2);
       color: list.nth(map.get($properties, 'mobile'), 3);
@@ -50,7 +50,7 @@
     }
 
     @include minWidth('md') {
-      %text-#{$text}-#{$weight-name} {
+      .text-#{$text}-#{$weight-name} {
         font-size: list.nth(map.get($properties, 'web'), 1);
         line-height: list.nth(map.get($properties, 'web'), 2);
         text-transform: list.nth(map.get($properties, 'web'), 4);
