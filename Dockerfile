@@ -1,4 +1,4 @@
-FROM node:18.15.0
+FROM node:20.8.1
 
 RUN npm i -g npm@9.6.2
 
@@ -8,7 +8,7 @@ WORKDIR /code
 
 COPY --chown=node:node package*.json ./
 
-RUN npm install
+RUN npm install --engine-strict
 
 USER node
 
