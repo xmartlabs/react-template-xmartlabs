@@ -1,6 +1,6 @@
 x-common:
   &common
-  image: 'node:18.15.0'
+  image: 'node:20.8.1'
   environment:
     - VITE_API_BASE_URL=http://dummy-server
 
@@ -8,7 +8,7 @@ pipeline:
   setup:
     <<: *common
     commands:
-      - npm ci --prefer-offline
+      - npm ci --prefer-offline --engine-strict
   js-lint:
     <<: *common
     group: fe-build

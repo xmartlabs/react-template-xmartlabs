@@ -6,6 +6,10 @@
     "type": "git",
     "url": "git+https://github.com/xmartlabs/xmartlabs-react-template.git"
   },
+  "engines": {
+    "node": "20.8.1",
+    "npm": "10.1.0"
+  },
   "keywords": [
     "vite",
     "react"
