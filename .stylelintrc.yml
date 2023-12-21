@@ -1,5 +1,6 @@
 extends:
   - stylelint-config-standard-scss
+  - stylelint-config-prettier
 rules:
   # On default, Stylelint uses kebab but since most of our classes are camel case due to
   # CSS Modules, we redefine the patterns here.

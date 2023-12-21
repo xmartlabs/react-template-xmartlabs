@@ -9,6 +9,11 @@ pipeline:
     <<: *common
     commands:
       - npm ci --prefer-offline --engine-strict
+  js-prettier:
+    <<: *common
+    group: fe-build
+    commands:
+      - CI=true npm run prettier:check
   js-lint:
     <<: *common
     group: fe-build

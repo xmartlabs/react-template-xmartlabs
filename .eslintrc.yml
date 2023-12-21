@@ -3,6 +3,7 @@
 extends:
   - airbnb
   - airbnb-typescript
+  - prettier
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2018
