@@ -1,18 +1,18 @@
-import React from 'react';
-import { Footer } from 'common/footer';
-import { Navbar } from 'common/navbar';
-import styles from './layout.module.scss';
+import React from "react";
+import { Footer } from "common/footer";
+import { Navbar } from "common/navbar";
+import styles from "./layout.module.scss";
 
 enum LayoutType {
   // Add more layout types here
-  Default = 'Default',
-  NavAndFooter = 'NavAndFooter',
-  Nav = 'Nav',
+  Default = "Default",
+  NavAndFooter = "NavAndFooter",
+  Nav = "Nav",
 }
 
 type LayoutProps = {
-  children: React.ReactNode,
-  layoutType: LayoutType,
+  children: React.ReactNode;
+  layoutType: LayoutType;
 };
 
 const Layout = ({ layoutType, children }: LayoutProps): JSX.Element | null => {

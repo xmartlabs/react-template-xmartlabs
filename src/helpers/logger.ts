@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { constants } from 'config/constants';
+import { constants } from "config/constants";
 
 /*
   These adapters must implement these methods:
@@ -20,9 +20,9 @@ import { constants } from 'config/constants';
 /* eslint-disable class-methods-use-this */
 
 interface LoggerAdapter {
-  log(...messages: any[]): void,
-  warn(...messages: any[]): void,
-  error(error: Error): void,
+  log(...messages: any[]): void;
+  warn(...messages: any[]): void;
+  error(error: Error): void;
 }
 
 // TODO: implement this adapter

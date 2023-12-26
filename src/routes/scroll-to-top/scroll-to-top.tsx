@@ -1,14 +1,13 @@
-import { useRef, useEffect } from 'react';
-import type { Location } from 'react-router';
-import { useLocation } from 'react-router-dom';
+import { useRef, useEffect } from "react";
+import type { Location } from "react-router";
+import { useLocation } from "react-router-dom";
 
 interface ScrollToTopProps {
-  children: JSX.Element,
+  children: JSX.Element;
 }
 
-const urlFromLocation = (location?: Location) => (
-  location ? `${location.pathname}${location.search}` : ''
-);
+const urlFromLocation = (location?: Location) =>
+  location ? `${location.pathname}${location.search}` : "";
 
 /*
   This component is useful to trigger a scroll to the top of

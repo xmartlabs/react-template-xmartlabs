@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { getRouteFor } from '../../routes/route-helpers';
-import type { Params, RouteName } from '../../routes/routes';
+import React from "react";
+import { Link } from "react-router-dom";
+import { getRouteFor } from "../../routes/route-helpers";
+import type { Params, RouteName } from "../../routes/routes";
 
 /*
   This component is a wrapper for linking across and inside apps.
@@ -15,36 +15,36 @@ import type { Params, RouteName } from '../../routes/routes';
 
 // Extract pathParams from the routeName
 type AppLinkProps<R extends RouteName> = {
-  children: React.ReactNode,
-  className?: string,
-  pathParams?: Params,
-  queryParams?: Params,
-  routeName: R,
-  targetBlank?: boolean,
+  children: React.ReactNode;
+  className?: string;
+  pathParams?: Params;
+  queryParams?: Params;
+  routeName: R;
+  targetBlank?: boolean;
 };
 
 const defaultProps = {
-  className: '',
+  className: "",
   pathParams: {},
   queryParams: {},
   targetBlank: false,
 };
 
 const AppLink = <R extends RouteName>(props: AppLinkProps<R>) => {
-  const routePath = getRouteFor(props.routeName, props.pathParams, props.queryParams);
+  const routePath = getRouteFor(
+    props.routeName,
+    props.pathParams,
+    props.queryParams,
+  );
   let targetBlankProps = {};
   if (props.targetBlank) {
     targetBlankProps = {
-      target: '_blank',
-      rel: 'noopener noreferrer',
+      target: "_blank",
+      rel: "noopener noreferrer",
     };
   }
   return (
-    <Link
-      className={props.className}
-      to={routePath}
-      {...targetBlankProps}
-    >
+    <Link className={props.className} to={routePath} {...targetBlankProps}>
       {props.children}
     </Link>
   );

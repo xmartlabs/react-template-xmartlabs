@@ -10,7 +10,6 @@
 ![axios version](https://img.shields.io/badge/axios-0.21.4-brightgreen)
 ![eslint version](https://img.shields.io/badge/eslint-8.10.0-brightgreen)
 
-
 ## Contributing to this Boilerplate
 
 Make sure you have the appropriate version of Node (20.8.1) and NPM (10.1.0) installed.
@@ -77,18 +76,18 @@ And that's it! now you are ready to build on top, the commands to start, test an
 
 The `src` directory has the following structure:
 
-* `assets`: This directory contains all global assets. This includes images and stylesheets used in multiple components.
-* `common`: React components used across multiple pages of the SPA.
-* `config`: Global app configuration files go here (e.g. a constants file).
-* `helpers`: Javascript files that provide helper functions to the app. These are not React components.
-* `hocs`: Higher Order Components are stored here.
-* `hooks`: directory for generic React hooks that can be reused across components.
-* `networking`: Includes all code related to networking.
-  * `controllers`: All controllers of the app go here.
-  * `serializers`: All serializers of the app go here.
-  * `types`: All information regarding typing of networking data.
-* `pages`: React components that are entrypoints for a page of the SPA.
-* `routes`: All configuration related to routing of the pages goes here.
+- `assets`: This directory contains all global assets. This includes images and stylesheets used in multiple components.
+- `common`: React components used across multiple pages of the SPA.
+- `config`: Global app configuration files go here (e.g. a constants file).
+- `helpers`: Javascript files that provide helper functions to the app. These are not React components.
+- `hocs`: Higher Order Components are stored here.
+- `hooks`: directory for generic React hooks that can be reused across components.
+- `networking`: Includes all code related to networking.
+  - `controllers`: All controllers of the app go here.
+  - `serializers`: All serializers of the app go here.
+  - `types`: All information regarding typing of networking data.
+- `pages`: React components that are entrypoints for a page of the SPA.
+- `routes`: All configuration related to routing of the pages goes here.
 
 ## Routing
 
@@ -100,17 +99,17 @@ Our main objective is to have routes declared centrally and reused across the ap
 
 Some helpers have been defined, such as `AppLink` and `AppRedirect`. These are wrappers of the typical `Link` and `Redirect` of React Router. The advantage of these helpers is that they provide a different props API. Instead of having a `to` prop where you just pass the exact path and query string, they accept three different props:
 
-* `routeName`: The name of the target route. Obtained from the routes file as detailed above.
-* `pathParams`: A map of path params. Examples below.
-* `queryParams`: A map of query params. Examples below.
+- `routeName`: The name of the target route. Obtained from the routes file as detailed above.
+- `pathParams`: A map of path params. Examples below.
+- `queryParams`: A map of query params. Examples below.
 
 It is highly encouraged that you use these helpers instead of the native ones of React Router. If you need more functionality, implement it on the helpers directly. Another useful helper is the `useGoToPage` hook, which is a function that receives the same parameters. This hook replaces usage of the `useNavigate` hook.
 
 ### Creating a Route
 
-* Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
-* Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path and any other configuration of the route.
-* Add the name and related component to the `RouteComponent` dictionary on `src/routes/route-component.ts`.
+- Create a new page component on the `pages` directory. This component will serve as an entrypoint to the page.
+- Add a name for the new route on `src/routes/routes.ts`. Then, on the same file, add an entry to the routes object specifying the path and any other configuration of the route.
+- Add the name and related component to the `RouteComponent` dictionary on `src/routes/route-component.ts`.
 
 And that's it. If you defined the path correctly you should be able to access the component on that route. There are already examples on all of these files, so you should be able to follow them.
 
@@ -143,12 +142,10 @@ const MyComponent = () => {
   const navigate = () => {
     // Assume RouteName.UserDetail equals '/users/:id'
     // Navigates to `/users/foo?bar=baz`
-    goToPage(RouteName.UserDetail, { id: 'foo' }, { bar: 'baz' });
-  }
+    goToPage(RouteName.UserDetail, { id: "foo" }, { bar: "baz" });
+  };
 
-  return (
-    <button onClick={navigate}>Navigate!</button>
-  )
+  return <button onClick={navigate}>Navigate!</button>;
 };
 ```
 
@@ -200,8 +197,8 @@ This is a very compact section that explains networking. For a more in-depth exp
 
 That's why this project implements a particular networking pattern that involves three distinct elements:
 
-* Controllers: handle the specific networking calls needed to fetch data or modify the state of the system on the backend.
-* Serializers: receive fresh data from the controller and transform it to remove unnecessary data, rename fields and prepare it to be used by the application.
+- Controllers: handle the specific networking calls needed to fetch data or modify the state of the system on the backend.
+- Serializers: receive fresh data from the controller and transform it to remove unnecessary data, rename fields and prepare it to be used by the application.
 
 ### Controllers
 
@@ -209,9 +206,9 @@ All networking calls must be made in controllers. They are in charge of knowing 
 
 ```ts
 // src/networking/controllers/example-controller.ts
-import { ExampleSerializer } from 'networking/serializers/example-serializer';
-import { ApiService } from 'networking/api-service';
-import { API_ROUTES } from 'networking/api-routes';
+import { ExampleSerializer } from "networking/serializers/example-serializer";
+import { ApiService } from "networking/api-service";
+import { API_ROUTES } from "networking/api-routes";
 
 class ExampleController {
   static async getExamples() {
@@ -232,7 +229,7 @@ export { ExampleController };
 
 This controller has two methods: `getExamples` and `createExamples`. The first method attempts to get a list of examples from the backend. Once the data arrives the controller will attempt to deserialize the data via the `ExampleSerializer` and then create instances of `Example` from each.
 
-The second method illustrates how we would go about *sending* data to the backend. In this case we do the inverse process as before: given an instance of `Example` the controller will attempt to serialize (as opposed to deserialize) it and send it as payload.
+The second method illustrates how we would go about _sending_ data to the backend. In this case we do the inverse process as before: given an instance of `Example` the controller will attempt to serialize (as opposed to deserialize) it and send it as payload.
 
 Let's look at how exactly serializers work.
 
@@ -245,14 +242,14 @@ The advantage of this is that you can redefine the fields of the data and remove
 ```ts
 // src/networking/serializers/example-serializer.ts
 class ExampleSerializer {
-  static deSerialize(data: RawExample) : Example {
+  static deSerialize(data: RawExample): Example {
     return {
       foo: data.Foobaz,
       bar: data.Barbaz,
     };
   }
 
-  static serialize(example: Example) : RawExample {
+  static serialize(example: Example): RawExample {
     return {
       Foobaz: example.foo,
       Barbaz: example.bar,
@@ -272,13 +269,13 @@ When working with Typescript it's best to have specific types for everything. In
 ```ts
 // src/networking/types/example.d.ts
 type RawExample = {
-  Foobaz: string,
-  Barbaz: number,
+  Foobaz: string;
+  Barbaz: number;
 };
 
 type SerializedExample = {
-  foo: string,
-  bar: number,
+  foo: string;
+  bar: number;
 };
 ```
 
@@ -294,16 +291,13 @@ Components will probably need CSS that is local to them. If you need to do this 
 
 ```tsx
 // src/components/button/button.tsx
-import React from 'react';
+import React from "react";
 
-import styles from './button.module.scss';
+import styles from "./button.module.scss";
 
 const Button = () => (
   <button className={styles.container}>
-    This is a
-    <span className={styles.highlight}>
-      button!
-    </span>
+    This is a<span className={styles.highlight}>button!</span>
   </button>
 );
 
@@ -327,14 +321,14 @@ Our PostCSS plugin will mangle the names of the classes inside any module (make 
 
 Typically when using Sass you'll probably have global stylesheets that can be imported and reused across other Sass files. Global styles in this project are stored on `src/assets/stylesheets` directory. There you'll find:
 
-* `base-styles.scss`: file that sets the default styles for elements. Helps normalize styles across the whole page. Try to keep these as limited as possible, avoid over-styling elements.
-* `breakpoints.scss`: breakpoint-related file. Exports container classes and some other magic. (More on this on following sections)
-* `colors.scss`: compilation of all color variables used in the project.
-* `fonts.scss`: font-face configurations of all fonts used on the project. Not needed unless you're using locally-stored fonts.
-* `global-styles.module.scss`: global module that exports conflicting classes (more on this below).
-* `mixins.scss`: file that includes all mixins used on the project.
-* `text-styles.scss`: includes all text-style classes used on the project. Typically used along with design systems (more on this below).
-* `variables.scss`: generic variables like sizes, paddings, z-indexes and such.
+- `base-styles.scss`: file that sets the default styles for elements. Helps normalize styles across the whole page. Try to keep these as limited as possible, avoid over-styling elements.
+- `breakpoints.scss`: breakpoint-related file. Exports container classes and some other magic. (More on this on following sections)
+- `colors.scss`: compilation of all color variables used in the project.
+- `fonts.scss`: font-face configurations of all fonts used on the project. Not needed unless you're using locally-stored fonts.
+- `global-styles.module.scss`: global module that exports conflicting classes (more on this below).
+- `mixins.scss`: file that includes all mixins used on the project.
+- `text-styles.scss`: includes all text-style classes used on the project. Typically used along with design systems (more on this below).
+- `variables.scss`: generic variables like sizes, paddings, z-indexes and such.
 
 ### Breakpoints
 
@@ -385,7 +379,7 @@ It's important to know that the Sass transpiler runs before the modules are inte
 
 ```scss
 /* my-module.module.scss */
-@import 'path/to/a/file.scss';
+@import "path/to/a/file.scss";
 
 .container {
   @extend .generic;
@@ -407,14 +401,14 @@ Due to how modules work, each time we import that generic file a new set of clas
 Want to have some generic classes to use on components? Import the file from the component itself and not from the Sass module:
 
 ```tsx
-import React from 'react';
+import React from "react";
 
-import myLocalModule from './my-component.module.scss';
-import myGlobalModule from '../../assets/stylesheets/global-module.module.scss';
+import myLocalModule from "./my-component.module.scss";
+import myGlobalModule from "../../assets/stylesheets/global-module.module.scss";
 
 const MyComponent = () => (
-  <div className={[myLocalModule.container, myGlobalModule.generic].join(' ')}>
-    { /* More code here */ }
+  <div className={[myLocalModule.container, myGlobalModule.generic].join(" ")}>
+    {/* More code here */}
   </div>
 );
 

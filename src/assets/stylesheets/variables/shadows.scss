@@ -1,4 +1,4 @@
-@use '../colors' as *;
+@use "../colors" as *;
 
 // Shadows
 // 10: (0px 6px 8px -6px, 0.24),
@@ -9,10 +9,22 @@
 // Shadow Name
 // ------------------------------------
 $shadows: (
-  10: (0 6px 8px -6px, 0.24),
-  20: (0 10px 18px -10px, 0.3),
-  30: (0 10px 25px -6px, 0.24),
-  40: (0 10px 25px -6px, 0.4),
+  10: (
+    0 6px 8px -6px,
+    0.24,
+  ),
+  20: (
+    0 10px 18px -10px,
+    0.3,
+  ),
+  30: (
+    0 10px 25px -6px,
+    0.24,
+  ),
+  40: (
+    0 10px 25px -6px,
+    0.4,
+  ),
 );
 $shadow-colors: (
   primary: $primary-color-50,

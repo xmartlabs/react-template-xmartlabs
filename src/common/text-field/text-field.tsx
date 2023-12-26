@@ -1,11 +1,11 @@
-import React, { HTMLInputTypeAttribute, useRef } from 'react';
-import { classnames } from 'helpers/utils';
-import styles from './text-field.module.scss';
+import React, { HTMLInputTypeAttribute, useRef } from "react";
+import { classnames } from "helpers/utils";
+import styles from "./text-field.module.scss";
 
 export enum TextFieldStatus {
-  default = 'default',
-  error = 'error',
-  success = 'success',
+  default = "default",
+  error = "error",
+  success = "success",
 }
 
 export interface TextFieldProps {
@@ -38,7 +38,7 @@ export const TextField = ({
   placeholder,
   rightIcon,
   status = TextFieldStatus.default,
-  type = 'text',
+  type = "text",
   value,
 }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -50,12 +50,10 @@ export const TextField = ({
   const HelperIcon = helperIcon;
   return (
     <div>
-      <label className={styles.label} htmlFor={name}>{label}</label>
-      <div
-        className={
-          classnames(styles.inputContainer, className || '')
-        }
-      >
+      <label className={styles.label} htmlFor={name}>
+        {label}
+      </label>
+      <div className={classnames(styles.inputContainer, className || "")}>
         {!!LeftIcon && (
           <button
             type="button"
@@ -76,7 +74,12 @@ export const TextField = ({
         )}
         <input
           aria-label={name}
-          className={classnames(styles.inputStyle, styles[status], LeftIcon ? styles.withPaddingLeft : '', RightIcon ? styles.withPaddingRight : '')}
+          className={classnames(
+            styles.inputStyle,
+            styles[status],
+            LeftIcon ? styles.withPaddingLeft : "",
+            RightIcon ? styles.withPaddingRight : "",
+          )}
           data-testid="input"
           disabled={disabled}
           id={name}
@@ -91,9 +94,9 @@ export const TextField = ({
       {helperText && (
         <div className={classnames(styles.helperText, styles[status])}>
           {HelperIcon && (
-          <div className={classnames(styles.helperIcon, styles[status])}>
-            <HelperIcon data-testid="helper-icon" />
-          </div>
+            <div className={classnames(styles.helperIcon, styles[status])}>
+              <HelperIcon data-testid="helper-icon" />
+            </div>
           )}
           <span>{helperText}</span>
         </div>

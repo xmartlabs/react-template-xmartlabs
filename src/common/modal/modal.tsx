@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { classnames } from 'helpers/utils';
-import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
-import modalStyles from './modal.module.scss';
+import { useEffect } from "react";
+import ReactDOM from "react-dom";
+import { classnames } from "helpers/utils";
+import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
+import modalStyles from "./modal.module.scss";
 
 export enum ModalSizes {
-  small = 'small',
-  medium = 'medium',
-  big = 'big',
-  unresticted = 'unresticted',
+  small = "small",
+  medium = "medium",
+  big = "big",
+  unresticted = "unresticted",
 }
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  size: ModalSizes
+  size: ModalSizes;
   isOpen: boolean;
   onClose: () => void;
   hideCloseButton?: boolean;
@@ -21,18 +21,24 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Modal = ({
-  size, hideCloseButton = false, children, isOpen, onClose, className, ...props
+  size,
+  hideCloseButton = false,
+  children,
+  isOpen,
+  onClose,
+  className,
+  ...props
 }: ModalProps) => {
   useEffect(() => {
     const escFunction = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         onClose();
       }
     };
-    document.addEventListener('keydown', escFunction);
+    document.addEventListener("keydown", escFunction);
 
     return () => {
-      document.removeEventListener('keydown', escFunction);
+      document.removeEventListener("keydown", escFunction);
     };
   }, []);
 
@@ -43,17 +49,25 @@ export const Modal = ({
       <div
         role="dialog"
         aria-modal="true"
-        className={classnames(modalStyles.modal, modalStyles[`modal-${size}`], className || '')}
+        className={classnames(
+          modalStyles.modal,
+          modalStyles[`modal-${size}`],
+          className || "",
+        )}
         {...props}
       >
         {!hideCloseButton && (
-          <button className={modalStyles.closeButton} type="button" onClick={onClose}>
+          <button
+            className={modalStyles.closeButton}
+            type="button"
+            onClick={onClose}
+          >
             <CloseSVG aria-label="Close" />
           </button>
         )}
         {children}
       </div>
     </div>,
-    document.getElementById('modal')!,
+    document.getElementById("modal")!,
   );
 };

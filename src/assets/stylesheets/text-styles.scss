@@ -1,8 +1,8 @@
-@use 'sass:list';
-@use 'sass:map';
-@use 'colors' as *;
-@use 'mixins' as *;
-@use 'variables' as *;
+@use "sass:list";
+@use "sass:map";
+@use "colors" as *;
+@use "mixins" as *;
+@use "variables" as *;
 
 /*
   When using design systems it is a good practice to match
@@ -26,14 +26,14 @@
   .#{$heading} {
     color: $text-neutral-50;
     font-weight: bold;
-    font-size: list.nth(map.get($properties, 'mobile'), 1);
-    line-height: list.nth(map.get($properties, 'mobile'), 2);
+    font-size: list.nth(map.get($properties, "mobile"), 1);
+    line-height: list.nth(map.get($properties, "mobile"), 2);
   }
 
-  @include minWidth('md') {
+  @include minWidth("md") {
     .#{$heading} {
-      font-size: list.nth(map.get($properties, 'web'), 1);
-      line-height: list.nth(map.get($properties, 'web'), 2);
+      font-size: list.nth(map.get($properties, "web"), 1);
+      line-height: list.nth(map.get($properties, "web"), 2);
     }
   }
 }
@@ -42,18 +42,18 @@
 @each $text, $properties in $text {
   @each $weight-name, $font-weight in $font-weights {
     .text-#{$text}-#{$weight-name} {
-      font-size: list.nth(map.get($properties, 'mobile'), 1);
-      line-height: list.nth(map.get($properties, 'mobile'), 2);
-      color: list.nth(map.get($properties, 'mobile'), 3);
-      text-transform: list.nth(map.get($properties, 'mobile'), 4);
+      font-size: list.nth(map.get($properties, "mobile"), 1);
+      line-height: list.nth(map.get($properties, "mobile"), 2);
+      color: list.nth(map.get($properties, "mobile"), 3);
+      text-transform: list.nth(map.get($properties, "mobile"), 4);
       font-weight: $font-weight;
     }
 
-    @include minWidth('md') {
+    @include minWidth("md") {
       .text-#{$text}-#{$weight-name} {
-        font-size: list.nth(map.get($properties, 'web'), 1);
-        line-height: list.nth(map.get($properties, 'web'), 2);
-        text-transform: list.nth(map.get($properties, 'web'), 4);
+        font-size: list.nth(map.get($properties, "web"), 1);
+        line-height: list.nth(map.get($properties, "web"), 2);
+        text-transform: list.nth(map.get($properties, "web"), 4);
       }
     }
   }

@@ -1,10 +1,10 @@
-import { classnames } from 'helpers/utils';
-import styles from './text-area.module.scss';
+import { classnames } from "helpers/utils";
+import styles from "./text-area.module.scss";
 
 export enum TextAreaStatus {
-  default = 'default',
-  error = 'error',
-  success = 'success',
+  default = "default",
+  error = "error",
+  success = "success",
 }
 
 export interface TextFieldProps {
@@ -22,7 +22,7 @@ export interface TextFieldProps {
   minLength?: number;
   helperText?: string;
   helperIcon?: React.FunctionComponent<
-  React.SVGProps<SVGSVGElement> & { title?: string | undefined }
+    React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
   className?: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -49,12 +49,10 @@ export const TextArea = ({
   const HelperIcon = helperIcon;
   return (
     <div>
-      <label className={styles.label} htmlFor={name}>{label}</label>
-      <div
-        className={
-          classnames(styles.inputContainer, className || '')
-        }
-      >
+      <label className={styles.label} htmlFor={name}>
+        {label}
+      </label>
+      <div className={classnames(styles.inputContainer, className || "")}>
         <textarea
           required={required}
           id={name}
@@ -75,7 +73,12 @@ export const TextArea = ({
       <div className={styles.bottomMessage}>
         {helperText && (
           <div className={classnames(styles.helperText, styles[status])}>
-            {HelperIcon && <HelperIcon data-testid="helper-icon" className={classnames(styles.helperIcon, styles[status])} />}
+            {HelperIcon && (
+              <HelperIcon
+                data-testid="helper-icon"
+                className={classnames(styles.helperIcon, styles[status])}
+              />
+            )}
             {helperText && <span>{helperText}</span>}
           </div>
         )}

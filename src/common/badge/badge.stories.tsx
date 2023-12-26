@@ -1,22 +1,22 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Avatar } from 'common/avatar';
-import { Badge } from './badge';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Avatar } from "common/avatar";
+import { Badge } from "./badge";
 
 export default {
-  title: 'Common/Badge',
+  title: "Common/Badge",
   component: Badge,
   args: {
-    children: 'Badge',
+    children: "Badge",
     closeable: false,
-    bgColor: '#FAFCFD',
-    color: '#1D1616',
-    closeIconBgColor: '#CCCCCC',
-    closeIconColor: '#FFFFFF',
+    bgColor: "#FAFCFD",
+    color: "#1D1616",
+    closeIconBgColor: "#CCCCCC",
+    closeIconColor: "#FFFFFF",
   },
   parameters: {
     backgrounds: {
-      default: 'dark',
+      default: "dark",
     },
   },
 } as ComponentMeta<typeof Badge>;
@@ -44,14 +44,14 @@ WithLeftElementAndCloseable.args = {
 export const WithCustomCloseIcon = Template.bind({});
 WithCustomCloseIcon.args = {
   closeable: true,
-  closeIcon: 'X',
+  closeIcon: "X",
 };
 
 export const WithCustomColors = Template.bind({});
 WithCustomColors.args = {
   closeable: true,
-  bgColor: '#FF0000',
-  color: '#FFFFFF',
-  closeIconBgColor: '#000000',
-  closeIconColor: '#FFFFFF',
+  bgColor: "#FF0000",
+  color: "#FFFFFF",
+  closeIconBgColor: "#000000",
+  closeIconColor: "#FFFFFF",
 };

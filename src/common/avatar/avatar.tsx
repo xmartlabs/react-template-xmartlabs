@@ -1,9 +1,9 @@
 /* eslint-disable react/require-default-props */
-import React, { useEffect, useState } from 'react';
-import { classnames } from 'helpers/utils';
-import { Sizes } from 'common/types';
-import avatarStyles from './avatar.module.scss';
-import { ReactComponent as AvatarSVG } from './assets/user.svg';
+import React, { useEffect, useState } from "react";
+import { classnames } from "helpers/utils";
+import { Sizes } from "common/types";
+import avatarStyles from "./avatar.module.scss";
+import { ReactComponent as AvatarSVG } from "./assets/user.svg";
 
 type ImageProps = {
   crossOrigin?: string;
@@ -12,7 +12,10 @@ type ImageProps = {
   srcSet?: string;
 };
 const useLoaded = ({
-  crossOrigin, referrerPolicy, src, srcSet,
+  crossOrigin,
+  referrerPolicy,
+  src,
+  srcSet,
 }: ImageProps) => {
   const [loaded, setLoaded] = useState({
     loaded: false,
@@ -51,8 +54,8 @@ const useLoaded = ({
     };
 
     image.crossOrigin = crossOrigin ?? null;
-    image.referrerPolicy = referrerPolicy ?? '';
-    image.src = src ?? '';
+    image.referrerPolicy = referrerPolicy ?? "";
+    image.src = src ?? "";
 
     if (srcSet) {
       image.srcset = srcSet;
@@ -72,58 +75,75 @@ type AvatarProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   iconComponent?: React.ReactNode;
 };
 
-export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(({
-  crossOrigin, referrerPolicy, src, srcSet, alt, bgColor = '#EE1A64', color = '#FFF', size = 'm', iconComponent, ...props
-}, ref) => {
-  const loaded = useLoaded({
-    crossOrigin, referrerPolicy, src, srcSet,
-  });
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && !loaded.error;
+export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
+  (
+    {
+      crossOrigin,
+      referrerPolicy,
+      src,
+      srcSet,
+      alt,
+      bgColor = "#EE1A64",
+      color = "#FFF",
+      size = "m",
+      iconComponent,
+      ...props
+    },
+    ref,
+  ) => {
+    const loaded = useLoaded({
+      crossOrigin,
+      referrerPolicy,
+      src,
+      srcSet,
+    });
+    const hasImg = src || srcSet;
+    const hasImgNotFailing = hasImg && !loaded.error;
 
-  let children = null;
+    let children = null;
 
-  if (hasImgNotFailing) {
-    children = (
-      <img
-        src={src}
-        srcSet={srcSet}
-        alt={alt}
-        crossOrigin={crossOrigin}
-        referrerPolicy={referrerPolicy}
-        {...props}
-      />
-    );
-  } else if (props.children !== undefined) {
-    children = props.children;
-  } else if (hasImg && alt) {
-    children = alt[0].toUpperCase();
-  } else {
-    children = <AvatarSVG stroke={color} />;
-  }
+    if (hasImgNotFailing) {
+      children = (
+        <img
+          src={src}
+          srcSet={srcSet}
+          alt={alt}
+          crossOrigin={crossOrigin}
+          referrerPolicy={referrerPolicy}
+          {...props}
+        />
+      );
+    } else if (props.children !== undefined) {
+      children = props.children;
+    } else if (hasImg && alt) {
+      children = alt[0].toUpperCase();
+    } else {
+      children = <AvatarSVG stroke={color} />;
+    }
 
-  return (
-    <div className={avatarStyles.avatarWrapper}>
-      <figure
-        ref={ref}
-        className={classnames(
-          avatarStyles.avatar,
-          avatarStyles[`avatar-${size}`],
-        )}
-        style={{ backgroundColor: bgColor, color }}
-      >
-        {children}
-      </figure>
-      {iconComponent ? (
-        <div
+    return (
+      <div className={avatarStyles.avatarWrapper}>
+        <figure
+          ref={ref}
           className={classnames(
-            avatarStyles.avatarIcon,
-            avatarStyles[`avatarIcon-${size}`],
+            avatarStyles.avatar,
+            avatarStyles[`avatar-${size}`],
           )}
+          style={{ backgroundColor: bgColor, color }}
         >
-          {iconComponent}
-        </div>
-      ) : null}
-    </div>
-  );
-});
+          {children}
+        </figure>
+        {iconComponent ? (
+          <div
+            className={classnames(
+              avatarStyles.avatarIcon,
+              avatarStyles[`avatarIcon-${size}`],
+            )}
+          >
+            {iconComponent}
+          </div>
+        ) : null}
+      </div>
+    );
+  },
+);

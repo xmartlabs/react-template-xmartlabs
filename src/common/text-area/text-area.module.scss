@@ -1,16 +1,28 @@
-@use 'sass:list';
-@use '../../assets/stylesheets/text-styles.scss';
-@import '../../assets/stylesheets/colors';
+@use "sass:list";
+@use "../../assets/stylesheets/text-styles.scss";
+@import "../../assets/stylesheets/colors";
 
 $input-colors: (
-  default: ($text-neutral-20),
-  error: ($accent-danger-30),
-  success: ($accent-success-30),
+  default: (
+    $text-neutral-20,
+  ),
+  error: (
+    $accent-danger-30,
+  ),
+  success: (
+    $accent-success-30,
+  ),
 );
 $helper-colors: (
-  default: ($text-neutral-30),
-  error: ($accent-danger-30),
-  success: ($accent-success-30),
+  default: (
+    $text-neutral-30,
+  ),
+  error: (
+    $accent-danger-30,
+  ),
+  success: (
+    $accent-success-30,
+  ),
 );
 
 .inputContainer {
@@ -24,7 +36,9 @@ $helper-colors: (
   width: 100%;
   border: 1px solid $text-neutral-20;
   border-radius: 10px;
-  transition: border, color 0.2s ease-in-out;
+  transition:
+    border,
+    color 0.2s ease-in-out;
   background-color: $surface-light-10;
   color: $text-neutral-30;
 

@@ -1,8 +1,6 @@
-import {
-  describe, expect, it, vi,
-} from 'vitest';
-import { ApiError } from './api-error';
-import { ApiService, HttpMethod } from './api-service';
+import { describe, expect, it, vi } from "vitest";
+import { ApiError } from "./api-error";
+import { ApiService, HttpMethod } from "./api-service";
 
 const mockGet = vi.fn();
 const mockPost = vi.fn();
@@ -16,7 +14,7 @@ const mockDictionary = {
   patch: mockPatch,
   delete: mockDelete,
 };
-vi.mock('axios', () => ({
+vi.mock("axios", () => ({
   default: {
     create: () => ({
       get: () => mockGet(),
@@ -28,14 +26,14 @@ vi.mock('axios', () => ({
   },
 }));
 
-describe('ApiService', () => {
+describe("ApiService", () => {
   const sharedExamples = (method: HttpMethod) => {
-    const url = 'domain.com/path/to/resource';
+    const url = "domain.com/path/to/resource";
     const networkError = {
       response: {
         data: {
           code: 1001,
-          message: 'error message',
+          message: "error message",
         },
       },
     };
@@ -47,7 +45,7 @@ describe('ApiService', () => {
       expect(mockDictionary[method]).toHaveBeenCalledTimes(1);
     });
 
-    it('creates an ApiError when a network error is raised', async () => {
+    it("creates an ApiError when a network error is raised", async () => {
       mockDictionary[method].mockRejectedValueOnce(networkError);
       try {
         await setupTest();
@@ -55,7 +53,7 @@ describe('ApiService', () => {
         expect(error).toBeInstanceOf(ApiError);
         return;
       }
-      throw new Error('Error was not caught');
+      throw new Error("Error was not caught");
     });
   };
 

@@ -11,4 +11,3 @@ rules:
   scss/at-extend-no-missing-placeholder: null
   # Options are between lower or upper for function names.
   function-name-case: lower
-  string-quotes: single

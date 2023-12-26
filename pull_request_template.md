@@ -1,12 +1,12 @@
 ## Ticket/Card
 
-* [Ticket name](Link to ticket)
+- [Ticket name](Link to ticket)
 
 ## Type of change
 
-* [ ] Fix
-* [ ] Story
-* [ ] Chore
+- [ ] Fix
+- [ ] Story
+- [ ] Chore
 
 ## Description of the change
 

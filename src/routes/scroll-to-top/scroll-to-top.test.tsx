@@ -1,42 +1,35 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import {
-  describe, expect, it,
-} from 'vitest';
-import {
-  BrowserRouter, Link, Route, Routes,
-} from 'react-router-dom';
-import { mockScrollTo } from 'tests/support/window-mock';
-import { ScrollToTop } from './scroll-to-top';
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { mockScrollTo } from "tests/support/window-mock";
+import { ScrollToTop } from "./scroll-to-top";
 
-describe('ScrollToTop', () => {
-  const setupTest = (children = <p>Children</p>) => (
+describe("ScrollToTop", () => {
+  const setupTest = (children = <p>Children</p>) =>
     render(
       <BrowserRouter>
-        <ScrollToTop>
-          {children}
-        </ScrollToTop>
+        <ScrollToTop>{children}</ScrollToTop>
       </BrowserRouter>,
-    )
-  );
-  describe('when rendering', () => {
-    it('renders correctly', () => {
+    );
+  describe("when rendering", () => {
+    it("renders correctly", () => {
       expect(setupTest).not.toThrow();
     });
 
-    it('renders its children correctly', () => {
+    it("renders its children correctly", () => {
       const children = <p>Other Children</p>;
       setupTest(children);
 
-      expect(() => screen.getByText('Other Children')).not.toThrow();
+      expect(() => screen.getByText("Other Children")).not.toThrow();
     });
 
-    it('does not call window.scrollTo', () => {
+    it("does not call window.scrollTo", () => {
       expect(mockScrollTo).not.toHaveBeenCalled();
     });
   });
 
-  describe('when updating', () => {
-    it('calls window.scrollTo', () => {
+  describe("when updating", () => {
+    it("calls window.scrollTo", () => {
       const MockComponent = () => <div>Mock Component</div>;
       const TestComponent = () => (
         <>
@@ -47,7 +40,7 @@ describe('ScrollToTop', () => {
           </Routes>
         </>
       );
-        // Render ScrollToTop with the test component
+      // Render ScrollToTop with the test component
       const { getByText } = render(
         <BrowserRouter>
           <ScrollToTop>
@@ -56,7 +49,7 @@ describe('ScrollToTop', () => {
         </BrowserRouter>,
       );
       // Simulate a click on the link that triggers a redirect
-      fireEvent.click(getByText('New Page'));
+      fireEvent.click(getByText("New Page"));
 
       // Verify that window has been scrolled to the top
       expect(window.pageYOffset).toBe(0);

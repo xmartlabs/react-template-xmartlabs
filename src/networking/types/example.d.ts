@@ -1,9 +1,9 @@
 type RawExample = {
-  Foobaz: string,
-  Barbaz: number,
+  Foobaz: string;
+  Barbaz: number;
 };
 
 type Example = {
-  foo: string,
-  bar: number,
+  foo: string;
+  bar: number;
 };

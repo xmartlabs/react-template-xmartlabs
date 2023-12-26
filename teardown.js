@@ -1,4 +1,4 @@
-const vi = require('vitest');
+const vi = require("vitest");
 
 module.exports = async () => {
   // Run this code before any tests are executed
