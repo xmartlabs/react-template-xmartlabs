@@ -70,7 +70,9 @@
     "lint": "eslint . --ext .js --ext .jsx --ext .ts --ext .tsx && tsc",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "sass-lint": "stylelint src/\"**/*.scss\""
+    "sass-lint": "stylelint src/\"**/*.scss\"",
+    "prettier:check": "prettier . --check",
+    "prettier:write": "prettier . --write"
   },
   "browserslist": {
     "production": [
@@ -86,11 +88,14 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-testing-library": "^5.10.2",
     "jsdom": "^21.1.1",
-    "postcss": "^8.4.21"
+    "postcss": "^8.4.21",
+    "prettier": "3.1.1",
+    "stylelint-config-prettier": "^9.0.5"
   },
   "vitest": {
     "globalTeardown": "./teardown.js"

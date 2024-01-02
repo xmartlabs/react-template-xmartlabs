@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { createRouter, routes } from 'routes';
-import 'index.scss';
-import { ErrorBoundary } from 'common/error-boundary';
-import { RouterProvider } from 'react-router-dom';
+import { createRouter, routes } from "routes";
+import "index.scss";
+import { ErrorBoundary } from "common/error-boundary";
+import { RouterProvider } from "react-router-dom";
 
 const router = createRouter(routes);
 

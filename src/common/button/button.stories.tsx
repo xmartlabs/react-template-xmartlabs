@@ -1,32 +1,32 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Button } from './button';
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Button } from "./button";
 
 export default {
-  title: 'Common/Button',
+  title: "Common/Button",
   component: Button,
   argTypes: {
     bSize: {
       control: {
-        type: 'select',
+        type: "select",
       },
     },
     bStyle: {
       control: {
-        type: 'select',
+        type: "select",
       },
     },
     bColor: {
       control: {
-        type: 'select',
+        type: "select",
       },
     },
   },
   args: {
-    children: 'Button',
-    bStyle: 'filled',
-    bColor: 'primary',
-    bSize: 'm',
+    children: "Button",
+    bStyle: "filled",
+    bColor: "primary",
+    bSize: "m",
     disabled: false,
   },
 } as ComponentMeta<typeof Button>;
@@ -37,17 +37,17 @@ export const Default = Template.bind({});
 
 export const WithSize = Template.bind({});
 WithSize.args = {
-  bSize: 'xs',
+  bSize: "xs",
 };
 
 export const WithStyle = Template.bind({});
 WithStyle.args = {
-  bStyle: 'stroke',
+  bStyle: "stroke",
 };
 
 export const WithColor = Template.bind({});
 WithColor.args = {
-  bColor: 'secondary',
+  bColor: "secondary",
 };
 
 export const WithIconLeft = Template.bind({});

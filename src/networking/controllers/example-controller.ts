@@ -1,6 +1,6 @@
-import { ExampleSerializer } from 'networking/serializers/example-serializer';
-import { ApiService } from 'networking/api-service';
-import { API_ROUTES } from 'networking/api-routes';
+import { ExampleSerializer } from "networking/serializers/example-serializer";
+import { ApiService } from "networking/api-service";
+import { API_ROUTES } from "networking/api-routes";
 
 /*
   NOTE: this file serves only as an example and is not used.

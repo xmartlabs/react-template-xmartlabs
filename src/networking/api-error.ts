@@ -1,6 +1,6 @@
 enum ErrorCode {
   // Add more error codes here
-  GenericError = '10001',
+  GenericError = "10001",
 }
 
 enum ErrorStatus {

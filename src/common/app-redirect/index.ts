@@ -1,1 +1,1 @@
-export * from './app-redirect';
+export * from "./app-redirect";

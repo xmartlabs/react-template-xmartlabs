@@ -1,18 +1,18 @@
 export type Params = Record<string, string | boolean | number | null>;
 
 export enum RouteName {
-  Home = 'home',
-  About = 'about',
-  Login = 'login',
-  NotFound = 'notFound',
+  Home = "home",
+  About = "about",
+  Login = "login",
+  NotFound = "notFound",
 }
 
 export type Route = {
-  name: RouteName,
-  path: string,
-  exact?: boolean,
-  pathParams?: Record<string, string>,
-  component?: React.ComponentType,
+  name: RouteName;
+  path: string;
+  exact?: boolean;
+  pathParams?: Record<string, string>;
+  component?: React.ComponentType;
 };
 
 const PATH_PARAM_REGEX = /:[^/?]+/gi;
@@ -37,42 +37,40 @@ const setPathParams = (route: Route): Route => {
   const pathParams: Record<string, string> = {};
   pathMatch.forEach((param) => {
     const paramName = param.slice(1);
-    pathParams[paramName] = '';
+    pathParams[paramName] = "";
   });
   newRoute.pathParams = pathParams;
   return newRoute;
 };
 
-export {
-  setPathParams,
-};
+export { setPathParams };
 
 const ROUTES = [
   {
     name: RouteName.Home,
-    path: '/',
+    path: "/",
     exact: true,
   },
   {
     name: RouteName.About,
-    path: '/about',
+    path: "/about",
     exact: true,
   },
   {
     name: RouteName.Login,
-    path: '/login',
+    path: "/login",
     exact: true,
   },
   {
     name: RouteName.NotFound,
-    path: '*',
+    path: "*",
   },
 ] as const;
 
 /*
-* This type is used to extract the type of the route params
-* from the path string.
-*/
+ * This type is used to extract the type of the route params
+ * from the path string.
+ */
 export type RouteParams = {
   [K in RouteName]: Route;
 } & Params;

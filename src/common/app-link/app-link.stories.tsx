@@ -1,14 +1,10 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { RouterProvider } from 'react-router-dom';
-import { AppLink } from 'common/app-link';
-import {
-  RouteName,
-  createRouter,
-  routes,
-} from '../../routes/index';
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { RouterProvider } from "react-router-dom";
+import { AppLink } from "common/app-link";
+import { RouteName, createRouter, routes } from "../../routes/index";
 
 export default {
-  title: 'AppLink',
+  title: "AppLink",
   component: AppLink,
   decorators: [
     (story) => {
@@ -29,7 +25,12 @@ export default {
 } as ComponentMeta<typeof AppLink>;
 
 export const Default: ComponentStory<typeof AppLink> = ({
-  routeName, className, targetBlank, pathParams, queryParams, children,
+  routeName,
+  className,
+  targetBlank,
+  pathParams,
+  queryParams,
+  children,
 }) => (
   <AppLink
     routeName={routeName}
@@ -45,15 +46,15 @@ export const Default: ComponentStory<typeof AppLink> = ({
 Default.argTypes = {
   routeName: {
     control: {
-      type: 'select',
+      type: "select",
       options: RouteName,
     },
   },
 };
 Default.args = {
-  children: 'My Link To Home',
+  children: "My Link To Home",
   routeName: RouteName.Home,
-  className: '',
+  className: "",
   targetBlank: false,
   pathParams: {},
   queryParams: {},

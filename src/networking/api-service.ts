@@ -1,24 +1,24 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
-import { constants } from 'config/constants';
-import { ApiError } from './api-error';
+import { constants } from "config/constants";
+import { ApiError } from "./api-error";
 
 enum HttpMethod {
-  Get = 'get',
-  Post = 'post',
-  Patch = 'patch',
-  Put = 'put',
-  Delete = 'delete',
+  Get = "get",
+  Post = "post",
+  Patch = "patch",
+  Put = "put",
+  Delete = "delete",
 }
 
 type Headers = {
-  [key: string]: string,
+  [key: string]: string;
 };
 
 type ApiServiceConfig = AxiosRequestConfig & {
   body?: {
-    [key: string]: any,
-  },
+    [key: string]: any;
+  };
 };
 
 class ApiServiceClass {
@@ -33,10 +33,17 @@ class ApiServiceClass {
     this.addedHeaders = {};
   }
 
-  async _sendRequest<ReturnType>(method: HttpMethod, url: string, config: ApiServiceConfig = {}) {
+  async _sendRequest<ReturnType>(
+    method: HttpMethod,
+    url: string,
+    config: ApiServiceConfig = {},
+  ) {
     try {
       const updatedConfig = { ...config };
-      updatedConfig.headers = { ...this.addedHeaders, ...(config.headers || {}) };
+      updatedConfig.headers = {
+        ...this.addedHeaders,
+        ...(config.headers || {}),
+      };
       if (method === HttpMethod.Get || method === HttpMethod.Delete) {
         return await this.axios[method]<ReturnType>(url, updatedConfig);
       }
@@ -64,23 +71,38 @@ class ApiServiceClass {
   }
 
   get<ReturnType>(url: string, params = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Get, url, { ...config, params });
+    return this._sendRequest<ReturnType>(HttpMethod.Get, url, {
+      ...config,
+      params,
+    });
   }
 
   post<ReturnType>(url: string, body = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Post, url, { ...config, body });
+    return this._sendRequest<ReturnType>(HttpMethod.Post, url, {
+      ...config,
+      body,
+    });
   }
 
   patch<ReturnType>(url: string, body = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Patch, url, { ...config, body });
+    return this._sendRequest<ReturnType>(HttpMethod.Patch, url, {
+      ...config,
+      body,
+    });
   }
 
   put<ReturnType>(url: string, body = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Put, url, { ...config, body });
+    return this._sendRequest<ReturnType>(HttpMethod.Put, url, {
+      ...config,
+      body,
+    });
   }
 
   delete<ReturnType>(url: string, params = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Delete, url, { ...config, params });
+    return this._sendRequest<ReturnType>(HttpMethod.Delete, url, {
+      ...config,
+      params,
+    });
   }
 }
 

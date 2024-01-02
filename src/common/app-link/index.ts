@@ -1,1 +1,1 @@
-export * from './app-link';
+export * from "./app-link";

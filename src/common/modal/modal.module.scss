@@ -1,5 +1,5 @@
-@use 'sass:list';
-@import '../../assets/stylesheets/colors';
+@use "sass:list";
+@import "../../assets/stylesheets/colors";
 
 .overlay {
   background-color: rgba(0 0 0 / 30%);
@@ -16,9 +16,15 @@
 }
 
 $modal-sizes: (
-  small: (400px),
-  medium: (600px),
-  big: (968px),
+  small: (
+    400px,
+  ),
+  medium: (
+    600px,
+  ),
+  big: (
+    968px,
+  ),
 );
 
 .modal {
