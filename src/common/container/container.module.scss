@@ -1,0 +1,61 @@
+@use "../../assets/stylesheets/mixins" as *;
+@use "../../assets/stylesheets/variables" as *;
+
+@mixin modifyContainer($container-class, $container-width, $padding) {
+  $final-container-width: 100%;
+
+  /*
+    Needed for the lowest breakpoint which doesn't have a lower threshold, so the
+    container has to span the full width.
+  */
+  @if $container-width {
+    $final-container-width: $container-width;
+  }
+
+  .#{$container-class} {
+    width: calc(#{$final-container-width} - #{$padding} * 2);
+  }
+}
+
+@mixin modifyContainerWithMinMax($container-class, $padding, $bp-min, $bp-max) {
+  $query: buildsafemaxminmediaquery($bp-max, $bp-min);
+
+  @media #{$query} {
+    @include modifyContainer($container-class, $bp-min, $padding);
+  }
+}
+
+@mixin setUpContainerSizes($container-class, $padding, $breakpoints) {
+  .#{$container-class} {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+
+  $prev-bp-value: null;
+
+  @for $i from 1 through length($breakpoints) + 1 {
+    $current-bp-value: getsafemapvaluefrompos($breakpoints, $i);
+
+    @include modifyContainerWithMinMax(
+      $container-class,
+      $padding,
+      $current-bp-value,
+      safeSubtraction($prev-bp-value, 1)
+    );
+
+    $prev-bp-value: $current-bp-value;
+  }
+}
+
+$generic-container-padding: 10px;
+
+.baseContainer {
+  box-sizing: content-box;
+  margin: 0 auto;
+}
+
+@include setUpContainerSizes(
+  "baseContainer",
+  $generic-container-padding,
+  $breakpoints
+);
