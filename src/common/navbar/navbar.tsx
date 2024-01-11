@@ -2,11 +2,12 @@ import { RouteName } from "routes/routes";
 import globalStyles from "assets/stylesheets/global-styles.module.scss";
 import { AppLink } from "common/app-link";
 import { Avatar } from "common/avatar";
+import { Container } from "common/container";
 import styles from "./navbar.module.scss";
 
 export const Navbar = () => (
   <div className={styles.container}>
-    <div className={globalStyles.genericContainer}>
+    <Container>
       <div className={styles.internalContainer}>
         <div>
           <AppLink routeName={RouteName.Home}>Logo goes here</AppLink>
@@ -20,6 +21,6 @@ export const Navbar = () => (
           <Avatar size="s" />
         </div>
       </div>
-    </div>
+    </Container>
   </div>
 );

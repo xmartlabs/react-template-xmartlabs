@@ -1,8 +1,8 @@
-import globalStyles from "assets/stylesheets/global-styles.module.scss";
+import { Container } from "common/container";
 import styles from "./footer.module.scss";
 
 export const Footer = () => (
   <div className={styles.container}>
-    <div className={globalStyles.genericContainer}>Footer</div>
+    <Container>Footer</Container>
   </div>
 );
