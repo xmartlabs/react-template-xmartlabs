@@ -2,12 +2,6 @@
 
 - [Ticket name](Link to ticket)
 
-## Type of change
-
-- [ ] Fix
-- [ ] Story
-- [ ] Chore
-
 ## Description of the change
 
 Description here
