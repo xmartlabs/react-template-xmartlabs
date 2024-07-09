@@ -1,61 +1,66 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, afterEach } from "vitest";
 import { ApiError } from "./api-error";
-import { ApiService, HttpMethod } from "./api-service";
+import { ApiService } from "./api-service";
 
-const mockGet = vi.fn();
-const mockPost = vi.fn();
-const mockPut = vi.fn();
-const mockPatch = vi.fn();
-const mockDelete = vi.fn();
-const mockDictionary = {
-  get: mockGet,
-  post: mockPost,
-  put: mockPut,
-  patch: mockPatch,
-  delete: mockDelete,
-};
-vi.mock("axios", () => ({
-  default: {
-    create: () => ({
-      get: () => mockGet(),
-      post: () => mockPost(),
-      put: () => mockPut(),
-      patch: () => mockPatch(),
-      delete: () => mockDelete(),
-    }),
-  },
-}));
+enum Method {
+  get = "get",
+  post = "post",
+  put = "put",
+  patch = "patch",
+  delete = "delete",
+}
+
+const fetchMock = vi.fn();
+vi.stubGlobal("fetch", fetchMock);
+
+afterEach(() => {
+  fetchMock.mockClear();
+});
 
 describe("ApiService", () => {
-  const sharedExamples = (method: HttpMethod) => {
+  const sharedExamples = (method: Method) => {
     const url = "domain.com/path/to/resource";
     const networkError = {
-      response: {
-        data: {
-          code: 1001,
-          message: "error message",
+      ok: false,
+      json: () => ({
+        response: {
+          data: {
+            code: 1001,
+            message: "error message",
+          },
         },
-      },
+      }),
+    };
+    const okResponse = {
+      ok: true,
+      json: () => ({
+        response: {
+          data: {
+            foo: "foo",
+            bar: 10,
+          },
+        },
+      }),
     };
     const setupTest = () => ApiService[method](url);
 
-    it(`calls the '${method}' method of axios`, async () => {
+    it(`calls the '${method}' method`, async () => {
+      fetchMock.mockResolvedValueOnce(okResponse);
       await setupTest();
 
-      expect(mockDictionary[method]).toHaveBeenCalledTimes(1);
+      expect(fetch).toHaveBeenCalledOnce();
     });
 
     it("creates an ApiError when a network error is raised", async () => {
-      mockDictionary[method].mockRejectedValueOnce(networkError);
+      fetchMock.mockResolvedValueOnce(networkError);
       try {
         await setupTest();
+        throw new Error("Error was not caught");
       } catch (error) {
         expect(error).toBeInstanceOf(ApiError);
-        return;
       }
-      throw new Error("Error was not caught");
     });
   };
 
-  Object.values(HttpMethod).forEach(sharedExamples);
+  Object.values(Method).forEach(sharedExamples);
 });
