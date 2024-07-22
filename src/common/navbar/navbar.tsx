@@ -10,11 +10,16 @@ export const Navbar = () => (
     <Container>
       <div className={styles.internalContainer}>
         <div>
-          <AppLink routeName={RouteName.Home}>Logo goes here</AppLink>
+          <AppLink route={{ routeName: RouteName.Home }}>
+            Logo goes here
+          </AppLink>
         </div>
         <div className={styles.rightContainer}>
           <nav>
-            <AppLink className={globalStyles.link} routeName={RouteName.About}>
+            <AppLink
+              className={globalStyles.link}
+              route={{ routeName: RouteName.About }}
+            >
               About
             </AppLink>
           </nav>

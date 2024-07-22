@@ -7,7 +7,7 @@ import { RouteName } from "routes/routes";
 const NotFound = () => (
   <div>
     This page does not exist!
-    <AppLink routeName={RouteName.Home}>Go Home</AppLink>
+    <AppLink route={{ routeName: RouteName.Home }}>Go Home</AppLink>
   </div>
 );
 

@@ -25,37 +25,33 @@ export default {
 } as ComponentMeta<typeof AppLink>;
 
 export const Default: ComponentStory<typeof AppLink> = ({
-  routeName,
   className,
   targetBlank,
-  pathParams,
-  queryParams,
   children,
+  route,
 }) => (
-  <AppLink
-    routeName={routeName}
-    className={className}
-    pathParams={pathParams}
-    queryParams={queryParams}
-    targetBlank={targetBlank}
-  >
+  <AppLink route={route} className={className} targetBlank={targetBlank}>
     {children}
   </AppLink>
 );
 
 Default.argTypes = {
-  routeName: {
-    control: {
-      type: "select",
-      options: RouteName,
+  route: {
+    routeName: {
+      control: {
+        type: "select",
+        options: RouteName,
+      },
     },
   },
 };
 Default.args = {
   children: "My Link To Home",
-  routeName: RouteName.Home,
+  route: {
+    routeName: RouteName.Home,
+    pathParams: {},
+    queryParams: {},
+  },
   className: "",
   targetBlank: false,
-  pathParams: {},
-  queryParams: {},
 };
