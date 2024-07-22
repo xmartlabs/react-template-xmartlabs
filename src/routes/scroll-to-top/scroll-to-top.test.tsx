@@ -52,7 +52,7 @@ describe("ScrollToTop", () => {
       fireEvent.click(getByText("New Page"));
 
       // Verify that window has been scrolled to the top
-      expect(window.pageYOffset).toBe(0);
+      expect(window.scrollY).toBe(0);
 
       // Verify that the new page content is rendered
       expect(mockScrollTo).toHaveBeenCalledTimes(1);

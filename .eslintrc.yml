@@ -4,6 +4,7 @@ extends:
   - airbnb
   - airbnb-typescript
   - prettier
+  - "plugin:deprecation/recommended"
 parser: "@typescript-eslint/parser"
 parserOptions:
   ecmaVersion: 2018
@@ -17,6 +18,7 @@ env:
 plugins:
   - testing-library
   - "@typescript-eslint"
+  - "check-file"
 ignorePatterns:
   - build/**/*
 rules:
@@ -52,6 +54,22 @@ rules:
   react/jsx-props-no-spreading: "off"
   react/button-has-type: "off"
   "@typescript-eslint/type-annotation-spacing": error
+  check-file/filename-naming-convention:
+    - error
+    - "**/*.{jsx,tsx,ts,js,css,sass,svg,jpg,jpeg,png}": "KEBAB_CASE"
+    - ignoreMiddleExtensions: true
+  check-file/folder-naming-convention:
+    - error
+    - "src/**/": "KEBAB_CASE"
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies:
+        - "{vite,vitest}.config.*"
+        - "teardown.js"
+        - "**/vite-env.d.ts"
+        - "**/tests/**"
+        - "**/*.stories.tsx"
+        - "**/*.test.{ts,tsx}"
 # Allows for absolute imports
 settings:
   import/resolver:
