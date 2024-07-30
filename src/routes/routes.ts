@@ -1,18 +1,19 @@
 export type Params = Record<string, string | boolean | number | null>;
 
 export enum RouteName {
-  Home = "home",
-  About = "about",
-  Login = "login",
-  NotFound = "notFound",
+	Home = "home",
+	About = "about",
+	Login = "login",
+	NotFound = "notFound",
+	SignUp = "signUp",
 }
 
 export type Route = {
-  name: RouteName;
-  path: string;
-  exact?: boolean;
-  pathParams?: Record<string, string>;
-  component?: React.ComponentType;
+	name: RouteName;
+	path: string;
+	exact?: boolean;
+	pathParams?: Record<string, string>;
+	component?: React.ComponentType;
 };
 
 const PATH_PARAM_REGEX = /:[^/?]+/gi;
@@ -30,41 +31,45 @@ const PATH_PARAM_REGEX = /:[^/?]+/gi;
     setPathParams({ name: 'product', path: '/product/:id', component: ProductPage })
 */
 const setPathParams = (route: Route): Route => {
-  const newRoute = { ...route };
-  const { path } = newRoute;
-  // Extract the names of the parameters
-  const pathMatch = path.match(PATH_PARAM_REGEX) || [];
-  const pathParams: Record<string, string> = {};
-  pathMatch.forEach((param) => {
-    const paramName = param.slice(1);
-    pathParams[paramName] = "";
-  });
-  newRoute.pathParams = pathParams;
-  return newRoute;
+	const newRoute = { ...route };
+	const { path } = newRoute;
+	// Extract the names of the parameters
+	const pathMatch = path.match(PATH_PARAM_REGEX) || [];
+	const pathParams: Record<string, string> = {};
+	pathMatch.forEach((param) => {
+		const paramName = param.slice(1);
+		pathParams[paramName] = "";
+	});
+	newRoute.pathParams = pathParams;
+	return newRoute;
 };
 
 export { setPathParams };
 
 const ROUTES = [
-  {
-    name: RouteName.Home,
-    path: "/",
-    exact: true,
-  },
-  {
-    name: RouteName.About,
-    path: "/about",
-    exact: true,
-  },
-  {
-    name: RouteName.Login,
-    path: "/login",
-    exact: true,
-  },
-  {
-    name: RouteName.NotFound,
-    path: "*",
-  },
+	{
+		name: RouteName.Home,
+		path: "/",
+		exact: true,
+	},
+	{
+		name: RouteName.About,
+		path: "/about",
+		exact: true,
+	},
+	{
+		name: RouteName.Login,
+		path: "/login",
+		exact: true,
+	},
+	{
+		name: RouteName.NotFound,
+		path: "*",
+	},
+	{
+		name: RouteName.SignUp,
+		path: "/sign-up",
+	},
 ] as const;
 
 /*
@@ -72,7 +77,7 @@ const ROUTES = [
  * from the path string.
  */
 export type RouteParams = {
-  [K in RouteName]: Route;
+	[K in RouteName]: Route;
 } & Params;
 
 export const routes = ROUTES.map(setPathParams);
