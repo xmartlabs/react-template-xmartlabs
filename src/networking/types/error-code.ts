@@ -1,0 +1,6 @@
+export enum ErrorCode {
+  INVALID_SCHEMA = 400_001,
+  INVALID_CREDENTIALS = 400_002,
+
+  UNEXPECTED_ERROR = 500_001,
+}
