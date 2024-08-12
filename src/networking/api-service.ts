@@ -1,108 +1,82 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-
 import { constants } from "config/constants";
 import { ApiError } from "./api-error";
+import { ErrorCode } from "./types/error-code";
 
 enum HttpMethod {
-  Get = "get",
-  Post = "post",
-  Patch = "patch",
-  Put = "put",
-  Delete = "delete",
+  Get = "GET",
+  Post = "POST",
+  Patch = "PATCH",
+  Put = "PUT",
+  Delete = "DELETE",
 }
 
-type Headers = {
-  [key: string]: string;
-};
-
-type ApiServiceConfig = AxiosRequestConfig & {
-  body?: {
-    [key: string]: any;
-  };
-};
-
 class ApiServiceClass {
-  axios: AxiosInstance;
-
-  private addedHeaders: Headers;
+  private addedHeaders: { [key: string]: string };
 
   constructor() {
-    this.axios = axios.create({
-      baseURL: constants.apiBaseURL,
+    this.addedHeaders = {
+      "Content-Type": "application/json",
+    };
+  }
+
+  // NOTE: `data` is of `any` type since it's most likely an instance of `Error` or
+  // data that comes from the backend.
+  static _raiseError(data: any) {
+    throw new ApiError({
+      code: data?.code || ErrorCode.UNEXPECTED_ERROR,
+      status: data?.status,
+      message: data?.message || "An unexpected error has occurred",
     });
-    this.addedHeaders = {};
   }
 
   async _sendRequest<ReturnType>(
     method: HttpMethod,
-    url: string,
-    config: ApiServiceConfig = {},
+    path: string,
+    config: RequestInit = {},
   ) {
+    const updatedConfig = { ...config };
+    updatedConfig.headers = { ...this.addedHeaders, ...(config.headers || {}) };
+    const fullURL = new URL(path, constants.apiBaseURL);
+    const response = await fetch(fullURL, {
+      method,
+      ...updatedConfig,
+    });
+    let data;
     try {
-      const updatedConfig = { ...config };
-      updatedConfig.headers = {
-        ...this.addedHeaders,
-        ...(config.headers || {}),
-      };
-      if (method === HttpMethod.Get || method === HttpMethod.Delete) {
-        return await this.axios[method]<ReturnType>(url, updatedConfig);
-      }
-      const body = updatedConfig.body || {};
-      delete updatedConfig.body;
-      return await this.axios[method]<ReturnType>(url, body, updatedConfig);
-    } catch (error: any) {
-      if (error.response && error.response.data) {
-        throw new ApiError({
-          code: error.response.data.code,
-          message: error.response.data.message,
-          status: error.response.status,
-        });
-      }
-      throw new ApiError({
-        status: null,
-        code: null,
-        message: error.message,
-      });
+      data = (await response.json()) as Promise<{ data: ReturnType }>;
+    } catch (error) {
+      // eslint-disable-next-line no-underscore-dangle
+      ApiServiceClass._raiseError(error);
     }
+    if (!response.ok) {
+      // eslint-disable-next-line no-underscore-dangle
+      ApiServiceClass._raiseError(data);
+    }
+    return data;
   }
 
-  setHeaders(newHeaders: Headers) {
-    Object.assign(this.addedHeaders, newHeaders);
+  setHeaders(newHeaders: { [key: string]: string }) {
+    this.addedHeaders = { ...this.addedHeaders, ...newHeaders };
   }
 
-  get<ReturnType>(url: string, params = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Get, url, {
-      ...config,
-      params,
-    });
+  get<ReturnType>(path: string, config: RequestInit = {}) {
+    return this._sendRequest<ReturnType>(HttpMethod.Get, path, config);
   }
 
-  post<ReturnType>(url: string, body = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Post, url, {
-      ...config,
-      body,
-    });
+  post<ReturnType>(path: string, config: RequestInit = {}) {
+    return this._sendRequest<ReturnType>(HttpMethod.Post, path, config);
   }
 
-  patch<ReturnType>(url: string, body = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Patch, url, {
-      ...config,
-      body,
-    });
+  patch<ReturnType>(path: string, config: RequestInit = {}) {
+    return this._sendRequest<ReturnType>(HttpMethod.Patch, path, config);
   }
 
-  put<ReturnType>(url: string, body = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Put, url, {
-      ...config,
-      body,
-    });
+  put<ReturnType>(path: string, config: RequestInit = {}) {
+    return this._sendRequest<ReturnType>(HttpMethod.Put, path, config);
   }
 
-  delete<ReturnType>(url: string, params = {}, config = {}) {
-    return this._sendRequest<ReturnType>(HttpMethod.Delete, url, {
-      ...config,
-      params,
-    });
+  delete(path: string, config: RequestInit = {}) {
+    return this._sendRequest(HttpMethod.Delete, path, config);
   }
 }
 

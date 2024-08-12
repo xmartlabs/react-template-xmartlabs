@@ -11,13 +11,13 @@ import { API_ROUTES } from "networking/api-routes";
 class ExampleController {
   static async getExamples(): Promise<Example[]> {
     const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    return (response.data || []).map(ExampleSerializer.deSerialize);
+    return (response?.data || []).map<Example>(ExampleSerializer.deSerialize);
   }
 
   static createExample(example: Example) {
     const serializedExample = ExampleSerializer.serialize(example);
-    return ApiService.post(API_ROUTES.EXAMPLE, {
-      example: serializedExample,
+    return ApiService.post<RawExample>(API_ROUTES.EXAMPLE, {
+      body: JSON.stringify(serializedExample),
     });
   }
 }
