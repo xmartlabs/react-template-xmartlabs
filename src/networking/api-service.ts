@@ -43,7 +43,7 @@ class ApiServiceClass {
     });
     let data;
     try {
-      data = (await response.json()) as Promise<{ data: ReturnType }>;
+      data = (await response.json()) as Promise<ReturnType>;
     } catch (error) {
       // eslint-disable-next-line no-underscore-dangle
       ApiServiceClass._raiseError(error);
