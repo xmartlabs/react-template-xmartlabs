@@ -16,11 +16,12 @@ type ClassnameObject = {
   [key: string]: string | boolean | number;
 };
 
-type Classname = ClassnameObject | string;
+type Classname = ClassnameObject | string | undefined;
 
 function classnames(...args: Classname[]): string {
-  if (args.length === 1) {
-    const [firstEntry] = args;
+  const filteredArgs = args.filter(Boolean);
+  if (filteredArgs.length === 1) {
+    const [firstEntry] = filteredArgs;
     if (firstEntry && typeof firstEntry === "object") {
       /* firstEntry's keys whose value is truthy */
       const activeClasses = Object.entries(firstEntry)
@@ -28,12 +29,9 @@ function classnames(...args: Classname[]): string {
         .map(([key]) => key);
       return activeClasses.join(" ");
     }
-    return firstEntry;
+    return firstEntry || "";
   }
-  return args
-    .filter((entry) => !!entry)
-    .map((value) => classnames(value))
-    .join(" ");
+  return filteredArgs.map((value) => classnames(value)).join(" ");
 }
 
 export { classnames };

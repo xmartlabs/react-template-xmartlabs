@@ -15,7 +15,9 @@ class ParamsHelper {
         .forEach((param) => {
           const splitParam = param.split("=").map(window.decodeURIComponent);
           /* eslint-disable-next-line prefer-destructuring */
-          params[splitParam[0]] = splitParam[1];
+          if (splitParam[0] && splitParam[1]) {
+            params[splitParam[0]] = splitParam[1];
+          }
         });
     }
     return params;
@@ -25,7 +27,7 @@ class ParamsHelper {
   // the query param string.
   static updateQueryParams(
     newParams: ParamObject,
-    currentQueryParams: string = "",
+    currentQueryParams: string = ""
   ) {
     const processedParams = ParamsHelper.parseQueryParams(currentQueryParams);
     const mergedParams = {

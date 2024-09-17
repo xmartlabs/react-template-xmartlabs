@@ -115,7 +115,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
       );
     } else if (props.children !== undefined) {
       children = props.children;
-    } else if (hasImg && alt) {
+    } else if (hasImg && alt && alt[0]) {
       children = alt[0].toUpperCase();
     } else {
       children = <AvatarSVG stroke={color} />;

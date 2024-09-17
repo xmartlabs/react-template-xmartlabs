@@ -30,14 +30,14 @@ describe("ErrorBoundary", () => {
       // since it appears that some other code is setting up other handlers as well
       // (probably testing library?)
       expect(
-        listenerSpy.mock.calls.some((call) => call[0] === "unhandledrejection"),
+        listenerSpy.mock.calls.some((call) => call[0] === "unhandledrejection")
       ).toBe(true);
     });
 
     it("must pass a handler to react to the event", () => {
       const { listenerSpy } = setupTest("Children");
 
-      expect(listenerSpy.mock.calls[0][1]).toBeInstanceOf(Function);
+      expect(listenerSpy.mock.calls[0]?.[1]).toBeInstanceOf(Function);
     });
   });
 });
