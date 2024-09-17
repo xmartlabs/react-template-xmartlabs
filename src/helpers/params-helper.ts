@@ -14,8 +14,8 @@ class ParamsHelper {
         .split("&")
         .forEach((param) => {
           const splitParam = param.split("=").map(window.decodeURIComponent);
-          /* eslint-disable-next-line prefer-destructuring */
           if (splitParam[0] && splitParam[1]) {
+            /* eslint-disable-next-line prefer-destructuring */
             params[splitParam[0]] = splitParam[1];
           }
         });
