@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import React, { useEffect, useState } from "react";
 import { classnames } from "helpers/utils";
-import { Sizes } from "common/types";
+import type { Sizes } from "common/types";
 import avatarStyles from "./avatar.module.scss";
 import { ReactComponent as AvatarSVG } from "./assets/user.svg";
 
@@ -89,7 +89,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
       iconComponent,
       ...props
     },
-    ref,
+    ref
   ) => {
     const loaded = useLoaded({
       crossOrigin,
@@ -127,7 +127,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
           ref={ref}
           className={classnames(
             avatarStyles.avatar,
-            avatarStyles[`avatar-${size}`],
+            avatarStyles[`avatar-${size}`]
           )}
           style={{ backgroundColor: bgColor, color }}
         >
@@ -137,7 +137,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
           <div
             className={classnames(
               avatarStyles.avatarIcon,
-              avatarStyles[`avatarIcon-${size}`],
+              avatarStyles[`avatarIcon-${size}`]
             )}
           >
             {iconComponent}
@@ -145,5 +145,5 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
         ) : null}
       </div>
     );
-  },
+  }
 );

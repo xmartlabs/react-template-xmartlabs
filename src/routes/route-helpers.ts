@@ -1,6 +1,7 @@
 import { generatePath } from "react-router-dom";
 import { ParamsHelper } from "helpers/params-helper";
-import { routes, Params, RouteName } from "./routes";
+import { routes, RouteName } from "./routes";
+import type { Params } from "./routes";
 
 /*
   Given a name, finds the route in the configuration that has that name.
@@ -11,7 +12,7 @@ const findRoute = (routeName: RouteName) => {
   const route = routes.find((routeData) => routeData.name === routeName);
   if (!route) {
     throw new Error(
-      `Route name sent does not match any route. Route was '${routeName}'`,
+      `Route name sent does not match any route. Route was '${routeName}'`
     );
   }
   return route;
@@ -24,7 +25,7 @@ const findRoute = (routeName: RouteName) => {
 const getRouteFor = (
   routeName: RouteName,
   pathParams: Params = {},
-  queryParams: Params = {},
+  queryParams: Params = {}
 ) => {
   const route = findRoute(routeName);
 
