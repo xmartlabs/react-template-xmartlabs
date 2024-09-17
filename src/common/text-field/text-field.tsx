@@ -79,7 +79,7 @@ export const TextField = ({
             styles.inputStyle,
             styles[status],
             LeftIcon ? styles.withPaddingLeft : "",
-            RightIcon ? styles.withPaddingRight : ""
+            RightIcon ? styles.withPaddingRight : "",
           )}
           data-testid="input"
           disabled={disabled}

@@ -27,7 +27,7 @@ class ParamsHelper {
   // the query param string.
   static updateQueryParams(
     newParams: ParamObject,
-    currentQueryParams: string = ""
+    currentQueryParams: string = "",
   ) {
     const processedParams = ParamsHelper.parseQueryParams(currentQueryParams);
     const mergedParams = {

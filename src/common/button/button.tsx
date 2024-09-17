@@ -29,7 +29,7 @@ export const Button: React.FC<IProps> = ({
       className,
       buttonStyles.btn,
       buttonStyles[`btn-${bSize}`],
-      buttonStyles[`btn-${bColor}-${bStyle}`]
+      buttonStyles[`btn-${bColor}-${bStyle}`],
     )}
   >
     {leftIcon || null}

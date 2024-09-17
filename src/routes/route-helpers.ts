@@ -12,7 +12,7 @@ const findRoute = (routeName: RouteName) => {
   const route = routes.find((routeData) => routeData.name === routeName);
   if (!route) {
     throw new Error(
-      `Route name sent does not match any route. Route was '${routeName}'`
+      `Route name sent does not match any route. Route was '${routeName}'`,
     );
   }
   return route;
@@ -25,7 +25,7 @@ const findRoute = (routeName: RouteName) => {
 const getRouteFor = (
   routeName: RouteName,
   pathParams: Params = {},
-  queryParams: Params = {}
+  queryParams: Params = {},
 ) => {
   const route = findRoute(routeName);
 

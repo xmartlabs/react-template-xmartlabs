@@ -14,6 +14,6 @@ export const useGoToPage = () => {
     (routeName: RouteName, pathParams?: Params, queryParams?: Params) => {
       navigate(getRouteFor(routeName, pathParams, queryParams));
     },
-    [navigate]
+    [navigate],
   );
 };

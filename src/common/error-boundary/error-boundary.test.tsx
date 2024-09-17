@@ -30,7 +30,7 @@ describe("ErrorBoundary", () => {
       // since it appears that some other code is setting up other handlers as well
       // (probably testing library?)
       expect(
-        listenerSpy.mock.calls.some((call) => call[0] === "unhandledrejection")
+        listenerSpy.mock.calls.some((call) => call[0] === "unhandledrejection"),
       ).toBe(true);
     });
 
