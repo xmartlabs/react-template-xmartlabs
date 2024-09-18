@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 import styles from "pages/home/home.module.scss";
 import { Button } from "common/button";
 import { useState } from "react";

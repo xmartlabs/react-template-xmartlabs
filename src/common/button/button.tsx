@@ -1,6 +1,6 @@
 import { BaseButton } from "common/base-button";
 import type { IProps as IBaseButtonProps } from "common/base-button/base-button";
-import { Sizes } from "common/types";
+import type { Sizes } from "common/types";
 import { classnames } from "helpers/utils";
 import buttonStyles from "./button.module.scss";
 

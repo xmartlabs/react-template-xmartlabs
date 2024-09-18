@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import React, { useEffect, useState } from "react";
 import { classnames } from "helpers/utils";
-import { Sizes } from "common/types";
+import type { Sizes } from "common/types";
 import avatarStyles from "./avatar.module.scss";
 import { ReactComponent as AvatarSVG } from "./assets/user.svg";
 
@@ -115,7 +115,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
       );
     } else if (props.children !== undefined) {
       children = props.children;
-    } else if (hasImg && alt) {
+    } else if (hasImg && alt && alt[0]) {
       children = alt[0].toUpperCase();
     } else {
       children = <AvatarSVG stroke={color} />;

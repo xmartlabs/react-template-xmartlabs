@@ -37,7 +37,7 @@ describe("ErrorBoundary", () => {
     it("must pass a handler to react to the event", () => {
       const { listenerSpy } = setupTest("Children");
 
-      expect(listenerSpy.mock.calls[0][1]).toBeInstanceOf(Function);
+      expect(listenerSpy.mock.calls[0]?.[1]).toBeInstanceOf(Function);
     });
   });
 });
