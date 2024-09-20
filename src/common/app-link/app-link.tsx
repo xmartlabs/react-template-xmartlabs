@@ -13,29 +13,35 @@ import type { Params, RouteName } from "../../routes/routes";
   defined in this project. To link outside, use <a></a> tags as usual.
 */
 
-// Extract pathParams from the routeName
-type AppLinkProps<R extends RouteName> = {
-  children: React.ReactNode;
-  className?: string;
+type Route = {
   pathParams?: Params;
   queryParams?: Params;
-  routeName: R;
+  routeName: RouteName;
+};
+
+// Extract pathParams from the routeName
+type AppLinkProps = {
+  children: React.ReactNode;
+  className?: string;
+  route: Route;
   targetBlank?: boolean;
+  replace?: boolean;
+  preventScrollReset?: boolean;
+  state?: any;
+  reloadDocument?: boolean;
 };
 
 const defaultProps = {
   className: "",
-  pathParams: {},
-  queryParams: {},
   targetBlank: false,
+  replace: false,
+  preventScrollReset: false,
+  reloadDocument: false,
 };
 
-const AppLink = <R extends RouteName>(props: AppLinkProps<R>) => {
-  const routePath = getRouteFor(
-    props.routeName,
-    props.pathParams,
-    props.queryParams,
-  );
+const AppLink = (props: AppLinkProps) => {
+  const { routeName, pathParams, queryParams } = props.route;
+  const routePath = getRouteFor(routeName, pathParams, queryParams);
   let targetBlankProps = {};
   if (props.targetBlank) {
     targetBlankProps = {
@@ -44,7 +50,15 @@ const AppLink = <R extends RouteName>(props: AppLinkProps<R>) => {
     };
   }
   return (
-    <Link className={props.className} to={routePath} {...targetBlankProps}>
+    <Link
+      className={props.className}
+      to={routePath}
+      replace={props.replace}
+      preventScrollReset={props.preventScrollReset}
+      state={props.state}
+      reloadDocument={props.reloadDocument}
+      {...targetBlankProps}
+    >
       {props.children}
     </Link>
   );
