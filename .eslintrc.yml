@@ -1,8 +1,9 @@
 # Airbnb Config: https://www.npmjs.com/package/eslint-config-airbnb
 # Airbnb Config for Typescript: https://www.npmjs.com/package/eslint-config-airbnb-typescript
 extends:
-  - airbnb
-  - airbnb-typescript
+  - eslint:recommended
+  - "plugin:@typescript-eslint/strict-type-checked"
+  - "plugin:@typescript-eslint/stylistic-type-checked"
   - prettier
   - "plugin:deprecation/recommended"
 parser: "@typescript-eslint/parser"
@@ -13,6 +14,8 @@ parserOptions:
     jsx: true
   warnOnUnsupportedTypeScriptVersion: true
   project: "./tsconfig.json"
+  projectService: true
+  tsconfigRootDir: "."
 env:
   browser: true
 plugins:
@@ -22,54 +25,109 @@ plugins:
 ignorePatterns:
   - build/**/*
 rules:
-  # This rule has been deprecated, see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
-  jsx-a11y/label-has-for: "off"
-  jsx-a11y/label-has-associated-control:
-    - error
-    - assert: either
-  # When using methods with underscores inside a class, you need to enable this rule
-  no-underscore-dangle:
-    - error
-    - allowAfterThis: true
-  # We prefer not enforcing this. It's not generally a good idea to
-  # name files containing JSX with a non-official extension.
-  react/jsx-filename-extension: "off"
-  linebreak-style: 0
-  # Sometimes it's more convenient to have named exports even
-  # though only one thing has to be exported.
-  import/prefer-default-export: "off"
-  # Destructuring sometimes makes code harder to read.
-  react/destructuring-assignment: "off"
-  # For Typescript this is needed since it can call out false negatives.
-  # https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
-  # https://github.com/typescript-eslint/typescript-eslint/issues/2540#issuecomment-692505191
-  no-use-before-define: "off"
-  react/function-component-definition:
-    - error
-    - namedComponents: arrow-function
-      unnamedComponents: arrow-function
-  react/react-in-jsx-scope: "off"
-  react/prop-types: "off"
-  react/require-default-props: "off"
-  react/jsx-props-no-spreading: "off"
-  react/button-has-type: "off"
-  "@typescript-eslint/type-annotation-spacing": error
-  check-file/filename-naming-convention:
-    - error
-    - "**/*.{jsx,tsx,ts,js,css,sass,svg,jpg,jpeg,png}": "KEBAB_CASE"
-    - ignoreMiddleExtensions: true
-  check-file/folder-naming-convention:
-    - error
-    - "src/**/": "KEBAB_CASE"
-  import/no-extraneous-dependencies:
-    - error
-    - devDependencies:
-        - "{vite,vitest}.config.*"
-        - "teardown.js"
-        - "**/vite-env.d.ts"
-        - "**/tests/**"
-        - "**/*.stories.tsx"
-        - "**/*.test.{ts,tsx}"
+  # Eslint Possible Problems
+  array-callback-return: ["error", { allowImplicit: true }]
+  no-await-in-loop: error
+  no-constant-binary-expression: error
+  no-constructor-return: error
+  no-duplicate-imports: off # Creates issues with typescript type imports
+  no-new-native-nonconstructor: error
+  no-promise-executor-return: error
+  no-self-compare: error
+  no-template-curly-in-string: error
+  no-unmodified-loop-condition: error
+  no-unreachable-loop: error
+  no-unused-private-class-members: error
+  no-use-before-define: off # Checked by typescript-eslint
+  require-atomic-updates: error
+  # Eslint Suggestions
+  arrow-body-style: ["error", "as-needed"]
+  block-scoped-var: error
+  camelcase: ["error", { properties: "never", ignoreDestructuring: false }]
+  consistent-return: off # Checked by typescript-eslint
+  consistent-this: error
+  dot-notation: ["error", { allowKeywords: true }]
+  eqeqeq: error
+  guard-for-in: error
+  init-declarations: error # Could cause problems with TS
+  logical-assignment-operators: error
+  new-cap: error
+  no-alert: warn
+  no-array-constructor: error
+  no-bitwise: warn
+  no-caller: error
+  no-console: warn
+  no-div-regex: error
+  no-else-return: error
+  no-empty-function: error
+  no-empty-static-block: error
+  no-eq-null: error
+  no-eval: error
+  no-extend-native: error
+  no-extra-bind: error
+  no-extra-label: error
+  no-implicit-coercion: ["error", { allow: ["!!"] }]
+  no-implicit-globals: error
+  no-implied-eval: error
+  no-invalid-this: off # Checked by typescript-eslint
+  no-iterator: error
+  no-label-var: error
+  no-labels: error
+  no-lone-blocks: error
+  no-lonely-if: error
+  no-loop-func: off # Checked by typescript-eslint
+  no-multi-assign: error
+  no-new: error
+  no-new-func: error
+  no-new-wrappers: error
+  no-object-constructor: error
+  no-param-reassign: error
+  no-proto: error
+  no-return-assign: error
+  no-script-url: error
+  no-sequences: error
+  no-shadow: off # Checked by typescript-eslint
+  no-throw-literal: error
+  no-unneeded-ternary: error
+  no-unused-expressions: error
+  no-useless-call: error
+  no-useless-computed-key: error
+  no-useless-concat: error
+  no-useless-constructor: error
+  no-useless-rename: error
+  no-useless-return: error
+  no-var: error
+  no-void: error
+  no-with: error
+  object-shorthand: error
+  prefer-arrow-callback: error
+  prefer-const: error
+  prefer-exponentiation-operator: error
+  prefer-numeric-literals: error
+  prefer-promise-reject-errors: error
+  prefer-regex-literals: error
+  prefer-template: error
+  radix: error
+  require-await: error
+  require-yield: error
+  sort-imports: error
+  sort-keys: error
+  yoda: error
+  # --------- Typescript Eslint ----------
+  "@typescript-eslint/consistent-return": error
+  "@typescript-eslint/consistent-type-exports": error
+  "@typescript-eslint/consistent-type-imports": error
+  "@typescript-eslint/default-param-last": error
+  "@typescript-eslint/member-ordering": error
+  "@typescript-eslint/no-confusing-void-expression": error
+  "@typescript-eslint/no-empty-interface": error
+  "@typescript-eslint/no-invalid-this": error
+  "@typescript-eslint/no-loop-func": error
+  "@typescript-eslint/no-shadow": error
+  "@typescript-eslint/no-use-before-define": error
+  "@typescript-eslint/no-useless-empty-export": error
+  "@typescript-eslint/no-var-requires": error
+
 # Allows for absolute imports
 settings:
   import/resolver:
