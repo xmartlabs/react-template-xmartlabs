@@ -2,10 +2,14 @@
 # Airbnb Config for Typescript: https://www.npmjs.com/package/eslint-config-airbnb-typescript
 extends:
   - eslint:recommended
-  - "plugin:@typescript-eslint/strict-type-checked"
-  - "plugin:@typescript-eslint/stylistic-type-checked"
+  - plugin:@typescript-eslint/strict-type-checked
+  - plugin:@typescript-eslint/stylistic-type-checked
+  - plugin:react/recommended
+  - plugin:react/jsx-runtime
+  - plugin:react-hooks/recommended
+  - plugin:jsx-a11y/recommended
   - prettier
-  - "plugin:deprecation/recommended"
+  - plugin:deprecation/recommended
 parser: "@typescript-eslint/parser"
 parserOptions:
   ecmaVersion: 2018
@@ -21,6 +25,9 @@ env:
 plugins:
   - testing-library
   - "@typescript-eslint"
+  - react
+  - react-hooks
+  - jsx-a11y
   - "check-file"
 ignorePatterns:
   - build/**/*
