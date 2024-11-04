@@ -8,5 +8,5 @@ export default mergeConfig(
       environment: "jsdom",
       globals: true,
     },
-  })
+  }),
 );
