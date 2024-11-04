@@ -1,6 +1,7 @@
-import React from "react";
+import type React from "react";
 
-import { Layout, LayoutType } from "./layout";
+import type { LayoutType } from "./layout";
+import { Layout } from "./layout";
 
 const withLayout =
   <TOriginalProps extends {}>(

@@ -12,9 +12,7 @@
  * @returns string
  */
 
-type ClassnameObject = {
-  [key: string]: string | boolean | number;
-};
+type ClassnameObject = Record<string, string | boolean | number>;
 
 type Classname = ClassnameObject | string | undefined;
 

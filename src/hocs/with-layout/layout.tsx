@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Footer } from "common/footer";
 import { Navbar } from "common/navbar";
 import styles from "./layout.module.scss";
@@ -10,10 +10,10 @@ enum LayoutType {
   Nav = "Nav",
 }
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode;
   layoutType: LayoutType;
-};
+}
 
 const Layout = ({ layoutType, children }: LayoutProps): JSX.Element | null => {
   if (layoutType === LayoutType.Default) {

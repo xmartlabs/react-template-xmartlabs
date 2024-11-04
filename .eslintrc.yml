@@ -117,8 +117,6 @@ rules:
   radix: error
   require-await: error
   require-yield: error
-  sort-imports: error
-  sort-keys: error
   yoda: error
   # --------- Typescript Eslint ----------
   "@typescript-eslint/consistent-return": error

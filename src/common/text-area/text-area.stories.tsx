@@ -1,4 +1,4 @@
-import type { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState } from "react";
 import { TextArea, TextAreaStatus } from "./text-area";
 import { ReactComponent as MailSVG } from "../../assets/icons/mail.svg";
@@ -48,7 +48,7 @@ const Template: ComponentStory<typeof TextArea> = (args) => {
     <TextArea
       {...args}
       onChange={handleIChange}
-      length={inputState?.length}
+      length={inputState.length}
       value={inputState}
     />
   );

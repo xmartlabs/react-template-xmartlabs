@@ -11,7 +11,7 @@ enum HttpMethod {
 }
 
 class ApiServiceClass {
-  private addedHeaders: { [key: string]: string };
+  private addedHeaders: Record<string, string>;
 
   constructor() {
     this.addedHeaders = {
@@ -55,7 +55,7 @@ class ApiServiceClass {
     return data;
   }
 
-  setHeaders(newHeaders: { [key: string]: string }) {
+  setHeaders(newHeaders: Record<string, string>) {
     this.addedHeaders = { ...this.addedHeaders, ...newHeaders };
   }
 

@@ -17,14 +17,18 @@ export const Login = () => {
           className={styles.field}
           label="Email"
           name="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
         />
         <TextField
           className={styles.field}
           label="Password"
           name="password"
           type="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
         <Button
           className={styles.submitButton}

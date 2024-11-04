@@ -7,13 +7,13 @@ export enum RouteName {
   NotFound = "notFound",
 }
 
-export type Route = {
+export interface Route {
   name: RouteName;
   path: string;
   exact?: boolean;
   pathParams?: Record<string, string>;
   component?: React.ComponentType;
-};
+}
 
 const PATH_PARAM_REGEX = /:[^/?]+/gi;
 /**

@@ -3,13 +3,13 @@ import React from "react";
 import { logger } from "helpers/logger";
 import { UnexpectedError } from "pages/unexpected-error";
 
-type ErrorBoundaryProps = {
+interface ErrorBoundaryProps {
   children: React.ReactNode;
-};
+}
 
-type ErrorBoundaryState = {
+interface ErrorBoundaryState {
   hasError: boolean;
-};
+}
 
 /*
   NOTE: remember that error boundaries do not catch

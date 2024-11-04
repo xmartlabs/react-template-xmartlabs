@@ -1,7 +1,7 @@
 import { generatePath } from "react-router-dom";
 import { ParamsHelper } from "helpers/params-helper";
-import { routes, RouteName } from "./routes";
-import type { Params } from "./routes";
+import { routes } from "./routes";
+import type { Params, RouteName } from "./routes";
 
 /*
   Given a name, finds the route in the configuration that has that name.

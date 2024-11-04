@@ -24,7 +24,7 @@ describe("Avatar", () => {
   it("should render with image src", () => {
     render(<Avatar src="https://i.imgur.com/vXvQgtM.jpeg" />);
     const avatar = screen.getByRole("figure");
-    const image = avatar?.querySelector("img");
+    const image = avatar.querySelector("img");
     expect(image?.src).toBe("https://i.imgur.com/vXvQgtM.jpeg");
   });
 

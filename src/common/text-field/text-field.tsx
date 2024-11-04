@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import type React from "react";
+import { useRef } from "react";
 import type { HTMLInputTypeAttribute } from "react";
 import { classnames } from "helpers/utils";
 import styles from "./text-field.module.scss";

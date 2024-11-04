@@ -1,11 +1,9 @@
 // Collection of helpers to manipulate query params.
 
-type ParamObject = {
-  [key: string]: string | number | boolean | null;
-};
+type ParamObject = Record<string, string | number | boolean | null>;
 
 class ParamsHelper {
-  static parseQueryParams(queryParams: string = "") {
+  static parseQueryParams(queryParams = "") {
     const params: ParamObject = {};
     const decodedParams = queryParams;
     if (decodedParams.length) {
@@ -25,10 +23,7 @@ class ParamsHelper {
 
   // Receives the current params and a dictionary of params and returns
   // the query param string.
-  static updateQueryParams(
-    newParams: ParamObject,
-    currentQueryParams: string = "",
-  ) {
+  static updateQueryParams(newParams: ParamObject, currentQueryParams = "") {
     const processedParams = ParamsHelper.parseQueryParams(currentQueryParams);
     const mergedParams = {
       ...processedParams,
