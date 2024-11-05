@@ -5,7 +5,10 @@ import "index.scss";
 import { App } from "app";
 
 const container = document.getElementById("root");
-const root = createRoot(container!);
+if (!container) {
+  throw new Error("No #root element found in the DOM");
+}
+const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <App />

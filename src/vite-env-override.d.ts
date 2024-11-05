@@ -6,37 +6,37 @@ declare namespace NodeJS {
 }
 
 declare module "*.avif" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.bmp" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.gif" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.jpg" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.jpeg" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.png" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.webp" {
-  const src: string;
+  const src = "";
   export default src;
 }
 
@@ -45,23 +45,23 @@ declare module "*.svg" {
 
   export const ReactComponent: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & { title?: string }
-  >;
+  > = () => null;
 
-  const src: string;
+  const src = "";
   export default src;
 }
 
 declare module "*.module.css" {
-  const classes: Readonly<Record<string, string>>;
+  const classes: Readonly<Record<string, string>> = {};
   export default classes;
 }
 
 declare module "*.module.scss" {
-  const classes: Readonly<Record<string, string>>;
+  const classes: Readonly<Record<string, string>> = {};
   export default classes;
 }
 
 declare module "*.module.sass" {
-  const classes: Readonly<Record<string, string>>;
+  const classes: Readonly<Record<string, string>> = {};
   export default classes;
 }

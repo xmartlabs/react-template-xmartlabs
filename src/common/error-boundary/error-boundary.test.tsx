@@ -8,7 +8,7 @@ describe("ErrorBoundary", () => {
     const setupTest = (children: React.ReactNode) => {
       const listenerSpy = vi
         .spyOn(window, "addEventListener")
-        .mockImplementation(() => {});
+        .mockImplementation(() => undefined);
       render(<ErrorBoundary>{children}</ErrorBoundary>);
 
       return {

@@ -1,4 +1,3 @@
-import React from "react";
 import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Avatar } from "common/avatar";
 import { Badge } from "./badge";

@@ -16,8 +16,6 @@ describe("BaseButton", () => {
 
   it("should render successfully with type", async () => {
     const el = render(<BaseButton type="submit">Test</BaseButton>);
-    expect(await (await el.findByText("Test")).getAttribute("type")).toBe(
-      "submit",
-    );
+    expect((await el.findByText("Test")).getAttribute("type")).toBe("submit");
   });
 });

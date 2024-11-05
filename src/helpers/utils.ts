@@ -27,7 +27,7 @@ function classnames(...args: Classname[]): string {
         .map(([key]) => key);
       return activeClasses.join(" ");
     }
-    return firstEntry || "";
+    return firstEntry ?? "";
   }
   return filteredArgs.map((value) => classnames(value)).join(" ");
 }

@@ -32,8 +32,8 @@ export const Button: React.FC<IProps> = ({
       buttonStyles[`btn-${bColor}-${bStyle}`],
     )}
   >
-    {leftIcon || null}
+    {leftIcon ?? null}
     {children}
-    {rightIcon || null}
+    {rightIcon ?? null}
   </BaseButton>
 );

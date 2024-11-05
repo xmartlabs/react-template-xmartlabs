@@ -75,6 +75,7 @@ type AvatarProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   iconComponent?: React.ReactNode;
 };
 
+// eslint-disable-next-line react/display-name
 export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
   (
     {
@@ -97,7 +98,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
       src,
       srcSet,
     });
-    const hasImg = src || srcSet;
+    const hasImg = src ?? srcSet;
     const hasImgNotFailing = hasImg && !loaded.error;
 
     let children = null;

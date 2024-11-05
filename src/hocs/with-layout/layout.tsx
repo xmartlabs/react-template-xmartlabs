@@ -30,15 +30,13 @@ const Layout = ({ layoutType, children }: LayoutProps): JSX.Element | null => {
       </div>
     );
   }
-  if (layoutType === LayoutType.Nav) {
-    return (
-      <>
-        <Navbar />
-        {children}
-      </>
-    );
-  }
-  return null;
+
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
 };
 
 export { Layout, LayoutType };

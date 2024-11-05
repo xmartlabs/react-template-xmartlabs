@@ -66,7 +66,6 @@ rules:
   no-console: warn
   no-div-regex: error
   no-else-return: error
-  no-empty-function: error
   no-empty-static-block: error
   no-eq-null: error
   no-eval: error
@@ -132,6 +131,8 @@ rules:
   "@typescript-eslint/no-use-before-define": error
   "@typescript-eslint/no-useless-empty-export": error
   "@typescript-eslint/no-var-requires": error
+  # --------- Other Plugins ----------
+  react/prop-types: off
 
 # Allows for absolute imports
 settings:

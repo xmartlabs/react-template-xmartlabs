@@ -33,7 +33,7 @@ const setPathParams = (route: Route): Route => {
   const newRoute = { ...route };
   const { path } = newRoute;
   // Extract the names of the parameters
-  const pathMatch = path.match(PATH_PARAM_REGEX) || [];
+  const pathMatch = path.match(PATH_PARAM_REGEX) ?? [];
   const pathParams: Record<string, string> = {};
   pathMatch.forEach((param) => {
     const paramName = param.slice(1);

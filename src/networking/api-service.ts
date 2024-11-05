@@ -21,11 +21,16 @@ class ApiServiceClass {
 
   // NOTE: `data` is of `any` type since it's most likely an instance of `Error` or
   // data that comes from the backend.
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static _raiseError(data: any) {
     throw new ApiError({
+      // NOTE: we need to disable these rules since there's no way for us to type the `data` object.
+      /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
       code: data?.code || ErrorCode.UNEXPECTED_ERROR,
       status: data?.status,
       message: data?.message || "An unexpected error has occurred",
+      /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     });
   }
 
@@ -35,13 +40,13 @@ class ApiServiceClass {
     config: RequestInit = {},
   ) {
     const updatedConfig = { ...config };
-    updatedConfig.headers = { ...this.addedHeaders, ...(config.headers || {}) };
+    updatedConfig.headers = { ...this.addedHeaders, ...(config.headers ?? {}) };
     const fullURL = new URL(path, constants.apiBaseURL);
     const response = await fetch(fullURL, {
       method,
       ...updatedConfig,
     });
-    let data;
+    let data = null;
     try {
       data = (await response.json()) as Promise<ReturnType>;
     } catch (error) {

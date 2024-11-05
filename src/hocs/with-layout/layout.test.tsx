@@ -1,4 +1,3 @@
-import React from "react";
 import { describe, expect, it } from "vitest";
 import { renderWithRouter } from "tests/helpers/render-with-router";
 // import { render } from '@testing-library/react';

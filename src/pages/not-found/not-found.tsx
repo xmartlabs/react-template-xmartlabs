@@ -1,5 +1,3 @@
-import React from "react";
-
 import { AppLink } from "common/app-link";
 import { RouteName } from "routes/routes";
 
