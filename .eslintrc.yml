@@ -132,10 +132,19 @@ rules:
   "@typescript-eslint/no-useless-empty-export": error
   "@typescript-eslint/no-var-requires": error
   # --------- Other Plugins ----------
+  check-file/filename-naming-convention:
+    - error
+    - "**/*.{jsx,tsx,ts,js,css,sass,svg,jpg,jpeg,png}": "KEBAB_CASE"
+    - ignoreMiddleExtensions: true
+  check-file/folder-naming-convention:
+    - error
+    - "src/**/": "KEBAB_CASE"
   react/prop-types: off
 
 # Allows for absolute imports
 settings:
+  react:
+    version: "detect"
   import/resolver:
     node:
       paths: ["src"]
