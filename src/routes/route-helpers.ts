@@ -1,7 +1,19 @@
 import { generatePath } from "react-router-dom";
-import { ParamsHelper } from "helpers/params-helper";
 import { routes } from "./routes";
 import type { Params, RouteName } from "./routes";
+
+const buildQueryParams = (params: Params) => {
+  const entries = Object.entries(params);
+  if (!entries.length) {
+    return "";
+  }
+  const queryParams = new URLSearchParams();
+  for (const [key, value] of entries) {
+    queryParams.set(key, String(value));
+  }
+  const stringParams = queryParams.toString();
+  return `${stringParams.length ? "?" : ""}${stringParams}`;
+};
 
 /*
   Given a name, finds the route in the configuration that has that name.
@@ -33,7 +45,7 @@ const getRouteFor = (
   const interpolatedPath = generatePath(route.path, pathParams);
 
   // Inject queryParams
-  const urlQueryParams = ParamsHelper.createQueryParams(queryParams);
+  const urlQueryParams = buildQueryParams(queryParams);
   return `${interpolatedPath}${urlQueryParams}`;
 };
 

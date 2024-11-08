@@ -28,7 +28,7 @@ const AppRedirect = <R extends RouteName>(props: AppRedirectProps<R>) => {
   const goToPage = useGoToPage();
   useEffect(() => {
     goToPage(props.routeName, props.pathParams, props.queryParams);
-  }, []);
+  }, [goToPage, props.pathParams, props.queryParams, props.routeName]);
 
   return null;
 };

@@ -1,4 +1,7 @@
-import { ExampleSerializer } from "networking/serializers/example-serializer";
+import {
+  serialize,
+  deSerialize,
+} from "networking/serializers/example-serializer";
 import { ApiService } from "networking/api-service";
 import { API_ROUTES } from "networking/api-routes";
 
@@ -8,18 +11,16 @@ import { API_ROUTES } from "networking/api-routes";
   Learn more about our networking architecture on:
   https://blog.xmartlabs.com/2020/07/09/frontend-architecture-and-best-practices/
 */
-class ExampleController {
-  static async getExamples(): Promise<Example[]> {
-    const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    return (response || []).map<Example>(ExampleSerializer.deSerialize);
-  }
 
-  static createExample(example: Example) {
-    const serializedExample = ExampleSerializer.serialize(example);
-    return ApiService.post<RawExample>(API_ROUTES.EXAMPLE, {
-      body: JSON.stringify(serializedExample),
-    });
-  }
-}
+export const getExamples = async (): Promise<Example[]> => {
+  const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
+  return response.map<Example>(deSerialize);
+};
 
-export { ExampleController };
+export const createExample = async (example: Example): Promise<Example> => {
+  const serializedExample = serialize(example);
+  const response = await ApiService.post<RawExample>(API_ROUTES.EXAMPLE, {
+    body: JSON.stringify(serializedExample),
+  });
+  return deSerialize(response);
+};

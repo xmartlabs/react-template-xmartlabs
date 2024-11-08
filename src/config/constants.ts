@@ -14,5 +14,7 @@ const environment = {
 export const constants = {
   apiBaseURL: fetchVariable("VITE_API_BASE_URL", "REPLACE ME"),
 
+  logLevel: fetchVariable("VITE_LOG_LEVEL", "info"),
+
   environment,
 };

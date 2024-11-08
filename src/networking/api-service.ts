@@ -34,11 +34,11 @@ class ApiServiceClass {
     });
   }
 
-  async _sendRequest<ReturnType>(
+  async _sendRequest<ReturnType = void>(
     method: HttpMethod,
     path: string,
     config: RequestInit = {},
-  ) {
+  ): Promise<ReturnType> {
     const updatedConfig = { ...config };
     updatedConfig.headers = { ...this.addedHeaders, ...(config.headers ?? {}) };
     const fullURL = new URL(path, constants.apiBaseURL);
@@ -50,14 +50,15 @@ class ApiServiceClass {
     try {
       data = (await response.json()) as Promise<ReturnType>;
     } catch (error) {
-      // eslint-disable-next-line no-underscore-dangle
       ApiServiceClass._raiseError(error);
     }
     if (!response.ok) {
-      // eslint-disable-next-line no-underscore-dangle
       ApiServiceClass._raiseError(data);
     }
-    return data;
+    // We need to disable these rules here since we need to trust 100% that the data that comes from
+    // the wire meets the type criteria we're expecting (`ReturnType`).
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unnecessary-type-assertion
+    return data!;
   }
 
   setHeaders(newHeaders: Record<string, string>) {

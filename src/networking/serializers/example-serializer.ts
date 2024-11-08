@@ -5,20 +5,12 @@
   https://blog.xmartlabs.com/2020/07/09/frontend-architecture-and-best-practices/
 */
 
-class ExampleSerializer {
-  static deSerialize(data: RawExample): Example {
-    return {
-      foo: data.Foobaz,
-      bar: data.Barbaz,
-    };
-  }
+export const deSerialize = (data: RawExample): Example => ({
+  foo: data.Foobaz,
+  bar: data.Barbaz,
+});
 
-  static serialize(example: Example): RawExample {
-    return {
-      Foobaz: example.foo,
-      Barbaz: example.bar,
-    };
-  }
-}
-
-export { ExampleSerializer };
+export const serialize = (example: Example): RawExample => ({
+  Foobaz: example.foo,
+  Barbaz: example.bar,
+});

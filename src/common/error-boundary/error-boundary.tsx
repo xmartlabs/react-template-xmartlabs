@@ -36,12 +36,12 @@ class ErrorBoundary extends React.Component<
       // to show a fallback UI.
       logger.warn(`Unhandled Promise rejection: ${String(event.reason)}`);
       const error = new Error(String(event.reason));
-      logger.error(error);
+      logger.error(error.message);
     });
   }
 
   componentDidCatch(error: Error) {
-    logger.log(error);
+    logger.warn(error.message);
   }
 
   render() {
