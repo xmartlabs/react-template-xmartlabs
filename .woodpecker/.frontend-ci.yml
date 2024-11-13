@@ -7,7 +7,7 @@ pipeline:
   setup:
     <<: *common
     commands:
-      - npm i -g npm@10.8.2
+      - npm i -g npm@10.9.0
       - npm ci --prefer-offline --engine-strict
   js-prettier:
     <<: *common
