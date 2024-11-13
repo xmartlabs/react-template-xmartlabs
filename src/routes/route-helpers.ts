@@ -3,16 +3,8 @@ import { routes } from "./routes";
 import type { Params, RouteName } from "./routes";
 
 const buildQueryParams = (params: Params) => {
-  const entries = Object.entries(params);
-  if (!entries.length) {
-    return "";
-  }
-  const queryParams = new URLSearchParams();
-  for (const [key, value] of entries) {
-    queryParams.set(key, String(value));
-  }
-  const stringParams = queryParams.toString();
-  return `${stringParams.length ? "?" : ""}${stringParams}`;
+  const queryString = new URLSearchParams(params).toString();
+  return queryString.length ? `?${queryString}` : "";
 };
 
 /*

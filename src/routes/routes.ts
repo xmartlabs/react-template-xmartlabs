@@ -1,4 +1,4 @@
-export type Params = Record<string, string | boolean | number | null>;
+export type Params = Record<string, string>;
 
 export enum RouteName {
   Home = "home",
@@ -11,7 +11,7 @@ export interface Route {
   name: RouteName;
   path: string;
   exact?: boolean;
-  pathParams?: Record<string, string>;
+  pathParams?: Params;
   component?: React.ComponentType;
 }
 
