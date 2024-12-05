@@ -1,5 +1,3 @@
-# Airbnb Config: https://www.npmjs.com/package/eslint-config-airbnb
-# Airbnb Config for Typescript: https://www.npmjs.com/package/eslint-config-airbnb-typescript
 extends:
   - eslint:recommended
   - plugin:@typescript-eslint/strict-type-checked
