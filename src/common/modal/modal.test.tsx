@@ -14,7 +14,7 @@ const createPortalDiv = () => {
 describe("Modal", () => {
   const handleClose = vi.fn();
 
-  it("should render successfully", async () => {
+  it("should render successfully", () => {
     createPortalDiv();
     const { baseElement } = render(
       <Modal isOpen size={ModalSizes.medium} onClose={handleClose} />,

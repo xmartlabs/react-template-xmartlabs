@@ -1,9 +1,9 @@
-type RawExample = {
+interface RawExample {
   Foobaz: string;
   Barbaz: number;
-};
+}
 
-type Example = {
+interface Example {
   foo: string;
   bar: number;
-};
+}

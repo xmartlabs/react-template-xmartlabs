@@ -5,8 +5,9 @@ export default mergeConfig(
   viteConfig,
   defineConfig({
     test: {
-      globals: true,
       environment: "jsdom",
+      setupFiles: ["./teardown.ts"],
+      globals: true,
     },
   }),
 );

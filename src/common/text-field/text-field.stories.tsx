@@ -1,4 +1,4 @@
-import type { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState } from "react";
 import { TextField, TextFieldStatus } from "./text-field";
 import { ReactComponent as MailSVG } from "../../assets/icons/mail.svg";

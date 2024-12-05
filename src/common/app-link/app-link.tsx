@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Link } from "react-router-dom";
 import { getRouteFor } from "../../routes/route-helpers";
 import type { Params, RouteName } from "../../routes/routes";
@@ -14,14 +14,14 @@ import type { Params, RouteName } from "../../routes/routes";
 */
 
 // Extract pathParams from the routeName
-type AppLinkProps<R extends RouteName> = {
+interface AppLinkProps<R extends RouteName> {
   children: React.ReactNode;
   className?: string;
   pathParams?: Params;
   queryParams?: Params;
   routeName: R;
   targetBlank?: boolean;
-};
+}
 
 const defaultProps = {
   className: "",

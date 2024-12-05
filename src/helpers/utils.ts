@@ -12,9 +12,7 @@
  * @returns string
  */
 
-type ClassnameObject = {
-  [key: string]: string | boolean | number;
-};
+type ClassnameObject = Record<string, string | boolean | number>;
 
 type Classname = ClassnameObject | string | undefined;
 
@@ -29,7 +27,7 @@ function classnames(...args: Classname[]): string {
         .map(([key]) => key);
       return activeClasses.join(" ");
     }
-    return firstEntry || "";
+    return firstEntry ?? "";
   }
   return filteredArgs.map((value) => classnames(value)).join(" ");
 }

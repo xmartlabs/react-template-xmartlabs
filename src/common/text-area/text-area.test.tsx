@@ -4,19 +4,19 @@ import { TextArea } from "./text-area";
 import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
 
 describe("TextArea", () => {
-  it("should render successfully", async () => {
+  it("should render successfully", () => {
     const el = render(<TextArea name="random" onChange={() => null} />);
     expect(el.getByTestId("textarea")).toBeTruthy();
   });
 
-  it("should render with Label", async () => {
+  it("should render with Label", () => {
     const el = render(
       <TextArea name="random" label="Label" onChange={() => null} />,
     );
     expect(el.findByText("Label")).toBeTruthy();
   });
 
-  it("should render with Helper Text", async () => {
+  it("should render with Helper Text", () => {
     const el = render(
       <TextArea
         name="email"
@@ -29,14 +29,14 @@ describe("TextArea", () => {
     expect(el.getByTestId("helper-icon")).toBeTruthy();
   });
 
-  it("should render with MaxLength", async () => {
+  it("should render with MaxLength", () => {
     const el = render(
       <TextArea name="email" maxLength={10} onChange={() => null} />,
     );
     expect(el.findByText("/10")).toBeTruthy();
   });
 
-  it("should render with Value and MaxLength", async () => {
+  it("should render with Value and MaxLength", () => {
     const el = render(
       <TextArea name="email" value="Hi" maxLength={10} onChange={() => null} />,
     );

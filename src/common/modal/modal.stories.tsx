@@ -1,4 +1,4 @@
-import type { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import styles from "pages/home/home.module.scss";
 import { Button } from "common/button";
 import { useState } from "react";
@@ -35,7 +35,12 @@ export default {
 const Template: ComponentStory<typeof Modal> = (args) => {
   const [isOpen, setIsOpen] = useState(true);
   return isOpen ? (
-    <Modal {...args} onClose={() => setIsOpen(false)} />
+    <Modal
+      {...args}
+      onClose={() => {
+        setIsOpen(false);
+      }}
+    />
   ) : (
     <div />
   );

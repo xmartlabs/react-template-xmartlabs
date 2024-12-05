@@ -52,7 +52,7 @@ export const TextArea = ({
       <label className={styles.label} htmlFor={name}>
         {label}
       </label>
-      <div className={classnames(styles.inputContainer, className || "")}>
+      <div className={classnames(styles.inputContainer, className ?? "")}>
         <textarea
           required={required}
           id={name}
@@ -84,7 +84,9 @@ export const TextArea = ({
         )}
         {maxLength && (
           <div className={classnames(styles.countText, styles[status])}>
-            {maxLength && <span>{`${length || 0}/${maxLength}`}</span>}
+            {maxLength && (
+              <span>{`${String(length ?? 0)}/${String(maxLength)}`}</span>
+            )}
           </div>
         )}
       </div>

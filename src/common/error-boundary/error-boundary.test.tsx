@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { ErrorBoundary } from "./error-boundary";
@@ -8,7 +8,7 @@ describe("ErrorBoundary", () => {
     const setupTest = (children: React.ReactNode) => {
       const listenerSpy = vi
         .spyOn(window, "addEventListener")
-        .mockImplementation(() => {});
+        .mockImplementation(() => undefined);
       render(<ErrorBoundary>{children}</ErrorBoundary>);
 
       return {

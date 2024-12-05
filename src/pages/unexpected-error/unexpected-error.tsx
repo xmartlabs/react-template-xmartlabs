@@ -1,5 +1,3 @@
-import React from "react";
-
 // TODO: Implement this component
 const UnexpectedError = () => (
   <div>

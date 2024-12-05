@@ -7,7 +7,8 @@ export const RouterErrorBoundary = () => {
   const error = useRouteError();
 
   useEffect(() => {
-    logger.error(error as Error);
+    const message = error instanceof Error ? error.message : error;
+    logger.warn(message as string);
   }, [error]);
 
   return <UnexpectedError />;

@@ -13,11 +13,11 @@ import type { Params, RouteName } from "../../routes/routes";
   defined in this project. To link outside, use <a></a> tags as usual.
 */
 
-type AppRedirectProps<R extends RouteName> = {
+interface AppRedirectProps<R extends RouteName> {
   pathParams?: Params;
   queryParams?: Params;
   routeName: R;
-};
+}
 
 const defaultProps = {
   pathParams: {},
@@ -28,7 +28,7 @@ const AppRedirect = <R extends RouteName>(props: AppRedirectProps<R>) => {
   const goToPage = useGoToPage();
   useEffect(() => {
     goToPage(props.routeName, props.pathParams, props.queryParams);
-  }, []);
+  }, [goToPage, props.pathParams, props.queryParams, props.routeName]);
 
   return null;
 };

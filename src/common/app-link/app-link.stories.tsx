@@ -1,4 +1,4 @@
-import type { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { RouterProvider } from "react-router-dom";
 import { AppLink } from "common/app-link";
 import { RouteName, createRouter, routes } from "../../routes/index";

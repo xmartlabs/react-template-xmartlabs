@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import type React from "react";
+import { useRef } from "react";
 import type { HTMLInputTypeAttribute } from "react";
 import { classnames } from "helpers/utils";
 import styles from "./text-field.module.scss";
@@ -44,7 +45,7 @@ export const TextField = ({
 }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const focusOnInput = () => {
-    if (inputRef && inputRef.current) inputRef.current.focus();
+    if (inputRef.current) inputRef.current.focus();
   };
   const LeftIcon = leftIcon;
   const RightIcon = rightIcon;
@@ -54,7 +55,7 @@ export const TextField = ({
       <label className={styles.label} htmlFor={name}>
         {label}
       </label>
-      <div className={classnames(styles.inputContainer, className || "")}>
+      <div className={classnames(styles.inputContainer, className ?? "")}>
         {!!LeftIcon && (
           <button
             type="button"

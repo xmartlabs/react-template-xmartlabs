@@ -33,7 +33,7 @@ export const Badge: React.FC<IProps> = ({
     }}
     {...props}
   >
-    {leftElement || null}
+    {leftElement ?? null}
     {children}
     {closeable ? (
       <button

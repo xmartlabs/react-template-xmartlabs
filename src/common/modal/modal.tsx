@@ -40,9 +40,11 @@ export const Modal = ({
     return () => {
       document.removeEventListener("keydown", escFunction);
     };
-  }, []);
+  }, [onClose]);
 
   if (!isOpen) return null;
+  const modalRoot = document.getElementById("modal");
+  if (!modalRoot) return null;
 
   return ReactDOM.createPortal(
     <div className={modalStyles.overlay}>
@@ -52,7 +54,7 @@ export const Modal = ({
         className={classnames(
           modalStyles.modal,
           modalStyles[`modal-${size}`],
-          className || "",
+          className ?? "",
         )}
         {...props}
       >
@@ -68,6 +70,6 @@ export const Modal = ({
         {children}
       </div>
     </div>,
-    document.getElementById("modal")!,
+    modalRoot,
   );
 };

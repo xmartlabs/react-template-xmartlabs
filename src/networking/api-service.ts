@@ -11,7 +11,7 @@ enum HttpMethod {
 }
 
 class ApiServiceClass {
-  private addedHeaders: { [key: string]: string };
+  private addedHeaders: Record<string, string>;
 
   constructor() {
     this.addedHeaders = {
@@ -21,41 +21,47 @@ class ApiServiceClass {
 
   // NOTE: `data` is of `any` type since it's most likely an instance of `Error` or
   // data that comes from the backend.
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static _raiseError(data: any) {
     throw new ApiError({
+      // NOTE: we need to disable these rules since there's no way for us to type the `data` object.
+      /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
       code: data?.code || ErrorCode.UNEXPECTED_ERROR,
       status: data?.status,
       message: data?.message || "An unexpected error has occurred",
+      /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     });
   }
 
-  async _sendRequest<ReturnType>(
+  async _sendRequest<ReturnType = void>(
     method: HttpMethod,
     path: string,
     config: RequestInit = {},
-  ) {
+  ): Promise<ReturnType> {
     const updatedConfig = { ...config };
-    updatedConfig.headers = { ...this.addedHeaders, ...(config.headers || {}) };
+    updatedConfig.headers = { ...this.addedHeaders, ...(config.headers ?? {}) };
     const fullURL = new URL(path, constants.apiBaseURL);
     const response = await fetch(fullURL, {
       method,
       ...updatedConfig,
     });
-    let data;
+    let data = null;
     try {
       data = (await response.json()) as Promise<ReturnType>;
     } catch (error) {
-      // eslint-disable-next-line no-underscore-dangle
       ApiServiceClass._raiseError(error);
     }
     if (!response.ok) {
-      // eslint-disable-next-line no-underscore-dangle
       ApiServiceClass._raiseError(data);
     }
-    return data;
+    // We need to disable these rules here since we need to trust 100% that the data that comes from
+    // the wire meets the type criteria we're expecting (`ReturnType`).
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unnecessary-type-assertion
+    return data!;
   }
 
-  setHeaders(newHeaders: { [key: string]: string }) {
+  setHeaders(newHeaders: Record<string, string>) {
     this.addedHeaders = { ...this.addedHeaders, ...newHeaders };
   }
 

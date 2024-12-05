@@ -1,4 +1,4 @@
-export type Params = Record<string, string | boolean | number | null>;
+export type Params = Record<string, string>;
 
 export enum RouteName {
   Home = "home",
@@ -7,13 +7,13 @@ export enum RouteName {
   NotFound = "notFound",
 }
 
-export type Route = {
+export interface Route {
   name: RouteName;
   path: string;
   exact?: boolean;
-  pathParams?: Record<string, string>;
+  pathParams?: Params;
   component?: React.ComponentType;
-};
+}
 
 const PATH_PARAM_REGEX = /:[^/?]+/gi;
 /**
@@ -33,7 +33,7 @@ const setPathParams = (route: Route): Route => {
   const newRoute = { ...route };
   const { path } = newRoute;
   // Extract the names of the parameters
-  const pathMatch = path.match(PATH_PARAM_REGEX) || [];
+  const pathMatch = path.match(PATH_PARAM_REGEX) ?? [];
   const pathParams: Record<string, string> = {};
   pathMatch.forEach((param) => {
     const paramName = param.slice(1);

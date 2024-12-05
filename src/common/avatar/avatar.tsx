@@ -5,12 +5,12 @@ import type { Sizes } from "common/types";
 import avatarStyles from "./avatar.module.scss";
 import { ReactComponent as AvatarSVG } from "./assets/user.svg";
 
-type ImageProps = {
+interface ImageProps {
   crossOrigin?: string;
   referrerPolicy?: string;
   src?: string;
   srcSet?: string;
-};
+}
 const useLoaded = ({
   crossOrigin,
   referrerPolicy,
@@ -75,6 +75,7 @@ type AvatarProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   iconComponent?: React.ReactNode;
 };
 
+// eslint-disable-next-line react/display-name
 export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
   (
     {
@@ -97,7 +98,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
       src,
       srcSet,
     });
-    const hasImg = src || srcSet;
+    const hasImg = src ?? srcSet;
     const hasImgNotFailing = hasImg && !loaded.error;
 
     let children = null;
@@ -115,7 +116,7 @@ export const Avatar = React.forwardRef<HTMLElement, AvatarProps>(
       );
     } else if (props.children !== undefined) {
       children = props.children;
-    } else if (hasImg && alt && alt[0]) {
+    } else if (hasImg && alt?.[0]) {
       children = alt[0].toUpperCase();
     } else {
       children = <AvatarSVG stroke={color} />;

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // NOTE: Anything imported from routes must avoid the base directory
 // since it creates a circular dependency.
-import { RouteName } from "routes/routes";
+import type { RouteName } from "routes/routes";
 import type { Params } from "routes/routes";
 import { getRouteFor } from "routes/route-helpers";
 

@@ -1,18 +1,8 @@
 # Xmartlabs Create React Boilerplate
 
-![react version](https://img.shields.io/badge/react-18.2.0-brightgreen)
-![react-dom version](https://img.shields.io/badge/react--dom-18.2.0-brightgreen)
-![react-router-dom version](https://img.shields.io/badge/react--router--dom-5.3.4-brightgreen)
-![vite version](https://img.shields.io/badge/vite-4.1.4-brightgreen)
-![history version](https://img.shields.io/badge/history-4.10.1-brightgreen)
-![sass version](https://img.shields.io/badge/sass-1.58.3-brightgreen)
-![vitest version](https://img.shields.io/badge/vitest-0.29.2-brightgreen)
-![axios version](https://img.shields.io/badge/axios-0.21.4-brightgreen)
-![eslint version](https://img.shields.io/badge/eslint-8.10.0-brightgreen)
-
 ## Contributing to this Boilerplate
 
-Make sure you have the appropriate version of Node (22.8.0) and NPM (10.8.2) installed.
+Make sure you have the appropriate version of Node (22.8.0) and NPM (10.9.0) installed.
 
 Then install the required packages:
 
@@ -206,32 +196,32 @@ All networking calls must be made in controllers. They are in charge of knowing 
 
 ```ts
 // src/networking/controllers/example-controller.ts
-import { ExampleSerializer } from "networking/serializers/example-serializer";
+import {
+  serialize,
+  deSerialize,
+} from "networking/serializers/example-serializer";
 import { ApiService } from "networking/api-service";
 import { API_ROUTES } from "networking/api-routes";
 
-class ExampleController {
-  static async getExamples() {
-    const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
-    return (response.data || []).map(ExampleSerializer.deSerialize);
-  }
+export const getExamples = async (): Promise<Example[]> => {
+  const response = await ApiService.get<RawExample[]>(API_ROUTES.EXAMPLE);
+  return response.map<Example>(deSerialize);
+};
 
-  static createExample(example: Example) {
-    const serializedExample = ExampleSerializer.serialize(example);
-    return ApiService.post(API_ROUTES.EXAMPLE, {
-      example: serializedExample,
-    });
-  }
-}
-
-export { ExampleController };
+export const createExample = async (example: Example): Promise<Example> => {
+  const serializedExample = serialize(example);
+  const response = await ApiService.post<RawExample>(API_ROUTES.EXAMPLE, {
+    body: JSON.stringify(serializedExample),
+  });
+  return deSerialize(response);
+};
 ```
 
-This controller has two methods: `getExamples` and `createExamples`. The first method attempts to get a list of examples from the backend. Once the data arrives the controller will attempt to deserialize the data via the `ExampleSerializer` and then create instances of `Example` from each.
+This controller has two methods: `getExamples` and `createExample`. The first method attempts to get a list of examples from the backend. Once the data arrives the controller will attempt to deserialize the data via the methods defined on the serializer file.
 
 The second method illustrates how we would go about _sending_ data to the backend. In this case we do the inverse process as before: given an instance of `Example` the controller will attempt to serialize (as opposed to deserialize) it and send it as payload.
 
-Let's look at how exactly serializers work.
+Let's look at how serializers work.
 
 ### Serializers
 
@@ -241,26 +231,18 @@ The advantage of this is that you can redefine the fields of the data and remove
 
 ```ts
 // src/networking/serializers/example-serializer.ts
-class ExampleSerializer {
-  static deSerialize(data: RawExample): Example {
-    return {
-      foo: data.Foobaz,
-      bar: data.Barbaz,
-    };
-  }
+export const deSerialize = (data: RawExample): Example => ({
+  foo: data.Foobaz,
+  bar: data.Barbaz,
+});
 
-  static serialize(example: Example): RawExample {
-    return {
-      Foobaz: example.foo,
-      Barbaz: example.bar,
-    };
-  }
-}
-
-export { ExampleSerializer };
+export const serialize = (example: Example): RawExample => ({
+  Foobaz: example.foo,
+  Barbaz: example.bar,
+});
 ```
 
-When deserializing in this (admittedly simple) example the `ExampleSerializer` receives an instance of `RawExample` and returns an instance of `SerializedExample`. In this case we're simplifying the keys of the JSON we've received, by removing the common suffix `baz`. When serializing we're restoring the example to the format the API will understand.
+When deserializing in this (admittedly simple) example the `deSerialize` method receives an instance of `RawExample` and returns an instance of `Example`. In this case we're simplifying the keys of the JSON we've received, by removing the common suffix `baz`. When serializing we're restoring the example to the format the API will understand.
 
 #### Types
 
