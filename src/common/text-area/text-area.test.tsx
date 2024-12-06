@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { TextArea } from "./text-area";
-import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
+import CloseSVG from "../../assets/icons/close.svg";
 
 describe("TextArea", () => {
   it("should render successfully", () => {
