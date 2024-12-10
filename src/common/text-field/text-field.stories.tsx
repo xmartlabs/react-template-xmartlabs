@@ -1,8 +1,8 @@
 import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useState } from "react";
 import { TextField, TextFieldStatus } from "./text-field";
-import { ReactComponent as MailSVG } from "../../assets/icons/mail.svg";
-import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
+import MailSVG from "../../assets/icons/mail.svg";
+import CloseSVG from "../../assets/icons/close.svg";
 
 const ICONS = {
   MailSVG,

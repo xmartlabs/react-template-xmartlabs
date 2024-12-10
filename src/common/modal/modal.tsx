@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { classnames } from "helpers/utils";
-import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
+import CloseSVG from "../../assets/icons/close.svg";
 import modalStyles from "./modal.module.scss";
 
 export enum ModalSizes {

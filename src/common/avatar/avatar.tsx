@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { classnames } from "helpers/utils";
 import type { Sizes } from "common/types";
 import avatarStyles from "./avatar.module.scss";
-import { ReactComponent as AvatarSVG } from "./assets/user.svg";
+import AvatarSVG from "./assets/user.svg";
 
 interface ImageProps {
   crossOrigin?: string;
