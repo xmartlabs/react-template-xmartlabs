@@ -41,7 +41,7 @@ class ApiServiceClass {
   ): Promise<ReturnType> {
     const updatedConfig = { ...config };
     updatedConfig.headers = { ...this.addedHeaders, ...(config.headers ?? {}) };
-    const fullURL = new URL(path, constants.apiBaseURL);
+    const fullURL = new URL(`/api/${path}`, constants.apiBaseURL);
     const response = await fetch(fullURL, {
       method,
       ...updatedConfig,
