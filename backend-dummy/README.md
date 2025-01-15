@@ -18,7 +18,7 @@ npm start
 
 ## Endpoints
 
-- [POST] /users/login
+- [POST] users/login
 
   **Description**
 
@@ -26,6 +26,6 @@ npm start
 
   **Responses**
 
-  200 OK: Login successful. The user's session cookie is set.
-  400 Bad Request: The request body is missing required fields (email or password).
-  401 Unauthorized: The provided email or password does not match any existing user.
+  - 200 OK: Login successful. The user's session cookie is set.
+  - 400 Bad Request: The request body is missing required fields (email or password).
+  - 401 Unauthorized: The provided email or password does not match any existing user.
