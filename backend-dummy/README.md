@@ -4,13 +4,13 @@
 
 In the backend-dummy folder run the following commands:
 
-Install the required packages:
+1. Install the required packages:
 
 ```shell
 npm install
 ```
 
-## Starting the backend
+2. Starting the backend
 
 ```shell
 npm start
@@ -26,6 +26,6 @@ npm start
 
   **Responses**
 
-  - 200 OK: Login successful. The user's session cookie is set.
-  - 400 Bad Request: The request body is missing required fields (email or password).
-  - 401 Unauthorized: The provided email or password does not match any existing user.
+  - **200 OK:** Login successful. The user's session cookie is set.
+  - **400 Bad Request:** The request body is missing required fields (email or password).
+  - **401 Unauthorized:** The provided email or password does not match any existing user.
