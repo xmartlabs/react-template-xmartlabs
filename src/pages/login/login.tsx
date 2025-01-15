@@ -18,9 +18,14 @@ export const Login = () => {
     try {
       await login(email, password);
       navigate(`/`);
-    } catch (error) {
+    } catch (err) {
       setError(true);
     }
+  };
+  const doLogin = () => {
+    handleSignIn().catch(() => {
+      setError(true);
+    });
   };
 
   return (
@@ -47,7 +52,7 @@ export const Login = () => {
         <Button
           className={styles.submitButton}
           disabled={!formValid}
-          onClick={handleSignIn}
+          onClick={doLogin}
         >
           Submit
         </Button>
