@@ -1,4 +1,4 @@
-## Dummy backend
+### Dummy backend
 
 ## Setup
 
@@ -15,6 +15,10 @@ npm install
 ```shell
 npm start
 ```
+
+## How it works?
+
+This backend does not use a real database. However, there is a file named users.json that acts as a database. Refer to this file to see the available users for testing purposes.
 
 ## Endpoints
 
