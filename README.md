@@ -60,6 +60,12 @@ You'll have to link it to the project remote manually.
 npm install
 ```
 
+5. Delete the dummy backend folder:
+
+```shell
+rm -r backend-dummy
+```
+
 And that's it! now you are ready to build on top, the commands to start, test and run storybook are listed above.
 
 ## Project structure
