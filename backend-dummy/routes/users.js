@@ -14,7 +14,9 @@ router.get("/", function (req, res, next) {
 router.post("/login", function (req, res, next) {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.json({ status: "error", message: "Invalid form submission" });
+    return res
+      .status(400)
+      .json({ status: "error", message: "Invalid form submission" });
   }
   const user = users.find(
     (user) => user.email === email && user.password === password,
