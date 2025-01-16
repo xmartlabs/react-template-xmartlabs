@@ -16,7 +16,7 @@ router.post("/login", function (req, res, next) {
   if (!email || !password) {
     return res
       .status(400)
-      .json({ status: "error", message: "Invalid form submission" });
+      .json({ status: "error", message: "Invalid form submission", code: 400 });
   }
   const user = users.find(
     (user) => user.email === email && user.password === password,
@@ -24,7 +24,7 @@ router.post("/login", function (req, res, next) {
   if (!user) {
     return res
       .status(401)
-      .json({ status: "error", message: "Invalid credentials" });
+      .json({ status: "error", message: "Invalid credentials", code: 401 });
   }
   const id = randomUUID();
   user["id"] = id;
@@ -35,6 +35,38 @@ router.post("/login", function (req, res, next) {
   });
   fs.writeFileSync("users.json", `{"users":${JSON.stringify(users)}}`);
   return res.json({ status: "success", message: "Login success" });
+});
+
+router.post("/signUp", function (req, res, next) {
+  const { name, email, password } = req.body;
+  if (!email || !password || !name) {
+    return res
+      .status(400)
+      .json({ status: "error", message: "Invalid form submission", code: 400 });
+  }
+  const user = users.find((user) => user.email === email);
+  if (user) {
+    return res.status(412).json({
+      status: "error",
+      message: "User with this email already exists",
+      code: 412,
+    });
+  }
+  const id = randomUUID();
+  const newUser = {
+    name,
+    email,
+    password,
+    id: randomUUID(),
+  };
+  res.cookie("cookie-id", id, {
+    maxAge: 900000,
+    httpOnly: true,
+    secure: true,
+  });
+  users.push(newUser);
+  fs.writeFileSync("users.json", `{"users":${JSON.stringify(users)}}`);
+  return res.json({ status: "success", message: "User created successfully" });
 });
 
 module.exports = router;

@@ -25,6 +25,7 @@ export interface TextFieldProps {
   status?: TextFieldStatus;
   type?: HTMLInputTypeAttribute;
   value?: string;
+  onBlur?: () => void;
 }
 
 export const TextField = ({
@@ -42,6 +43,7 @@ export const TextField = ({
   status = TextFieldStatus.default,
   type = "text",
   value,
+  onBlur,
 }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const focusOnInput = () => {
@@ -91,6 +93,7 @@ export const TextField = ({
           ref={inputRef}
           type={type}
           value={value}
+          onBlur={onBlur}
         />
       </div>
       {helperText && (
