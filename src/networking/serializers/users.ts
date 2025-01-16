@@ -1,7 +1,7 @@
-export const serializeSignUp = (
+export const serializeLogin = (
   email: string,
   password: string,
-): signUpCredentials => ({
+): loginCredentials => ({
   email,
   password,
 });

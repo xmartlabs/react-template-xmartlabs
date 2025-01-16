@@ -1,4 +1,4 @@
-interface signUpCredentials {
+interface loginCredentials {
   email: string;
   password: string;
 }
