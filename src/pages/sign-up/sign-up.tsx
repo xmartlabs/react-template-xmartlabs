@@ -88,13 +88,15 @@ const SignUp = () => {
           }}
         />
         {error && (
-          <p className={styles.error}>Something went wrong. Please try again</p>
+          <p className={styles.error}>
+            Something went wrong. Please try again.
+          </p>
         )}
         {passwordError && (
           <p className={styles.error}>Passwords do not match.</p>
         )}
         {userAlreadyExists && (
-          <p className={styles.error}>User already exists.</p>
+          <p className={styles.error}>A user with that email already exists.</p>
         )}
         <Button
           className={styles.submitButton}
