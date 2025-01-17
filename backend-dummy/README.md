@@ -33,3 +33,14 @@ This backend does not use a real database. However, there is a file named users.
   - **200 OK:** Login successful. The user's session cookie is set.
   - **400 Bad Request:** The request body is missing required fields (email or password).
   - **401 Unauthorized:** The provided email or password does not match any existing user.
+
+* [GET] /users/me
+
+  **Description**
+
+  Retrieves information about the authenticated user based on their session cookie.
+
+  **Responses**
+
+  - **200 OK:** Returns the authenticated user's information.
+  - **401 Unauthorized:** The user is not authenticated or lacks permission to perform this action.

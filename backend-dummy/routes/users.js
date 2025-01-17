@@ -69,4 +69,21 @@ router.post("/signUp", function (req, res, next) {
   return res.json({ status: "success", message: "User created successfully" });
 });
 
+router.get("/me", function (req, res, next) {
+  const id = req.cookies["cookie-id"];
+  if (!id) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "Unauthorized", code: 401 });
+  }
+  const user = users.find((user) => user.id === id);
+  if (!user) {
+    return res
+      .status(401)
+      .json({ status: "error", message: "Unauthorized", code: 401 });
+  }
+  const { name, email } = user;
+  return res.json({ status: "success", name: name, email: email });
+});
+
 module.exports = router;

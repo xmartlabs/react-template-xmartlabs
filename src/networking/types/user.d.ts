@@ -6,3 +6,13 @@ interface loginCredentials {
 interface signUpCredentials extends loginCredentials {
   name: string;
 }
+
+interface UserRaw {
+  email: string;
+  name: string;
+}
+
+interface UserInfo {
+  email: string;
+  name: string;
+}

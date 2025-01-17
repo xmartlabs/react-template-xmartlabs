@@ -15,3 +15,8 @@ export const serializeLogin = (
   email,
   password,
 });
+
+export const deserializeUser = (response: UserRaw): UserInfo => ({
+  email: response.email,
+  name: response.name,
+});

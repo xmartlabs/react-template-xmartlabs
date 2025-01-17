@@ -1,6 +1,10 @@
 import { ApiService } from "networking/api-service";
 import { API_ROUTES } from "networking/api-routes";
-import { serializeLogin, serializeSignUp } from "networking/serializers/users";
+import {
+  deserializeUser,
+  serializeLogin,
+  serializeSignUp,
+} from "networking/serializers/users";
 
 const login = async (email: string, password: string) => {
   const serializeCredentials = serializeLogin(email, password);
@@ -17,4 +21,11 @@ const signUp = async (email: string, password: string, name: string) => {
   });
   return response;
 };
-export { login, signUp };
+
+const me = async () => {
+  const response = await ApiService.get<UserRaw>(API_ROUTES.ME);
+  const info = deserializeUser(response);
+  return info;
+};
+
+export { login, signUp, me };

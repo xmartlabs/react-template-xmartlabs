@@ -6,6 +6,7 @@ const API_ROUTES = {
   EXAMPLE: "/example",
   LOGIN: "users/login",
   SIGN_UP: "users/signUp",
+  ME: "users/me",
 };
 
 export { API_ROUTES };
