@@ -34,7 +34,7 @@ This backend does not use a real database. However, there is a file named users.
   - **400 Bad Request:** The request body is missing required fields (email or password).
   - **401 Unauthorized:** The provided email or password does not match any existing user.
 
-- [POST] /users/signUp
+- [POST] users/signUp
 
   **Description**
 
@@ -42,6 +42,6 @@ This backend does not use a real database. However, there is a file named users.
 
   **Responses**
 
-  **200 OK:** The user has been created successfully.
-  **400 Bad Request:** The request body is missing required fields.
-  **412 Precondition Failed:** A user with the provided email already exists.
+  - **200 OK:** The user has been created successfully.
+  - **400 Bad Request:** The request body is missing required fields.
+  - **412 Precondition Failed:** A user with the provided email already exists.
