@@ -20,8 +20,8 @@ export const ResetPassword = () => {
     try {
       await resetPassword(email, password);
       navigate("/login");
-    } catch (error) {
-      const err = error as ApiError;
+    } catch (e) {
+      const err = e as ApiError;
       if (err.code === ErrorStatus.PreconditionFailed) {
         setInvalidEmail(true);
       }
@@ -80,7 +80,7 @@ export const ResetPassword = () => {
           <div className={styles.error}>Passwords do not match</div>
         )}
         {invalidEmail && (
-          <div className={styles.error}>Email doesn't exits </div>
+          <div className={styles.error}>Email does not exits </div>
         )}
         {error && (
           <div className={styles.error}>
