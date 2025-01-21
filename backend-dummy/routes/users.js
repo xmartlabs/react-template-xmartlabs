@@ -86,4 +86,27 @@ router.get("/me", function (req, res, next) {
   return res.json({ status: "success", name: name, email: email });
 });
 
+router.post("/resetPassword", function (req, res, next) {
+  const { email, password } = req.body;
+  if (!password || !email) {
+    return res
+      .status(400)
+      .json({ status: "error", message: "Invalid form submission", code: 400 });
+  }
+  const user = users.find((user) => user.email === email);
+  if (!user) {
+    return res.status(412).json({
+      status: "error",
+      message: "Not user with this email",
+      code: 412,
+    });
+  }
+  user.password = password;
+  fs.writeFileSync("users.json", `{"users":${JSON.stringify(users)}}`);
+  return res.json({
+    status: "success",
+    message: "Password changed successfully",
+  });
+});
+
 module.exports = router;

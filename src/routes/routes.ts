@@ -6,6 +6,7 @@ export enum RouteName {
   Login = "login",
   NotFound = "notFound",
   SignUp = "signUp",
+  ResetPassword = "resetPassword",
 }
 
 export interface Route {
@@ -65,6 +66,11 @@ const ROUTES = [
   {
     name: RouteName.SignUp,
     path: "/signUp",
+    exact: true,
+  },
+  {
+    name: RouteName.ResetPassword,
+    path: "/resetPassword",
     exact: true,
   },
   {

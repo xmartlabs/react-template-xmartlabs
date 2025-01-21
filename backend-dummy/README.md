@@ -44,3 +44,15 @@ This backend does not use a real database. However, there is a file named users.
 
   - **200 OK:** Returns the authenticated user's information.
   - **401 Unauthorized:** The user is not authenticated or lacks permission to perform this action.
+
+* [POST] users/resetPassword
+
+  **Description**
+
+  Endpoint to reset a user's password.
+
+  **Responses:**
+
+  - **200 OK:** Password reset successfully.
+  - **400 Bad Request:** Missing required fields in the request body.
+  - **412 Precondition Failed:** No user exists with the specified email.
