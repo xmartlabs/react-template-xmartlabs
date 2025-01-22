@@ -1,5 +1,3 @@
-import path from "path";
-
 export type Params = Record<string, string>;
 
 export enum RouteName {

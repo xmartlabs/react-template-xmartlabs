@@ -18,13 +18,13 @@ export const ResetPassword = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
-    if (token) {
-      setToken(token);
+    const tokenParameter = urlParams.get("token");
+    if (tokenParameter) {
+      setToken(tokenParameter);
     } else {
       goToPage(RouteName.Login);
     }
-  }, []);
+  }, [goToPage]);
 
   const handleReset = async () => {
     try {

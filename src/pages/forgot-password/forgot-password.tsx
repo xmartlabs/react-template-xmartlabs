@@ -9,9 +9,7 @@ const ForgotPassword = () => {
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
 
-  const doSendMail = async () => {
-    setError(false);
-    setShowSuccess(false);
+  const handleSendMail = async () => {
     try {
       await forgotPassword(email);
       setShowSuccess(true);
@@ -19,6 +17,15 @@ const ForgotPassword = () => {
       setError(true);
     }
   };
+
+  const doSendMail = () => {
+    setError(false);
+    setShowSuccess(false);
+    handleSendMail().catch(() => {
+      setError(true);
+    });
+  };
+
   return (
     <div className={styles.container}>
       <form className={styles.form}>
