@@ -1,30 +1,37 @@
 import { TextField } from "common/text-field";
 import styles from "./reset-password.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "common/button";
-import { resetPassword } from "networking/controllers/users";
-import { useNavigate } from "react-router-dom";
-import { ErrorStatus, type ApiError } from "networking/api-error";
+import { setNewPassword } from "networking/controllers/users";
+import { useGoToPage } from "hooks/use-go-to-page";
+import { RouteName } from "routes";
 
 export const ResetPassword = () => {
-  const navigate = useNavigate();
+  const goToPage = useGoToPage();
   const [password, setPassword] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [token, setToken] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [passwordError, setPasswordError] = useState<boolean>(false);
-  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const formValid = !passwordError && password && repeatPassword && email;
+  const [success, setSuccess] = useState<boolean>(false);
+  const formValid = !passwordError && password && repeatPassword;
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+    if (token) {
+      setToken(token);
+    } else {
+      goToPage(RouteName.Login);
+    }
+  }, []);
 
   const handleReset = async () => {
     try {
-      await resetPassword(email, password);
-      navigate("/login");
+      await setNewPassword(token, password);
+      setSuccess(true);
     } catch (e) {
-      const err = e as ApiError;
-      if (err.code === ErrorStatus.PreconditionFailed) {
-        setInvalidEmail(true);
-      }
+      setError(true);
     }
   };
 
@@ -36,14 +43,6 @@ export const ResetPassword = () => {
   return (
     <div className={styles.container}>
       <form className={styles.form}>
-        <TextField
-          className={styles.field}
-          label="Email"
-          name="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
         <TextField
           className={styles.field}
           label="Password"
@@ -77,14 +76,17 @@ export const ResetPassword = () => {
           }}
         />
         {passwordError && (
-          <div className={styles.error}>Passwords do not match</div>
+          <div className={styles.message}>The passwords do not match.</div>
         )}
-        {invalidEmail && (
-          <div className={styles.error}>Email does not exits </div>
-        )}
+
         {error && (
-          <div className={styles.error}>
-            Something went wrong. Please try again
+          <div className={styles.message}>
+            Something went wrong. Please try again.
+          </div>
+        )}
+        {success && (
+          <div className={styles.message}>
+            Your password has been changed successfully.
           </div>
         )}
         <Button

@@ -1,3 +1,5 @@
+import path from "path";
+
 export type Params = Record<string, string>;
 
 export enum RouteName {
@@ -7,6 +9,7 @@ export enum RouteName {
   NotFound = "notFound",
   SignUp = "signUp",
   ResetPassword = "resetPassword",
+  ForgotPassword = "forgotPassword",
 }
 
 export interface Route {
@@ -71,6 +74,11 @@ const ROUTES = [
   {
     name: RouteName.ResetPassword,
     path: "/resetPassword",
+    exact: true,
+  },
+  {
+    name: RouteName.ForgotPassword,
+    path: "/forgotPassword",
     exact: true,
   },
   {
