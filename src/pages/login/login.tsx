@@ -5,9 +5,11 @@ import { TextField } from "common/text-field";
 import styles from "./login.module.scss";
 import { login } from "networking/controllers/users";
 import { useNavigate } from "react-router-dom";
+import { useGoToPage } from "hooks/use-go-to-page";
+import { RouteName } from "routes";
 
 export const Login = () => {
-  const navigate = useNavigate();
+  const goToPage = useGoToPage();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
@@ -17,7 +19,7 @@ export const Login = () => {
   const handleSignIn = async () => {
     try {
       await login(email, password);
-      navigate(`/`);
+      goToPage(RouteName.Home);
     } catch (err) {
       setError(true);
     }

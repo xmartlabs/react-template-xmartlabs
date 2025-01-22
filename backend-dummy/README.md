@@ -1,4 +1,6 @@
-### Dummy backend
+# Dummy backend
+
+This backend is a lightweight, Express-based application designed to facilitate rapid testing of common workflows. It serves as a sandbox for developers to validate front-end integrations, prototype new features without relying on fully-fledged backend systems.
 
 ## Setup
 
