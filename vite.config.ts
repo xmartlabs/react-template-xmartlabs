@@ -27,4 +27,12 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
+  server: {
+    proxy: {
+      [process.env.VITE_API_BASE_PATH ?? "/api"]: {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
+  },
 });

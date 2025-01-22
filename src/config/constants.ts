@@ -16,5 +16,7 @@ export const constants = {
 
   logLevel: fetchVariable("VITE_LOG_LEVEL", "info"),
 
+  apiBasePath: fetchVariable("VITE_API_BASE_PATH", "/api"),
+
   environment,
 };

@@ -29,6 +29,7 @@ plugins:
   - "check-file"
 ignorePatterns:
   - build/**/*
+  - backend-dummy/**/*
 rules:
   # Eslint Possible Problems
   array-callback-return: ["error", { allowImplicit: true }]
