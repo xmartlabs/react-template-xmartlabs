@@ -7,6 +7,8 @@ const API_ROUTES = {
   LOGIN: "users/login",
   SIGN_UP: "users/signUp",
   ME: "users/me",
+  FORGOT_PASSWORD: "users/forgotPassword",
+  SET_PASSWORD: "users/setPassword",
 };
 
 export { API_ROUTES };

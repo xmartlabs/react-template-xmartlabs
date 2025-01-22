@@ -4,7 +4,8 @@ import { Button } from "common/button";
 import { TextField } from "common/text-field";
 import styles from "./login.module.scss";
 import { login } from "networking/controllers/users";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { RouteName } from "routes";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -48,14 +49,19 @@ export const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        {error && <p className={styles.error}>Incorrect email or password.</p>}
-        <Button
-          className={styles.submitButton}
-          disabled={!formValid}
-          onClick={doLogin}
-        >
-          Submit
-        </Button>
+        <div className={styles.buttonContainer}>
+          {error && (
+            <p className={styles.error}>Incorrect email or password.</p>
+          )}
+          <Button
+            className={styles.submitButton}
+            disabled={!formValid}
+            onClick={doLogin}
+          >
+            Submit
+          </Button>
+          <Link to={`/${RouteName.ForgotPassword}`}>Forgot password?</Link>
+        </div>
       </form>
     </div>
   );

@@ -44,3 +44,24 @@ This backend does not use a real database. However, there is a file named users.
 
   - **200 OK:** Returns the authenticated user's information.
   - **401 Unauthorized:** The user is not authenticated or lacks permission to perform this action.
+
+* [POST] users/forgotPassword
+
+  **Description**
+
+  This endpoint initiates the process of resetting a user's password. The user must provide their email address in the request body. If the email is associated with an account, a token will be created.
+
+  **Responses:**
+
+- **200 OK:** If the email provided exists in our database we print the token in the console.
+
+* [POST] users/setPassword
+
+  **Description**
+
+  Receives a token and updates the associated user's password.
+
+  **Responses:**
+
+- **200 OK:** The user's password has been successfully updated.
+- **400 Bad Request:** Missing required fields in the request body or invalid token.

@@ -28,4 +28,18 @@ const me = async () => {
   return info;
 };
 
-export { login, signUp, me };
+const setNewPassword = async (token: string, password: string) => {
+  const response = await ApiService.post(API_ROUTES.SET_PASSWORD, {
+    body: JSON.stringify({ token, password }),
+  });
+  return response;
+};
+
+const forgotPassword = async (email: string) => {
+  const response = await ApiService.post(API_ROUTES.FORGOT_PASSWORD, {
+    body: JSON.stringify({ email }),
+  });
+  return response;
+};
+
+export { login, signUp, me, setNewPassword, forgotPassword };
