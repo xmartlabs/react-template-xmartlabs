@@ -4,7 +4,6 @@ import { Button } from "common/button";
 import { TextField } from "common/text-field";
 import styles from "./login.module.scss";
 import { login } from "networking/controllers/users";
-import { useNavigate } from "react-router-dom";
 import { useGoToPage } from "hooks/use-go-to-page";
 import { RouteName } from "routes";
 
