@@ -43,4 +43,5 @@ This backend does not use a real database. However, there is a file named users.
   **Responses**
 
   - **200 OK:** Returns the authenticated user's information.
-  - **401 Unauthorized:** The user is not authenticated or lacks permission to perform this action.
+  - **400 Bad request:** The user is not authenticated.
+  - **401 Unauthorized:** The user with that cookie is not in the database.

@@ -73,8 +73,8 @@ router.get("/me", function (req, res, next) {
   const id = req.cookies["cookie-id"];
   if (!id) {
     return res
-      .status(401)
-      .json({ status: "error", message: "Unauthorized", code: 401 });
+      .status(400)
+      .json({ status: "error", message: "Invalid form submission", code: 400 });
   }
   const user = users.find((user) => user.id === id);
   if (!user) {
