@@ -1,12 +1,10 @@
-import { classnames } from "helpers/utils";
-import globalStyles from "assets/stylesheets/global-styles.module.scss";
-import styles from "./about.module.scss";
-
 const About = () => (
-  <div className={classnames(styles.container, globalStyles.genericContainer)}>
+  <div className="flex flex-1 justify-center items-center">
     <div>
-      <p className={styles.header}>This is the about page.</p>
-      <p className={styles.subheader}>Made with ❤️ by Xmartlabs</p>
+      <p className="text-5xl font-bold m-0 text-center">
+        This is the about page.
+      </p>
+      <p className="text-lg mt-5 text-center">Made with ❤️ by Xmartlabs</p>
     </div>
   </div>
 );
