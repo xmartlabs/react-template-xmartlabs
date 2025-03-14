@@ -1,7 +1,6 @@
 @use "sass:list";
 @use "sass:map";
 @use "colors" as *;
-@use "mixins" as *;
 @use "variables" as *;
 
 /*
@@ -29,13 +28,6 @@
     font-size: list.nth(map.get($properties, "mobile"), 1);
     line-height: list.nth(map.get($properties, "mobile"), 2);
   }
-
-  @include minWidth("md") {
-    .#{$heading} {
-      font-size: list.nth(map.get($properties, "web"), 1);
-      line-height: list.nth(map.get($properties, "web"), 2);
-    }
-  }
 }
 
 // Text
@@ -47,14 +39,6 @@
       color: list.nth(map.get($properties, "mobile"), 3);
       text-transform: list.nth(map.get($properties, "mobile"), 4);
       font-weight: $font-weight;
-    }
-
-    @include minWidth("md") {
-      .text-#{$text}-#{$weight-name} {
-        font-size: list.nth(map.get($properties, "web"), 1);
-        line-height: list.nth(map.get($properties, "web"), 2);
-        text-transform: list.nth(map.get($properties, "web"), 4);
-      }
     }
   }
 }
