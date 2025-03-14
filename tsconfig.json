@@ -12,7 +12,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "Preserve",
     "moduleDetection": "force",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,

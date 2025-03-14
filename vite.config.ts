@@ -5,6 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import svgrPlugin from "vite-plugin-svgr";
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,5 +27,6 @@ export default defineConfig({
       },
       include: "**/*.svg",
     }),
+    tailwindcss(),
   ],
 });
