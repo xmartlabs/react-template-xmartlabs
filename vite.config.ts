@@ -15,7 +15,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      $fonts: resolve("./src/assets/fonts"),
+      "@": resolve(__dirname, "./src"),
     },
   },
   plugins: [
