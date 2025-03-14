@@ -1,8 +1,6 @@
 import { useState } from "react";
-
 import { Button } from "common/button";
-import { TextField } from "common/text-field";
-import styles from "./login.module.scss";
+// import styles from "./login.module.scss";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,10 +9,10 @@ export const Login = () => {
   const formValid = !!email && !!password;
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
-        <TextField
-          className={styles.field}
+    <div className="flex justify-center items-center w-screen h-screen px-8">
+      <form className="max-w-md w-full p-8 rounded shadow-md bg-white">
+        {/* <TextField
+          className="mb-5"
           label="Email"
           name="email"
           onChange={(e) => {
@@ -22,19 +20,15 @@ export const Login = () => {
           }}
         />
         <TextField
-          className={styles.field}
+          className="mb-5"
           label="Password"
           name="password"
           type="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
-        />
-        <Button
-          className={styles.submitButton}
-          type="submit"
-          disabled={!formValid}
-        >
+        /> */}
+        <Button className="w-36 mx-auto" type="submit" disabled={!formValid}>
           Submit
         </Button>
       </form>
