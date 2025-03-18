@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "common/button";
+import { Button } from "common/button/button";
 // import styles from "./login.module.scss";
 
 export const Login = () => {
