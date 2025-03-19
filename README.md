@@ -2,7 +2,7 @@
 
 ## Contributing to this Boilerplate
 
-Make sure you have the appropriate version of Node (22.8.0) and NPM (10.9.0) installed.
+Make sure you have the appropriate version of Node (22.11.0) and NPM (11.2.0) installed.
 
 Then install the required packages:
 
@@ -20,12 +20,6 @@ npm run start
 
 ```shell
 npm run test
-```
-
-## Running Storybook
-
-```shell
-npm run storybook
 ```
 
 ## Generate a Project with this Boilerplate
@@ -60,13 +54,13 @@ You'll have to link it to the project remote manually.
 npm install
 ```
 
-And that's it! now you are ready to build on top, the commands to start, test and run storybook are listed above.
+And that's it! now you are ready to build on top, the commands to start and test are listed above.
 
 ## Project structure
 
 The `src` directory has the following structure:
 
-- `assets`: This directory contains all global assets. This includes images and stylesheets used in multiple components.
+- `assets`: This directory contains all global assets. This includes images and icons used in multiple components.
 - `common`: React components used across multiple pages of the SPA.
 - `config`: Global app configuration files go here (e.g. a constants file).
 - `helpers`: Javascript files that provide helper functions to the app. These are not React components.
@@ -265,144 +259,9 @@ Types are defined separately so that the types can be accessible throughout the 
 
 ## Component Styling
 
-React apps can be styled in multiple ways. This project supports and is built to use [CSS Modules](https://github.com/css-modules/css-modules) on Sass to style React components. This section explains how to style components and what to take into account.
+We use [Tailwind](https://tailwindcss.com/docs/installation/using-vite) for styles. Visit their documentation for more information on how to style.
 
-### Local Styles
-
-Components will probably need CSS that is local to them. If you need to do this simply create a Sass file with the same base name as the component, and under the same directory. For example:
-
-```tsx
-// src/components/button/button.tsx
-import React from "react";
-
-import styles from "./button.module.scss";
-
-const Button = () => (
-  <button className={styles.container}>
-    This is a<span className={styles.highlight}>button!</span>
-  </button>
-);
-
-export { Button };
-```
-
-```scss
-/* src/components/button/button.module.scss */
-.container {
-  width: 100px;
-}
-
-.highlight {
-  font-weight: bold;
-}
-```
-
-Our PostCSS plugin will mangle the names of the classes inside any module (make sure you name modules with the `.module.scss` extension or this won't work) to reduce the probability of collisions between classes across multiple components. In this case, for instance, the name of the `container` class will be changed to something like `button__container__23h2k`.
-
-### Global Styles
-
-Typically when using Sass you'll probably have global stylesheets that can be imported and reused across other Sass files. Global styles in this project are stored on `src/assets/stylesheets` directory. There you'll find:
-
-- `base-styles.scss`: file that sets the default styles for elements. Helps normalize styles across the whole page. Try to keep these as limited as possible, avoid over-styling elements.
-- `breakpoints.scss`: breakpoint-related file. Exports container classes and some other magic. (More on this on following sections)
-- `colors.scss`: compilation of all color variables used in the project.
-- `fonts.scss`: font-face configurations of all fonts used on the project. Not needed unless you're using locally-stored fonts.
-- `global-styles.module.scss`: global module that exports conflicting classes (more on this below).
-- `mixins.scss`: file that includes all mixins used on the project.
-- `text-styles.scss`: includes all text-style classes used on the project. Typically used along with design systems (more on this below).
-- `variables.scss`: generic variables like sizes, paddings, z-indexes and such.
-
-### Breakpoints
-
-It's quite usual for web apps to be designed around containers. These are containers (for lack of a better word) that take on different sizes depending on the size of the screen. What size they take and at what breakpoints they change sizes depends on the design of the page. Luckily this project allows for quick configuration of breakpoints and containers.
-
-On the `variables.scss` file you'll find the `breakpoints` variable that looks something like this:
-
-```scss
-$breakpoints: (
-  xl: 1400px,
-  lg: 1200px,
-  md: 992px,
-  sm: 768px,
-  xs: 576px,
-);
-```
-
-Each breakpoint is identified by its biggest threshold. For example, the small breakpoint (`sm`) is for screens with width between 577px and 768px. You can modify, add and remove breakpoints as long as the order is preserved (biggest first).
-
-Sometimes you might need to display items in rows. We've got support for that! The `genericItemContainer` class will automatically display its direct children in rows. You can quickly configure how many items you want to see on each row per threshold by modifying the `items-per-row` variable, which looks something like this:
-
-```scss
-$items-per-row: (
-  xl: 5,
-  lg: 4,
-  md: 3,
-  sm: 2,
-  xs: 2,
-  xxs: 1,
-);
-```
-
-On the `xl` breakpoint the container will render rows of five items, but on the `sm` breakpoint rows allow at most two items. Note that in order for this to work like it does, the items are sized pixel-perfect(ly). One caveat of this is that the generic item container **must** be used directly inside a `genericContainer`, otherwise measurements will fail and everything will look really bad.
-
-### Text Styles
-
-Design systems will sometimes define text styles centrally and reference them across the whole design of the product. This is ideal for developers since it allows us to easily replicate the design system on the codebase and reference styles centrally.
-
-The `text-styles.scss` file is meant to be used to document the text styles of the design system. Using mixins to generate the classes with less code is a good idea.
-
-### Caveats
-
-Sass is great, CSS Modules is great. Together, they have the potential of becoming a powerhouse in frontend styling. Sadly their integration has some caveats.
-
-#### Importing a Sass file from a module
-
-It's important to know that the Sass transpiler runs before the modules are interpreted. Let's assume you have a module file named `my-module.module.scss`. Inside that file we import a different Sass file wich defines a `generic` class.
-
-```scss
-/* my-module.module.scss */
-@import "path/to/a/file.scss";
-
-.container {
-  @extend .generic;
-  font-size: 15px;
-}
-```
-
-```scss
-/* path/to/a/file.scss */
-
-.generic {
-  width: 100%;
-  height: 100%;
-}
-```
-
-Due to how modules work, each time we import that generic file a new set of classes will be generated, effectively duplicating its code each time we import it from a module. This is completely undesireable since it generates useless amounts of CSS. There's no simple solution to this, other than applying a simple rule: **never** import a Sass file that is transpiled to non-empty CSS from a module. You are allowed to import files that don't generate CSS by themselves. A file that defines some mixins is allowed, since it doesn't transpile to actual CSS.
-
-Want to have some generic classes to use on components? Import the file from the component itself and not from the Sass module:
-
-```tsx
-import React from "react";
-
-import myLocalModule from "./my-component.module.scss";
-import myGlobalModule from "../../assets/stylesheets/global-module.module.scss";
-
-const MyComponent = () => (
-  <div className={[myLocalModule.container, myGlobalModule.generic].join(" ")}>
-    {/* More code here */}
-  </div>
-);
-
-export { MyComponent };
-```
-
-This will ensure that only a central version of the global CSS code is used. This project includes a file named `global-styles.module.scss` that should be used to export all global CSS.
-
-### Stylelint
-
-In order to maintain a similar coding style across projects, we use Stylelint in a similar way we use Eslint.
-Stylelint runs by using the command `npm run sass-lint` and using the configuration under [`Stylelint file`](./.stylelintrc.yml).
+We also use [Shadcn](https://ui.shadcn.com/) for importing and reusing components. Make sure to review the documentation for how to import components.
 
 ## Docker Configuration
 

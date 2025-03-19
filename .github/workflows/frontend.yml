@@ -43,8 +43,5 @@ jobs:
       - name: Run Linter
         run: npm run lint
 
-      - name: Run Sasslint
-        run: npm run sass-lint
-
       - name: Run tests
         run: npm test
