@@ -10,13 +10,13 @@ Then install the required packages:
 npm install
 ```
 
-## Starting the Project
+### Starting the Project
 
 ```shell
 npm run start
 ```
 
-## Running Tests
+### Running Tests
 
 ```shell
 npm run test
