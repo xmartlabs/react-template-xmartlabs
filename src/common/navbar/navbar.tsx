@@ -3,9 +3,9 @@ import { AppLink } from "common/app-link";
 import { Container } from "common/container";
 
 export const Navbar = () => (
-  <div className="py-5 border-b-1 border-gray-300">
+  <div className="border-b-1 border-gray-300 py-5">
     <Container>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div>
           <AppLink routeName={RouteName.Home}>Logo goes here</AppLink>
         </div>

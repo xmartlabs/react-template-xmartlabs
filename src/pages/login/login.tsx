@@ -10,8 +10,8 @@ export const Login = () => {
   const formValid = !!email && !!password;
 
   return (
-    <div className="flex flex-1 justify-center items-center h-full px-8">
-      <form className="max-w-md w-full p-8 rounded shadow-md">
+    <div className="flex h-full flex-1 items-center justify-center px-8">
+      <form className="w-full max-w-md rounded p-8 shadow-md">
         <Label htmlFor="email">Email</Label>
         <Input
           className="mt-2 mb-6"
@@ -33,7 +33,7 @@ export const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        <Button className="w-36 mx-auto" type="submit" disabled={!formValid}>
+        <Button className="mx-auto w-36" type="submit" disabled={!formValid}>
           Submit
         </Button>
       </form>

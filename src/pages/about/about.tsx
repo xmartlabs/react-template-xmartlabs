@@ -1,10 +1,10 @@
 const About = () => (
-  <div className="flex flex-1 justify-center items-center">
+  <div className="flex flex-1 items-center justify-center">
     <div>
-      <p className="text-5xl font-bold m-0 text-center">
+      <p className="m-0 text-center text-5xl font-bold">
         This is the about page.
       </p>
-      <p className="text-lg mt-5 text-center">Made with ❤️ by Xmartlabs</p>
+      <p className="mt-5 text-center text-lg">Made with ❤️ by Xmartlabs</p>
     </div>
   </div>
 );

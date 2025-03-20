@@ -20,7 +20,7 @@ const Layout = ({ layoutType, children }: LayoutProps): JSX.Element | null => {
   }
   if (layoutType === LayoutType.NavAndFooter) {
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="flex min-h-screen flex-col">
         <div className="flex flex-1 flex-col">
           <Navbar />
           {children}
