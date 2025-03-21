@@ -1,5 +1,5 @@
 x-common: &common
-  image: "node:22.8.0"
+  image: "node:22.11.0"
   environment:
     - VITE_API_BASE_URL=http://dummy-server
 
@@ -7,7 +7,7 @@ pipeline:
   setup:
     <<: *common
     commands:
-      - npm i -g npm@10.9.0
+      - npm i -g npm@11.2.0
       - npm ci --prefer-offline --engine-strict
   js-prettier:
     <<: *common
@@ -19,11 +19,6 @@ pipeline:
     group: fe-build
     commands:
       - CI=true npm run lint
-  sass-lint:
-    <<: *common
-    group: fe-build
-    commands:
-      - CI=true npm run sass-lint
   js-test:
     <<: *common
     group: fe-build

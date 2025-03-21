@@ -1,4 +1,4 @@
-import { Login } from "pages/login/login";
+import { Login } from "pages/login";
 import { Home } from "pages/home";
 import { About } from "pages/about";
 import { NotFound } from "pages/not-found";

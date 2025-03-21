@@ -1,24 +1,23 @@
 import { RouteName } from "routes/routes";
-import globalStyles from "assets/stylesheets/global-styles.module.scss";
 import { AppLink } from "common/app-link";
-import { Avatar } from "common/avatar";
 import { Container } from "common/container";
-import styles from "./navbar.module.scss";
 
 export const Navbar = () => (
-  <div className={styles.container}>
+  <div className="border-b-1 border-gray-300 py-5">
     <Container>
-      <div className={styles.internalContainer}>
+      <div className="flex items-center justify-between">
         <div>
           <AppLink routeName={RouteName.Home}>Logo goes here</AppLink>
         </div>
-        <div className={styles.rightContainer}>
+        <div className="flex items-center gap-5">
           <nav>
-            <AppLink className={globalStyles.link} routeName={RouteName.About}>
+            <AppLink
+              className="text-blue-500 hover:underline"
+              routeName={RouteName.About}
+            >
               About
             </AppLink>
           </nav>
-          <Avatar size="s" />
         </div>
       </div>
     </Container>

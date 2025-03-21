@@ -1,8 +1,7 @@
 import { Container } from "common/container";
-import styles from "./footer.module.scss";
 
 export const Footer = () => (
-  <div className={styles.container}>
+  <div className="border-t-1 border-gray-300 py-5">
     <Container>Footer</Container>
   </div>
 );

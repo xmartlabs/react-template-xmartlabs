@@ -1,5 +1,4 @@
 import { createRouter, routes } from "routes";
-import "index.scss";
 import { ErrorBoundary } from "common/error-boundary";
 import { RouterProvider } from "react-router-dom";
 

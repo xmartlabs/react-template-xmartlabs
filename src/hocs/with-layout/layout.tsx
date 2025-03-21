@@ -1,7 +1,6 @@
 import type React from "react";
 import { Footer } from "common/footer";
 import { Navbar } from "common/navbar";
-import styles from "./layout.module.scss";
 
 enum LayoutType {
   // Add more layout types here
@@ -21,8 +20,8 @@ const Layout = ({ layoutType, children }: LayoutProps): JSX.Element | null => {
   }
   if (layoutType === LayoutType.NavAndFooter) {
     return (
-      <div className={styles.container}>
-        <div className={styles.internalContainer}>
+      <div className="flex min-h-screen flex-col">
+        <div className="flex flex-1 flex-col">
           <Navbar />
           {children}
         </div>

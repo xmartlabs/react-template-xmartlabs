@@ -7,8 +7,8 @@
     "url": "git+https://github.com/xmartlabs/xmartlabs-react-template.git"
   },
   "engines": {
-    "node": "22.8.0",
-    "npm": "10.9.0"
+    "node": "22.x",
+    "npm": "11.x"
   },
   "keywords": [
     "vite",
@@ -22,11 +22,18 @@
   "homepage": "https://github.com/xmartlabs/xmartlabs-react-template#readme",
   "private": true,
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-slot": "^1.1.2",
     "axios": "^0.21.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "history": "^4.10.1",
+    "lucide-react": "^0.482.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "scripts": {
     "start": "vite",
@@ -35,9 +42,6 @@
     "coverage": "vitest run --coverage",
     "serve": "vite preview",
     "lint": "eslint . --ext .js --ext .jsx --ext .ts --ext .tsx && tsc",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "sass-lint": "stylelint src/\"**/*.scss\"",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write"
   },
@@ -55,14 +59,7 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.5.16",
-    "@storybook/addon-essentials": "^6.5.16",
-    "@storybook/addon-interactions": "^6.5.16",
-    "@storybook/addon-links": "^6.5.16",
-    "@storybook/builder-vite": "^8.4.7",
-    "@storybook/node-logger": "^6.5.16",
-    "@storybook/react": "^6.5.16",
-    "@storybook/testing-library": "^0.0.13",
+    "@tailwindcss/vite": "^4.0.14",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "^16.18.14",
@@ -82,11 +79,8 @@
     "jsdom": "^21.1.1",
     "postcss": "^8.4.21",
     "prettier": "3.1.1",
-    "sass": "^1.58.3",
-    "storybook-addon-pseudo-states": "^1.15.2",
-    "stylelint": "^14.16.1",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard-scss": "^6.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^4.0.14",
     "typescript": "^5.5.4",
     "vite": "^6.0.3",
     "vite-plugin-svgr": "^4.3.0",
