@@ -1,8 +1,7 @@
 import { useState } from "react";
-
-import { Button } from "common/button";
-import { TextField } from "common/text-field";
-import styles from "./login.module.scss";
+import { Button } from "common/button/button";
+import { Input } from "common/input/input";
+import { Label } from "common/label/label";
 
 export const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,30 +10,30 @@ export const Login = () => {
   const formValid = !!email && !!password;
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form}>
-        <TextField
-          className={styles.field}
-          label="Email"
+    <div className="flex h-full flex-1 items-center justify-center px-8">
+      <form className="w-full max-w-md rounded p-8 shadow-md">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          className="mt-2 mb-6"
+          id="email"
           name="email"
+          type="email"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
-        <TextField
-          className={styles.field}
-          label="Password"
+
+        <Label htmlFor="password">Password</Label>
+        <Input
+          className="mt-2 mb-8"
+          id="password"
           name="password"
           type="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <Button
-          className={styles.submitButton}
-          type="submit"
-          disabled={!formValid}
-        >
+        <Button className="mx-auto w-36" type="submit" disabled={!formValid}>
           Submit
         </Button>
       </form>

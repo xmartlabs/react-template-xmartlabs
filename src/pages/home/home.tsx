@@ -1,12 +1,10 @@
-import { classnames } from "helpers/utils";
-import globalStyles from "assets/stylesheets/global-styles.module.scss";
-import styles from "./home.module.scss";
-
 const Home = () => (
-  <div className={classnames(styles.container, globalStyles.genericContainer)}>
+  <div className="flex flex-1 items-center justify-center">
     <div>
-      <p className={styles.header}>This is the homepage.</p>
-      <p className={styles.subheader}>Feel free to spruce me up 😊</p>
+      <p className="m-0 text-center text-5xl font-bold">
+        This is the homepage.
+      </p>
+      <p className="mt-5 text-center text-lg">Feel free to spruce me up 😊</p>
     </div>
   </div>
 );
