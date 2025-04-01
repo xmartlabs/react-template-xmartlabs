@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 // NOTE: Anything imported from routes must avoid the base directory
 // since it creates a circular dependency.

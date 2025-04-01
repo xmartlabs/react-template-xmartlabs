@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router";
 import { mockScrollTo } from "tests/support/window-mock";
 import { ScrollToTop } from "./scroll-to-top";
 

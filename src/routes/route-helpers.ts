@@ -1,4 +1,4 @@
-import { generatePath } from "react-router-dom";
+import { generatePath } from "react-router";
 import { routes } from "./routes";
 import type { Params, RouteName } from "./routes";
 
