@@ -12,8 +12,10 @@ export const useGoToPage = () => {
 
   return useCallback(
     (routeName: RouteName, pathParams?: Params, queryParams?: Params) => {
-      navigate(getRouteFor(routeName, pathParams, queryParams));
+      // eslint-disable-next-line no-void
+      void navigate(getRouteFor(routeName, pathParams, queryParams));
     },
     [navigate],
   );
+  
 };
