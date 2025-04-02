@@ -2,7 +2,7 @@ const fetchVariable = (varName: string, defaultValue?: string) => {
   if (!import.meta.env[varName] && typeof defaultValue === "undefined") {
     throw new Error(`Mandatory environment variable ${varName} is not set.`);
   }
-  return String(import.meta.env[varName] || defaultValue);
+  return String(import.meta.env[varName] ?? defaultValue);
 };
 
 const nodeEnv = fetchVariable("MODE");

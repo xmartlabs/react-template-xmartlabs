@@ -71,8 +71,6 @@ const ROUTES = [
  * This type is used to extract the type of the route params
  * from the path string.
  */
-export type RouteParams = {
-  [K in RouteName]: Route;
-} & Params;
+export type RouteParams = Record<RouteName, Route> & Params;
 
 export const routes = ROUTES.map(setPathParams);
