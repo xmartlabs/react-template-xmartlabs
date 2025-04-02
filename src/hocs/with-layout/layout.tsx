@@ -14,7 +14,10 @@ interface LayoutProps {
   layoutType: LayoutType;
 }
 
-const Layout = ({ layoutType, children }: LayoutProps): React.JSX.Element | null => {
+const Layout = ({
+  layoutType,
+  children,
+}: LayoutProps): React.JSX.Element | null => {
   if (layoutType === LayoutType.Default) {
     return <div>{children}</div>;
   }

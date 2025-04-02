@@ -40,7 +40,11 @@ class ApiServiceClass {
     config: RequestInit = {},
   ): Promise<ReturnType> {
     const updatedConfig = { ...config };
-    updatedConfig.headers = Object.assign({}, this.addedHeaders, config.headers ?? {});
+    updatedConfig.headers = Object.assign(
+      {},
+      this.addedHeaders,
+      config.headers ?? {},
+    );
     const fullURL = new URL(path, constants.apiBaseURL);
     const response = await fetch(fullURL, {
       method,
