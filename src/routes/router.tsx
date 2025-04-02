@@ -1,5 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
-import type { RouteObject } from "react-router-dom";
+import { createBrowserRouter } from "react-router";
+import type { RouteObject } from "react-router";
 import type { Route as RouteType } from "./routes";
 import { RouteComponent } from "./route-component";
 import { RouteLayout } from "./route-layout";

@@ -1,5 +1,5 @@
 import type React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { getRouteFor } from "../../routes/route-helpers";
 import type { Params, RouteName } from "../../routes/routes";
 

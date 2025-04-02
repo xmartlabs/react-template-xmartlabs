@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRouteError } from "react-router-dom";
+import { useRouteError } from "react-router";
 import { logger } from "helpers/logger";
 import { UnexpectedError } from "pages/unexpected-error";
 

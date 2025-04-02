@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { Location } from "react-router";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 interface ScrollToTopProps {
   children: JSX.Element;

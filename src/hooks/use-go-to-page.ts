@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 // NOTE: Anything imported from routes must avoid the base directory
 // since it creates a circular dependency.
@@ -12,7 +12,8 @@ export const useGoToPage = () => {
 
   return useCallback(
     (routeName: RouteName, pathParams?: Params, queryParams?: Params) => {
-      navigate(getRouteFor(routeName, pathParams, queryParams));
+      // eslint-disable-next-line no-void
+      void navigate(getRouteFor(routeName, pathParams, queryParams));
     },
     [navigate],
   );
