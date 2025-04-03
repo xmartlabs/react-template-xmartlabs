@@ -1,3 +1,4 @@
+// eslint-disable-next-line testing-library/no-manual-cleanup
 import { cleanup, screen } from "@testing-library/react";
 import { renderWithRouter } from "tests/helpers/render-with-router";
 import { describe, expect, it } from "vitest";

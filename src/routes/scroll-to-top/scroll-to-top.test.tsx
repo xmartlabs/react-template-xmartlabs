@@ -41,7 +41,7 @@ describe("ScrollToTop", () => {
         </>
       );
       // Render ScrollToTop with the test component
-      const { getByText } = render(
+      render(
         <BrowserRouter>
           <ScrollToTop>
             <TestComponent />
@@ -49,7 +49,8 @@ describe("ScrollToTop", () => {
         </BrowserRouter>,
       );
       // Simulate a click on the link that triggers a redirect
-      fireEvent.click(getByText("New Page"));
+
+      fireEvent.click(screen.getByText("New Page"));
 
       // Verify that window has been scrolled to the top
       expect(window.scrollY).toBe(0);
