@@ -9,8 +9,7 @@ import checkFile from "eslint-plugin-check-file";
 export default [
   globalIgnores(["build/**/*"]),
   {
-  ...eslint.configs.recommended,
-
+    ...eslint.configs.recommended,
   },
   ...tseslint.config(
     {
@@ -34,7 +33,7 @@ export default [
         reactHooks.configs["recommended-latest"],
         testingLibrary.configs["flat/react"],
       ],
-    
+
       rules: {
         "react/react-in-jsx-scope": "off",
         "array-callback-return": ["error", { allowImplicit: true }],
