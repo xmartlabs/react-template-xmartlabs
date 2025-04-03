@@ -27,9 +27,9 @@ class ApiServiceClass {
     throw new ApiError({
       // NOTE: we need to disable these rules since there's no way for us to type the `data` object.
       /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
-      code: data?.code || ErrorCode.UNEXPECTED_ERROR,
+      code: data?.code ?? ErrorCode.UNEXPECTED_ERROR,
       status: data?.status,
-      message: data?.message || "An unexpected error has occurred",
+      message: data?.message ?? "An unexpected error has occurred",
       /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     });
   }
@@ -40,7 +40,11 @@ class ApiServiceClass {
     config: RequestInit = {},
   ): Promise<ReturnType> {
     const updatedConfig = { ...config };
-    updatedConfig.headers = { ...this.addedHeaders, ...(config.headers ?? {}) };
+    updatedConfig.headers = Object.assign(
+      {},
+      this.addedHeaders,
+      config.headers ?? {},
+    );
     const fullURL = new URL(path, constants.apiBaseURL);
     const response = await fetch(fullURL, {
       method,
