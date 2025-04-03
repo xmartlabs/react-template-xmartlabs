@@ -26,7 +26,7 @@ class ApiServiceClass {
   static _raiseError(data: any) {
     throw new ApiError({
       // NOTE: we need to disable these rules since there's no way for us to type the `data` object.
-
+      /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
       code: data?.code ?? ErrorCode.UNEXPECTED_ERROR,
       status: data?.status,
       message: data?.message ?? "An unexpected error has occurred",
@@ -60,7 +60,7 @@ class ApiServiceClass {
     }
     // We need to disable these rules here since we need to trust 100% that the data that comes from
     // the wire meets the type criteria we're expecting (`ReturnType`).
-
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return data!;
   }
 

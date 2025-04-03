@@ -27,7 +27,7 @@ export default [
       },
       extends: [
         eslint.configs.recommended,
-        ...tseslint.configs.recommended,
+        tseslint.configs.recommendedTypeChecked,
         reactPlugin.configs.flat?.recommended,
         jsxA11y.flatConfigs.recommended,
         reactHooks.configs["recommended-latest"],
