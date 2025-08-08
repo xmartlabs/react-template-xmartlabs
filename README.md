@@ -2,7 +2,7 @@
 
 ## Contributing to this Boilerplate
 
-Make sure you have the appropriate version of Node (22.11.0) and NPM (11.2.0) installed.
+Make sure you have the appropriate version of Node (24.5.0) and NPM (11.5.1) installed.
 
 Then install the required packages:
 

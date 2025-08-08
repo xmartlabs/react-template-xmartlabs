@@ -17,6 +17,10 @@ concurrency:
   group: "${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
   cancel-in-progress: true
 
+env:
+  CI: true
+  VITE_API_BASE_URL: http://localhost
+
 jobs:
   lint_and_test:
     runs-on: ubuntu-latest
@@ -28,11 +32,11 @@ jobs:
       - name: Set up Nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: 22.11.0
+          node-version: 24.5.0
           cache: npm
 
       - name: Update NPM
-        run: npm i -g npm@11.2.0
+        run: npm i -g npm@11.5.1
 
       - name: Install dependencies
         run: npm ci
