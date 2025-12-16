@@ -6,6 +6,8 @@ import tseslint from "typescript-eslint";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactCompiler from "eslint-plugin-react-compiler";
 import testingLibrary from "eslint-plugin-testing-library";
+import noOnlyTests from "eslint-plugin-no-only-tests";
+import vitestGlobals from "eslint-plugin-vitest-globals";
 import checkFile from "eslint-plugin-check-file";
 export default [
   globalIgnores(["build/**/*"]),
@@ -163,5 +165,18 @@ export default [
       ],
     },
     ignores: ["**/*.css", "**/*.svg"],
+  },
+  {
+    files: ["**/*.test.{ts,tsx,js,jsx}", "**/*.spec.{ts,tsx,js,jsx}"],
+    plugins: {
+      "no-only-tests": noOnlyTests,
+      "vitest-globals": vitestGlobals,
+    },
+    languageOptions: {
+      globals: vitestGlobals.environments.env.globals,
+    },
+    rules: {
+      "no-only-tests/no-only-tests": "error",
+    },
   },
 ];
