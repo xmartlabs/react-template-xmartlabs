@@ -59,9 +59,7 @@ const MetaHead = ({
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content={twitterCard} />
-      {twitterTitle && (
-        <meta name="twitter:title" content={twitterTitle} />
-      )}
+      {twitterTitle && <meta name="twitter:title" content={twitterTitle} />}
       {twitterDescription && (
         <meta name="twitter:description" content={twitterDescription} />
       )}
@@ -71,4 +69,3 @@ const MetaHead = ({
 };
 
 export { MetaHead };
-

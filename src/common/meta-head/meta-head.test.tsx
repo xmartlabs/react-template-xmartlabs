@@ -6,7 +6,8 @@ import { HelmetProvider } from "@vuer-ai/react-helmet-async";
 import type React from "react";
 import { MetaHead } from "./meta-head";
 
-const renderWithHelmet = (component: React.ReactElement) => render(<HelmetProvider>{component}</HelmetProvider>);
+const renderWithHelmet = (component: React.ReactElement) =>
+  render(<HelmetProvider>{component}</HelmetProvider>);
 
 describe("MetaHead", () => {
   beforeEach(() => {
@@ -147,7 +148,9 @@ describe("MetaHead", () => {
       renderWithHelmet(<MetaHead ogDescription="OG Test Description" />);
 
       await waitFor(() => {
-        const metaTag = document.querySelector('meta[property="og:description"]');
+        const metaTag = document.querySelector(
+          'meta[property="og:description"]',
+        );
         expect(metaTag).toBeTruthy();
         expect(metaTag?.getAttribute("content")).toBe("OG Test Description");
       });
@@ -213,12 +216,18 @@ describe("MetaHead", () => {
     });
 
     it("should render twitter:description meta tag when twitterDescription prop is provided", async () => {
-      renderWithHelmet(<MetaHead twitterDescription="Twitter Test Description" />);
+      renderWithHelmet(
+        <MetaHead twitterDescription="Twitter Test Description" />,
+      );
 
       await waitFor(() => {
-        const metaTag = document.querySelector('meta[name="twitter:description"]');
+        const metaTag = document.querySelector(
+          'meta[name="twitter:description"]',
+        );
         expect(metaTag).toBeTruthy();
-        expect(metaTag?.getAttribute("content")).toBe("Twitter Test Description");
+        expect(metaTag?.getAttribute("content")).toBe(
+          "Twitter Test Description",
+        );
       });
     });
 
@@ -262,20 +271,65 @@ describe("MetaHead", () => {
 
       await waitFor(() => {
         expect(document.title).toBe("Full Test Title");
-        expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toBe("Full Test Description");
-        expect(document.querySelector('meta[name="keywords"]')?.getAttribute("content")).toBe("test, keywords");
-        expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe("/full-test");
-        expect(document.querySelector('meta[property="og:title"]')?.getAttribute("content")).toBe("OG Full Title");
-        expect(document.querySelector('meta[property="og:description"]')?.getAttribute("content")).toBe("OG Full Description");
-        expect(document.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe("/og-image.jpg");
-        expect(document.querySelector('meta[property="og:url"]')?.getAttribute("content")).toBe("/full-test");
-        expect(document.querySelector('meta[property="og:type"]')?.getAttribute("content")).toBe("article");
-        expect(document.querySelector('meta[name="twitter:card"]')?.getAttribute("content")).toBe("summary");
-        expect(document.querySelector('meta[name="twitter:title"]')?.getAttribute("content")).toBe("Twitter Full Title");
-        expect(document.querySelector('meta[name="twitter:description"]')?.getAttribute("content")).toBe("Twitter Full Description");
-        expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute("content")).toBe("/twitter-image.jpg");
+        expect(
+          document
+            .querySelector('meta[name="description"]')
+            ?.getAttribute("content"),
+        ).toBe("Full Test Description");
+        expect(
+          document
+            .querySelector('meta[name="keywords"]')
+            ?.getAttribute("content"),
+        ).toBe("test, keywords");
+        expect(
+          document.querySelector('link[rel="canonical"]')?.getAttribute("href"),
+        ).toBe("/full-test");
+        expect(
+          document
+            .querySelector('meta[property="og:title"]')
+            ?.getAttribute("content"),
+        ).toBe("OG Full Title");
+        expect(
+          document
+            .querySelector('meta[property="og:description"]')
+            ?.getAttribute("content"),
+        ).toBe("OG Full Description");
+        expect(
+          document
+            .querySelector('meta[property="og:image"]')
+            ?.getAttribute("content"),
+        ).toBe("/og-image.jpg");
+        expect(
+          document
+            .querySelector('meta[property="og:url"]')
+            ?.getAttribute("content"),
+        ).toBe("/full-test");
+        expect(
+          document
+            .querySelector('meta[property="og:type"]')
+            ?.getAttribute("content"),
+        ).toBe("article");
+        expect(
+          document
+            .querySelector('meta[name="twitter:card"]')
+            ?.getAttribute("content"),
+        ).toBe("summary");
+        expect(
+          document
+            .querySelector('meta[name="twitter:title"]')
+            ?.getAttribute("content"),
+        ).toBe("Twitter Full Title");
+        expect(
+          document
+            .querySelector('meta[name="twitter:description"]')
+            ?.getAttribute("content"),
+        ).toBe("Twitter Full Description");
+        expect(
+          document
+            .querySelector('meta[name="twitter:image"]')
+            ?.getAttribute("content"),
+        ).toBe("/twitter-image.jpg");
       });
     });
   });
 });
-
