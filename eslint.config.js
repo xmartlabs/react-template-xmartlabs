@@ -4,6 +4,7 @@ import jsxA11y from "eslint-plugin-jsx-a11y";
 import reactPlugin from "eslint-plugin-react";
 import tseslint from "typescript-eslint";
 import reactHooks from "eslint-plugin-react-hooks";
+import reactCompiler from "eslint-plugin-react-compiler";
 import testingLibrary from "eslint-plugin-testing-library";
 import checkFile from "eslint-plugin-check-file";
 export default [
@@ -31,6 +32,7 @@ export default [
         reactPlugin.configs.flat?.recommended,
         jsxA11y.flatConfigs.recommended,
         reactHooks.configs["recommended-latest"],
+        reactCompiler.configs.recommended,
         testingLibrary.configs["flat/react"],
       ],
 
