@@ -2,6 +2,12 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { ApiError } from "./api-error";
 import { ApiService } from "./api-service";
 
+vi.mock("config/constants", () => ({
+  constants: {
+    apiBaseURL: "https://api.example.com",
+  },
+}));
+
 enum Method {
   get = "get",
   post = "post",
