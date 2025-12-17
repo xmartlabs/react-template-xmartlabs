@@ -18,9 +18,13 @@ export interface MetaHeadProps {
   nofollow?: boolean;
 }
 
+const DEFAULT_TITLE = "Xmartlabs Template";
+const DEFAULT_DESCRIPTION =
+  "Xmartlabs React Template - A modern React boilerplate built with Vite";
+
 const MetaHead = ({
-  title,
-  description,
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
   keywords,
   canonical,
   ogTitle,
@@ -35,35 +39,45 @@ const MetaHead = ({
   noindex = false,
   nofollow = false,
 }: MetaHeadProps) => {
-  const robotsContent = [
-    noindex ? "noindex" : "index",
-    nofollow ? "nofollow" : "follow",
-  ].join(", ");
+  const robotsContent = `${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}`;
+
+  const meta = {
+    ogTitle: ogTitle ?? title,
+    ogDescription: ogDescription ?? description,
+    ogUrl: ogUrl ?? (typeof window !== "undefined" ? window.location.href : ""),
+    twitterTitle: twitterTitle ?? ogTitle ?? title,
+    twitterDescription: twitterDescription ?? ogDescription ?? description,
+    twitterImage: twitterImage ?? ogImage,
+  };
 
   return (
     <Helmet>
-      {title && <title>{title}</title>}
-      {description && <meta name="description" content={description} />}
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="robots" content={robotsContent} />
       {keywords && <meta name="keywords" content={keywords} />}
       {canonical && <link rel="canonical" href={canonical} />}
-      <meta name="robots" content={robotsContent} />
 
-      {/* Open Graph tags */}
-      {ogTitle && <meta property="og:title" content={ogTitle} />}
-      {ogDescription && (
-        <meta property="og:description" content={ogDescription} />
+      {/* Open Graph */}
+      <meta property="og:type" content={ogType} />
+      {meta.ogTitle && <meta property="og:title" content={meta.ogTitle} />}
+      {meta.ogDescription && (
+        <meta property="og:description" content={meta.ogDescription} />
       )}
       {ogImage && <meta property="og:image" content={ogImage} />}
-      {ogUrl && <meta property="og:url" content={ogUrl} />}
-      <meta property="og:type" content={ogType} />
+      {meta.ogUrl && <meta property="og:url" content={meta.ogUrl} />}
 
-      {/* Twitter Card tags */}
+      {/* Twitter */}
       <meta name="twitter:card" content={twitterCard} />
-      {twitterTitle && <meta name="twitter:title" content={twitterTitle} />}
-      {twitterDescription && (
-        <meta name="twitter:description" content={twitterDescription} />
+      {meta.twitterTitle && (
+        <meta name="twitter:title" content={meta.twitterTitle} />
       )}
-      {twitterImage && <meta name="twitter:image" content={twitterImage} />}
+      {meta.twitterDescription && (
+        <meta name="twitter:description" content={meta.twitterDescription} />
+      )}
+      {meta.twitterImage && (
+        <meta name="twitter:image" content={meta.twitterImage} />
+      )}
     </Helmet>
   );
 };
